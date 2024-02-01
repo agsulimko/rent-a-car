@@ -19,8 +19,10 @@ import {
   Form,
   DivMileage,
   DivTextInfo,
+  SelectBrand,
 } from "./CatalogPage.styled";
 import { Container } from "styles/Container/Container";
+import makes from "../components/makes.js";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -28,11 +30,12 @@ const Catalog = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAdverts);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedMake, setSelectedMake] = useState(""); // Добавлено для dropdown
 
   useEffect(() => {
     // Добавляем параметры поиска для текущей страницы
-    dispatch(fetchAdverts({ page: currentPage }));
-  }, [dispatch, currentPage]);
+    dispatch(fetchAdverts({ page: currentPage, make: selectedMake }));
+  }, [dispatch, currentPage, selectedMake]);
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
@@ -46,6 +49,9 @@ const Catalog = () => {
     event.preventDefault();
     // Обработка вашей логики для отправки формы
   };
+  const handleMakeChange = (event) => {
+    setSelectedMake(event.target.value);
+  };
 
   return (
     <Container>
@@ -53,17 +59,26 @@ const Catalog = () => {
         <Form className="form" onSubmit={handleSubmit}>
           <Label className="label">
             Car brand
-            <input
+            <SelectBrand
               type="text"
               name="Car brand"
               placeholder="Enter the text"
+              value={selectedMake}
+              onChange={handleMakeChange}
               // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
               // value={name}
               // onChange={handleInputChange}
               className="input"
-            />
+            >
+              <option value="">Enter the text</option>
+              {makes.map((make, index) => (
+                <option key={index} value={make}>
+                  {make}
+                </option>
+              ))}
+            </SelectBrand>
           </Label>
           <Label className="label">
             Price/ 1 hou

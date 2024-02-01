@@ -15,7 +15,7 @@ const Label = styled.label`
   display: flex;
   flex-direction: column;
 `;
-const SelectBrand = styled.input``;
+const SelectBrand = styled.select``;
 
 const DivMileage = styled.div`
   display: flex;

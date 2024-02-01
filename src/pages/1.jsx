@@ -24,37 +24,35 @@ import {
 import { Container } from "styles/Container/Container";
 
 const ITEMS_PER_PAGE = 12;
-
+const makes = [
+  "Buick",
+  "Volvo",
+  "HUMMER",
+  "Subaru",
+  "Mitsubishi",
+  "Nissan",
+  "Lincoln",
+  "GMC",
+  "Hyundai",
+  "MINI",
+  "Bentley",
+  "Mercedes-Benz",
+  "Aston Martin",
+  "Pontiac",
+  "Lamborghini",
+  "Audi",
+  "BMW",
+  "Chevrolet",
+  "Mercedes-Benz",
+  "Chrysler",
+  "Kia",
+  "Land",
+];
 const Catalog = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAdverts);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedMake, setSelectedMake] = useState(""); // Добавлено для dropdown
-
-  const makes = [
-    "Buick",
-    "Volvo",
-    "HUMMER",
-    "Subaru",
-    "Mitsubishi",
-    "Nissan",
-    "Lincoln",
-    "GMC",
-    "Hyundai",
-    "MINI",
-    "Bentley",
-    "Mercedes-Benz",
-    "Aston Martin",
-    "Pontiac",
-    "Lamborghini",
-    "Audi",
-    "BMW",
-    "Chevrolet",
-    "Mercedes-Benz",
-    "Chrysler",
-    "Kia",
-    "Land",
-  ];
 
   useEffect(() => {
     // Добавляем параметры поиска для текущей страницы и выбранной марки
