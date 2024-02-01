@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-// import { theme } from 'styles/theme';
+import { theme } from 'styles/theme.jsx';
 import '@fontsource/inter';
-import { theme } from 'styles';
+// import { theme } from 'styles';
 // import { theme } from 'styles';
 
 const Form = styled.form`
@@ -15,6 +15,8 @@ const Label = styled.label`
   display: flex;
   flex-direction: column;
 `;
+const SelectBrand = styled.input``;
+
 const DivMileage = styled.div`
   display: flex;
 
@@ -107,6 +109,11 @@ const CardsTitle = styled.h3`
   position: absolute;
   overflow: hidden;
 `;
+
+const DivTextInfo = styled.div`
+  display: flex;
+`;
+
 const CardsText = styled.p`
   position: absolute;
   top: 200px;
@@ -155,19 +162,39 @@ const ButtonHeardIcone = styled.button`
   }
 `;
 
-const ButtonSeeRecipe = styled.button`
-  display: block;
+const ButtonLearnMore = styled.button`
+  /* display: block; */
+  margin: 0;
   /* position: absolute; */
   /* right: 16px;
   bottom: 16px; */
-  text-decoration: none;
+  font-size: 14px;
+  font-weight: ${theme.fontWeight.semiBold};
+  width: 100%;
+  /* height: 30px; */
+  border-radius: 8px;
+  color: ${theme.color.white_full};
+  background-color: ${theme.color.blue__light};
+
+  &:hover,
+  &:focus {
+    background-color: ${theme.color.blue__dark};
+  }
+`;
+
+const ButtonLoadMore = styled.button`
+  display: block;
+  margin: 0 auto;
+  /* position: absolute; */
+  /* right: 16px;
+  bottom: 16px; */
+  text-decoration: underline;
   font-size: 16px;
   font-weight: ${theme.fontWeight.medium};
   /* width: 90px;
   height: 30px; */
   border-radius: 8px;
   color: ${theme.color.blue__light};
-  /* background-color: #9bb537; */
 
   &:hover,
   &:focus {
@@ -183,10 +210,13 @@ export {
   CardsText,
   TextRating,
   ButtonHeardIcone,
-  ButtonSeeRecipe,
+  ButtonLoadMore,
+  ButtonLearnMore,
   Img,
   DivImg,
   Label,
   Form,
   DivMileage,
+  DivTextInfo,
+  SelectBrand,
 };
