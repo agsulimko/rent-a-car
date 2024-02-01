@@ -1,3 +1,3 @@
-export const selectExercises = state => state.exercises.exercises;
+export const selectAdverts = state => state.adverts.adverts;
 
-export const selectLoading = state => state.exercises.isLoading;
+export const selectLoading = state => state.adverts.isLoading;

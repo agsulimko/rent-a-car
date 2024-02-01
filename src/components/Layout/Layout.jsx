@@ -4,6 +4,7 @@ import styled from "styled-components";
 // import { Suspense, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { Container } from "styles/Container/Container";
+import { Header } from "./Layout.styled";
 // import { selectAuth, selectUser } from "../../redux/auth/auchSelectors";
 // import { useDispatch, useSelector } from "react-redux";
 
@@ -53,19 +54,19 @@ const Layout = () => {
   return (
     <>
       <Container>
-        <header>
+        <Header>
           <ul className={css.listLayout}>
             <li>
               <StyledLink to="/">Home</StyledLink>
             </li>
             <li>
-              <StyledLink to="/main">Main</StyledLink>
+              <StyledLink to="/catalog">Catalog</StyledLink>
             </li>
             <li>
               <StyledLink to="/favorites">Favorites</StyledLink>
             </li>
           </ul>
-        </header>
+        </Header>
       </Container>
       <main>
         {/* <Suspense fallback={<div>{Loader()}</div>}> */}

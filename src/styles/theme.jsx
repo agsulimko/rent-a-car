@@ -12,7 +12,7 @@ export const theme = Object.freeze({
   },
   fontSizes: {
     small: "14px",
-    medium: "18px",
+    medium: "16px",
     large: "22px",
   },
   backgroundColor: {
@@ -31,6 +31,10 @@ export const theme = Object.freeze({
     black_light: "rgb(18, 20, 23)",
     //   Gray
     gray_full: "#8A8A89",
+    //Blue__light
+    blue__light: "#3470FF",
+    //Blue__dark
+    blue__dark: "#0B44CD",
   },
 });
 // spacing: (value) => `${4 * value}px`,

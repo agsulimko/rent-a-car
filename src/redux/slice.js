@@ -1,63 +1,119 @@
-import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchAllExercises,
-  fetchBodyParts,
-  fetchEquipment,
-  fetchMuscles,
-} from './thunks';
+// import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  exercises: [],
-  bodyParts: [],
-  muscles: [],
-  equipment: [],
-  isLoading: false,
-  error: null,
-};
+// import fetchAdverts from './thunks';
+
+// const initialState = {
+//   adverts: [],
+
+//   isLoading: false,
+//   error: null,
+// };
+
+// const handlePending = state => {
+//   state.isLoading = true;
+// };
+
+// const handleRejected = (state, action) => {
+//   state.isLoading = false;
+//   state.error = action.payload;
+// };
+
+// export const advertsSlice = createSlice({
+//   name: 'adverts',
+//   initialState,
+
+//   extraReducers: builder =>
+//     builder
+
+//       .addCase(fetchAdverts.pending, handlePending)
+//       .addCase(fetchAdverts.fulfilled, (state, action) => {
+//         state.isLoading = false;
+//         state.error = null;
+//         state.equipment = action.payload;
+//       })
+//       .addCase(fetchAdverts.rejected, handleRejected),
+// });
+
+// export const advertsReducer = advertsSlice.reducer;
+
+// import { createSlice } from '@reduxjs/toolkit';
+
+// import fetchAdverts from './thunks';
+
+// const initialState = {
+//   adverts: [],
+//   isLoading: false,
+//   error: null,
+// };
+
+// const handlePending = state => {
+//   state.isLoading = true;
+// };
+
+// const handleRejected = (state, action) => {
+//   state.isLoading = false;
+//   state.error = action.payload;
+// };
+
+// export const advertsSlice = createSlice({
+//   name: 'adverts',
+//   initialState,
+
+//   extraReducers: builder =>
+//     builder
+//       .addCase(fetchAdverts.pending, handlePending)
+//       .addCase(fetchAdverts.fulfilled, (state, action) => {
+//         state.isLoading = false;
+//         state.error = null;
+//         state.adverts = action.payload; // Corrected line
+//       })
+//       .addCase(fetchAdverts.rejected, handleRejected),
+// });
+
+// export const advertsReducer = advertsSlice.reducer;
+
+// autosSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+// import { getAdverts } from 'api/api';
+
+import fetchAdverts from './thunks';
+// export const fetchAdverts = createAsyncThunk(
+//   'adverts/fetchAdverts',
+//   async () => {
+//     const adverts = await getAdverts();
+//     return adverts;
+//   }
+// );
 
 const handlePending = state => {
   state.isLoading = true;
+  state.status = 'loading';
 };
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+  state.status = 'failed';
 };
 
-export const exercisesSlice = createSlice({
-  name: 'exercises',
-  initialState,
-
-  extraReducers: builder =>
+const advertsSlice = createSlice({
+  name: 'adverts',
+  initialState: {
+    adverts: [],
+    status: '',
+    isLoading: false,
+    error: null,
+  },
+  reducers: {},
+  extraReducers: builder => {
     builder
-      .addCase(fetchBodyParts.pending, handlePending)
-      .addCase(fetchBodyParts.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.bodyParts = action.payload;
+      .addCase(fetchAdverts.pending, handlePending)
+      .addCase(fetchAdverts.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.adverts = action.payload;
       })
-      .addCase(fetchBodyParts.rejected, handleRejected)
-      .addCase(fetchMuscles.pending, handlePending)
-      .addCase(fetchMuscles.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.muscles = action.payload;
-      })
-      .addCase(fetchMuscles.rejected, handleRejected)
-      .addCase(fetchEquipment.pending, handlePending)
-      .addCase(fetchEquipment.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.equipment = action.payload;
-      })
-      .addCase(fetchEquipment.rejected, handleRejected)
-      .addCase(fetchAllExercises.pending, handlePending)
-      .addCase(fetchAllExercises.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.exercises = action.payload;
-      })
-      .addCase(fetchAllExercises.rejected, handleRejected),
+      .addCase(fetchAdverts.rejected, handleRejected);
+  },
 });
 
-export const exercisesReducer = exercisesSlice.reducer;
+export default advertsSlice.reducer;

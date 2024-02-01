@@ -13,16 +13,16 @@ const StyledLink = styled(NavLink)`
     text-shadow: 0px 0px 10px currentColor;
   }
   &.active {
-    color: ${theme.colors.green_full};
+    color: green;
     /* background-color: rgb(103, 103, 238); */
   }
 `;
 
 const Header = styled.header`
-  /* display: flex;
+  display: flex;
   align-items: center;
 
-  justify-content: space-between; */
+  justify-content: center;
 `;
 
 const HeaderContainer = styled.div`
@@ -47,10 +47,10 @@ const List = styled.ul`
 `;
 
 const Span = styled.span`
-  color: ${theme.colors.green_full};
+  color: green;
 `;
 const LogoNavLink = styled(NavLink)`
-  font-weight: ${theme.fontWeight.semiBold};
+  font-weight: 400;
 `;
 const ButtonCart = styled.button`
   line-height: 0;
@@ -69,9 +69,9 @@ const ButtonBurger = styled.button`
   text-align: center;
   width: 32px;
   height: 32px;
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     display: none;
-  }
+  } */
 `;
 
 const Svg = styled.svg`
@@ -85,11 +85,11 @@ const Menu = styled.div`
   left: 0;
   width: 100vw;
   height: 100%;
-  background-color: ${theme.backgroundColor.green_full};
+  background-color: green;
   z-index: 1222;
   display: flex;
   flex-direction: column;
-  transform: translateX(${props => (props.isOpen ? '0' : '100%')});
+  /* transform: translateX(${props => (props.isOpen ? '0' : '100%')}); */
 
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
@@ -111,7 +111,7 @@ const ListMenuNav = styled.ul`
   text-align: center;
   justify-content: center;
   gap: 16px;
-  color: ${theme.colors.white_full};
+  color: white;
 `;
 export {
   LogoNavLink,
