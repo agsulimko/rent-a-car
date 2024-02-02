@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'https://65b95a82b71048505a8ab881.mockapi.io/api';
 // api.js
 export const getAdverts = async () => {
   const { data } = await axios.get(`/adverts`);
-  console.log('data=', data);
+  // console.log('data=', data);
   return data;
 };
 

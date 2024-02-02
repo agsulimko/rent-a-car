@@ -6,8 +6,7 @@ const fetchAdverts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await getAdverts();
-      console.log('response=', response);
-      console.log('response.result=', response.result);
+
       return response;
     } catch (e) {
       console.log(e.message);

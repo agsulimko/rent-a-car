@@ -1,0 +1,13 @@
+g {
+    stroke: black;
+}
+
+
+.cart:hover g {
+        stroke: rgba(155, 181, 55, 0.7);
+    /* Adjust the hover color as needed */
+}
+/* svg{
+    width: 32px;
+    height: 32px;
+} */
