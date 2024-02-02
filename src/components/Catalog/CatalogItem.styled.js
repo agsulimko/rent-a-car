@@ -1,173 +1,198 @@
 import styled from 'styled-components';
 
-const ContainerWrapper = styled.div`
-  width: 335px;
-  padding-left: 16px;
-  padding-right: 16px;
+import { theme } from 'styles/theme.jsx';
 
+const CardItem = styled.li`
+  border: 0.5px solid black;
+  position: relative;
+  width: 274px;
+  height: 426px;
+  /* width: 250px;
+  height: 287px; */
+  /* margin-bottom: 16px; */
+
+  transition: all 0.5s ease;
+  overflow: hidden;
+  /* padding-bottom: 0; */
+
+  & img {
+    /* max-width: 120%; */
+  }
+  &:hover,
+  &:focus {
+    filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.3));
+  }
+  /* {
+    width: 240px;
+    height: 264px;
+    & img {
+      width: 264px;
+      height: 264px;
+      max-width: 150%;
+    }
+  } */
+`;
+
+const CardList = styled.ul`
+  display: flex;
+
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
-  gap: 32px;
-  border-radius: 12px;
-  border: 1px solid rgba(239, 237, 232, 0.2);
-
-  background: rgba(239, 237, 232, 0.05);
-
-  @media screen and (min-width: 1440px) {
-    width: 405px;
-  }
+  margin-bottom: 100px;
+  /* display: grid;
+  justify-items: center; */
+  /* width: 335px; */
+  /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+  gap: 24px;
+  /* column-gap: 16px;
+  row-gap: 32px; */
+  /* gap: 32px 16px; */
+  /* display: flex;
+  flex-wrap: wrap;
+  gap: 16px; */
 `;
 
-const NavDiv = styled.div`
-  display: flex;
-
-  justify-content: space-between;
-  padding-top: 18px;
-  margin-bottom: 33px;
-  @media screen and (min-width: 768px) {
-    margin-bottom: 25px;
-  }
-  @media screen and (min-width: 1440px) {
-    padding-top: 16px;
-    margin-bottom: 27px;
-  }
+const DivImg = styled.div`
+  overflow: hidden;
+  border-radius: 15px;
 `;
 
-const CardLabel = styled.p`
-  font-size: 12px;
-  font-weight: 700;
-  line-height: normal;
-  color: rgba(255, 255, 255, 1);
-
-  padding: 5px 7.5px;
-  border-radius: 4px;
-  background: rgba(239, 237, 232, 0.05);
-  text-transform: uppercase;
+const Img = styled.img`
+  /* width: 274px; */
+  width: 401px;
+  height: 268px;
+  border-radius: 15px;
+  object-fit: cover;
+  max-width: 120%;
+  overflow: hidden;
+  /* height: 50%; */
+  /* min-height: 280px; */
 `;
 
-const SvgExercise = styled.svg`
-  width: 16px;
-  height: 16px;
-  stroke: var(--orange-color);
-
-  @media screen and (min-width: 768px) {
-  }
-`;
-
-const ButtonStart = styled.button`
+const CardsTitle = styled.h3`
+  position: absolute;
+  top: 180px;
+  left: 16px;
   font-size: 14px;
-  font-weight: 400;
-  line-height: 1.29; /* 128.571% */
-  background: transparent;
-  border: none;
-  color: var(--orange-color);
-  display: flex;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0;
+  color: #f8f8f8;
+  // color: #000;
+  margin-bottom: 8px;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  position: absolute;
+  overflow: hidden;
+`;
 
-  gap: 8px;
-  padding: 0;
+const DivTextInfo = styled.div`
+  display: flex;
+`;
+
+const CardsText = styled.p`
+  position: absolute;
+  top: 200px;
+  left: 16px;
+  color: #f8f8f8;
+  // color: #000;
+  margin-bottom: 16px;
+  height: 30px;
+  // height: 29px;
+  overflow: hidden;
+  width: 303px;
+  font-size: 12px;
+  line-height: 16px;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+`;
+const CardStarRating = styled.div`
+  overflow: hidden;
+  border-radius: 15px;
+`;
+const TextRating = styled.p`
+  position: absolute;
+  bottom: 22px;
+  left: 16px;
+  font-size: 14px;
+  color: #f8f8f8;
+  // color: #000;
+`;
+
+const ButtonHeardIcone = styled.button`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+  width: 46px;
+  height: 46px;
+
+  /* &:hover,
+  &:focus {
+    fill: #3470ff;
+    stroke-width: 1px;
+    stroke: #3470ff;
+    color: #050505;
+  } */
+`;
+
+const ButtonLearnMore = styled.button`
+  /* display: block; */
+  margin: 0;
+  /* position: absolute; */
+  /* right: 16px;
+  bottom: 16px; */
+  font-size: 14px;
+  font-weight: ${theme.fontWeight.semiBold};
+  width: 100%;
+  /* height: 30px; */
+  border-radius: 8px;
+  color: ${theme.color.white_full};
+  background-color: ${theme.color.blue__light};
 
   &:hover,
   &:focus {
-    color: var(--white-color);
-    ${SvgExercise} {
-      stroke: var(--white-color);
-    }
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.5; /* 150% */
-  }
-  @media screen and (min-width: 1440px) {
+    background-color: ${theme.color.blue__dark};
   }
 `;
 
-export const IconTitleDiv = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  gap: 16px;
-`;
+const ButtonLoadMore = styled.button`
+  display: block;
+  margin: 0 auto;
+  /* position: absolute; */
+  /* right: 16px;
+  bottom: 16px; */
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: ${theme.fontWeight.medium};
+  /* width: 90px;
+  height: 30px; */
+  border-radius: 8px;
+  color: ${theme.color.blue__light};
 
-const SpanIconRun = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--beige-color);
-
-  border-radius: 50%;
-
-  width: 24px;
-  height: 24px;
-`;
-const SvgIconRun = styled.svg`
-  width: 16px;
-  height: 16px;
-`;
-
-const H3 = styled.h3`
-  color: var(----white-color);
-  position: relative;
-  font-size: 20px;
-  line-height: 1.2;
-  font-weight: 400;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  width: 263px;
-  height: 24px;
-  text-align: left;
-
-  @media screen and (min-width: 768px) {
-    /* width: 285px; */
-    font-size: 24px;
-    line-height: 1.33;
-    height: 32px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 333px;
-    /* width: 263px; */
-  }
-`;
-const ListInfo = styled.li`
-  display: flex;
-  flex-wrap: wrap;
-  font-style: normal;
-  list-style: none;
-  gap: 4px 16px;
-  font-size: 12px;
-  padding-bottom: 16px;
-  line-height: 1.5;
-  font-weight: 400px;
-  color: rgba(239, 237, 232, 0.4);
-`;
-const SpanListInfo = styled.span`
-  margin-left: 4px;
-  color: var(--white-color);
-`;
-
-const SpanListInfoTarget = styled.span`
-  margin-left: 4px;
-  color: var(--white-color);
-  @media screen and (min-width: 1440px) {
-    width: 100px;
-    height: 18px;
+  &:hover,
+  &:focus {
+    color: ${theme.color.blue__dark};
   }
 `;
 
 export {
-  ButtonStart,
-  SvgExercise,
-  SpanIconRun,
-  SvgIconRun,
-  ListInfo,
-  H3,
-  SpanListInfo,
-  SpanListInfoTarget,
-  ContainerWrapper,
-  CardLabel,
-  NavDiv,
+  ButtonHeardIcone,
+  ButtonLoadMore,
+  ButtonLearnMore,
+  CardItem,
+  CardList,
+  CardStarRating,
+  CardsText,
+  CardsTitle,
+  TextRating,
+  Img,
+  DivImg,
+  DivTextInfo,
 };
