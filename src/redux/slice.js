@@ -72,7 +72,7 @@
 
 // export const advertsReducer = advertsSlice.reducer;
 
-// autosSlice.js
+// slice.js
 import { createSlice } from '@reduxjs/toolkit';
 // import { getAdverts } from 'api/api';
 

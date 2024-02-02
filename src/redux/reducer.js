@@ -38,6 +38,13 @@
 //   auth: authPersistedReducer,
 // });
 
+// import { combineReducers } from '@reduxjs/toolkit';
+// import { advertsReducer } from './slice';
+
+// export const reducer = combineReducers({
+//   adverts: advertsReducer,
+// });
+
 import { combineReducers } from '@reduxjs/toolkit';
 import { advertsReducer } from './slice';
 

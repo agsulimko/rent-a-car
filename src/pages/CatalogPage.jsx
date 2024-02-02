@@ -29,34 +29,11 @@ const ITEMS_PER_PAGE = 12;
 
 const Catalog = () => {
   const dispatch = useDispatch();
-  const adverts = useSelector(selectAdverts);
+  const adverts = useSelector(selectAdverts) ?? [];
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedMake, setSelectedMake] = useState("");
-
-  // В вашем файле Catalog.js
-
-  // ... (ваш существующий код)
-
-  const handleAddToFavorite = (cartId) => {
-    // Получите текущий массив из локального хранилища
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-    // Проверьте, есть ли уже cartId в избранном
-    if (!favorites.includes(cartId)) {
-      // Если cartId отсутствует, добавьте его в массив
-      favorites.push(cartId);
-
-      // Обновите локальное хранилище с новым массивом
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-    }
-  };
-
   // Добавлено для dropdown
-  const [selectedBrand, setSelectedBrand] = useState(null);
 
-  const handleBrandChange = (event) => {
-    setSelectedBrand(event.target.value);
-  };
   useEffect(() => {
     // Добавляем параметры поиска для текущей страницы
     dispatch(fetchAdverts({ page: currentPage, make: selectedMake }));
@@ -78,12 +55,6 @@ const Catalog = () => {
     setSelectedMake(event.target.value);
   };
 
-  // Фильтрация коллекции в соответствии с выбранным брендом
-
-  const filteredAdverts = selectedBrand
-    ? adverts.filter((ad) => ad.make === selectedBrand)
-    : adverts;
-
   return (
     <Container>
       <main>
@@ -94,17 +65,16 @@ const Catalog = () => {
               type="text"
               name="Car brand"
               placeholder="Enter the text"
-              // value={selectedMake}
-              // onChange={handleMakeChange}
-              value={selectedBrand}
-              onChange={handleBrandChange}
+              value={selectedMake}
+              onChange={handleMakeChange}
+              // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
               // value={name}
               // onChange={handleInputChange}
               className="input"
             >
               <option value="">Enter the text</option>
-              {/* {makes.map((make, index) => ( */}
               {makes.map((make, index) => (
                 <option key={index} value={make}>
                   {make}
@@ -118,7 +88,9 @@ const Catalog = () => {
               type="text"
               name="Price/ 1 hou"
               placeholder="To $"
+              // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
               // value={number}
               // onChange={handleInputChange}
               className="input"
@@ -131,7 +103,9 @@ const Catalog = () => {
                 type="text"
                 name="Car mileage / km"
                 placeholder="From"
+                // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                 title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                required
                 // value={number}
                 // onChange={handleInputChange}
                 className="input"
@@ -142,7 +116,9 @@ const Catalog = () => {
                 type="text"
                 name="Car mileage / km"
                 placeholder="To"
+                // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                 title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                required
                 // value={number}
                 // onChange={handleInputChange}
                 className="input"
@@ -185,10 +161,9 @@ const Catalog = () => {
                       type="button"
                       className="btn-heard-icone"
                       aria-label="Add to Favorites"
-                      onClick={() => handleAddToFavorite(cart.id)}
                     >
-                      {/* Add to Favorites */}
-                      <Heard />
+                      <Heard cartId={cart.id} />
+                      Add to Favorites
                     </ButtonHeardIcone>
                   </div>
                   <div>
@@ -218,7 +193,7 @@ const Catalog = () => {
                   <ButtonLearnMore
                     type="button"
                     className="cards-item-btn"
-                    id={cart._id}
+                    id={cart.id}
                   >
                     Learn more
                   </ButtonLearnMore>
