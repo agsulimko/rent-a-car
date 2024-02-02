@@ -12,8 +12,19 @@ const Favorites = lazy(() => import("../pages/FavoritesPage"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
 const App = () => {
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchContacts());
+  //   // dispatch(refreshThunk());
+
+  //   // eslit-disable-next-line react-hooks/exhaustive-deps
+  // }, [dispatch]);
+
   return (
     <div>
+      {/* <Toaster /> */}
+
       <Suspense fallback={<div>{Loader()}</div>}>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -21,7 +32,7 @@ const App = () => {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/catalog" element={<Catalog />} />
 
-            <Route path="*" element={<NotFound />} />
+            {/* <Route path="*" element={<NotFound />} /> */}
           </Route>
         </Routes>
       </Suspense>

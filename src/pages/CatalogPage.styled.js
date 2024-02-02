@@ -148,19 +148,18 @@ const TextRating = styled.p`
 
 const ButtonHeardIcone = styled.button`
   position: absolute;
-  top: 0px;
-  right: 0px;
-  z-index: 1;
-  width: 46px;
-  height: 46px;
-
-  /* &:hover,
+  top: 16px;
+  right: 16px;
+  z-index: 222;
+  width: 90px;
+  height: 30px;
+  color: #f8f8f8;
+  border-radius: 8px;
+  background-color: #9bb537;
+  &:hover,
   &:focus {
-    fill: #3470ff;
-    stroke-width: 1px;
-    stroke: #3470ff;
     color: #050505;
-  } */
+  }
 `;
 
 const ButtonLearnMore = styled.button`
