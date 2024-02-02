@@ -1,0 +1,35 @@
+import styled from 'styled-components';
+
+import { theme } from 'styles/theme.jsx';
+// import { Heard } from './Heard';
+
+const Svg = styled.svg`
+  width: 18px;
+  height: 18px;
+`;
+
+const G = styled.g`
+  stroke-width: 1.5px;
+  stroke: rgba(255, 255, 255, 0.8);
+`;
+
+// const StyledHeard = styled(Heard)`
+//   &:hover,
+//   &:focus {
+//     fill: #3470ff;
+//     stroke-width: 1px;
+//     stroke: #3470ff;
+//   }
+// `;
+
+const ButtonHeardIcone = styled.button`
+  &:hover,
+  &:focus {
+    fill: ${theme.color.blu_};
+    stroke-width: 1px;
+    stroke: #3470ff;
+  }
+`;
+
+export { Svg, G, ButtonHeardIcone };
+// export { Svg, G, StyledHeard as Heard, ButtonHeardIcone };

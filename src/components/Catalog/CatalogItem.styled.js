@@ -133,13 +133,12 @@ const ButtonHeardIcone = styled.button`
   width: 46px;
   height: 46px;
 
-  /* &:hover,
+  &:hover,
   &:focus {
     fill: #3470ff;
     stroke-width: 1px;
     stroke: #3470ff;
-    color: #050505;
-  } */
+  }
 `;
 
 const ButtonLearnMore = styled.button`

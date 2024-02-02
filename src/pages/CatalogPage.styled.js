@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { theme } from 'styles/theme.jsx';
-import '@fontsource/inter';
+
 // import { theme } from 'styles';
 // import { theme } from 'styles';
 
