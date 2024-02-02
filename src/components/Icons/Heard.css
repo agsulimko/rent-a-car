@@ -1,0 +1,44 @@
+svg {
+    width: 18px;
+    height: 18px;
+
+}
+
+g {
+    stroke-width: 1.5px;
+        stroke: rgba(255, 255, 255, 0.8);
+    
+}
+
+
+.icon-heard:hover,
+.btn-heard-icone:hover g {
+    fill: #3470ff;
+    stroke-width: 1px;
+    stroke: #3470ff;
+}
+
+.icon-heard:focus,
+.btn-heard-icone:focus g {
+    fill: #3470ff;
+    stroke-width: 1px;
+    stroke: #3470ff;
+}
+
+
+
+.icon-heard.favorite,
+.btn-heard-icone:hover g {
+    fill: blue;
+    /* Измените цвет на ваш желаемый синий */
+    stroke-width: 1px;
+    stroke: blue;
+}
+
+.icon-heard.favorite:focus,
+.btn-heard-icone:focus g {
+    fill: blue;
+    /* Измените цвет на ваш желаемый синий */
+    stroke-width: 1px;
+    stroke: blue;
+}
