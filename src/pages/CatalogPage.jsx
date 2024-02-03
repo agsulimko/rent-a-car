@@ -18,9 +18,9 @@ const Catalog = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedMake, setSelectedMake] = useState("");
   const [selectedRentalPrice, setSelectedRentalPrice] = useState("");
-
   const [selectedItemId, setSelectedItemId] = useState(null);
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [filteredItems, setFilteredItems] = useState([]);
+
   const [isModalOpen, setModalOpen] = useState(false);
   useEffect(() => {
     dispatch(fetchAdverts({ page: currentPage, make: selectedMake }));
@@ -31,6 +31,15 @@ const Catalog = () => {
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentItems = adverts.slice(indexOfFirstItem, indexOfLastItem);
 
+  const handleSearch = () => {
+    // Filter items based on the selected car brand
+    const filteredItems = currentItems.filter((item) =>
+      selectedMake ? item.make === selectedMake : true
+    );
+
+    setFilteredItems(filteredItems);
+  };
+
   const handleLoadMore = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
@@ -38,7 +47,6 @@ const Catalog = () => {
   const handleLearnMore = (id) => {
     setSelectedItemId(id);
 
-    // setModalIsOpen(true);
     setModalOpen(true);
   };
 
@@ -63,9 +71,10 @@ const Catalog = () => {
         handleRentalPriceChange={handleRentalPriceChange}
         selectedMake={selectedMake}
         selectedRentalPrice={selectedRentalPrice}
+        onSearch={handleSearch}
       />
       <CatalogItem
-        currentItems={currentItems}
+        currentItems={filteredItems.length ? filteredItems : currentItems}
         handleLoadMore={handleLoadMore}
         handleLearnMore={handleLearnMore}
       />

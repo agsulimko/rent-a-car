@@ -20,6 +20,7 @@ const SearchForm = ({
   selectedRentalPrice,
   selectedMileageFrom,
   selectedMileageTo,
+  onSearch,
 }) => {
   // const params = useParams();
   // console.log("params=", params);
@@ -47,7 +48,13 @@ const SearchForm = ({
   };
 
   return (
-    <Form className="form" onSubmit={handleSubmit}>
+    <Form
+      className="form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSearch();
+      }}
+    >
       <Label className="label">
         Car brand
         <SelectBrand
