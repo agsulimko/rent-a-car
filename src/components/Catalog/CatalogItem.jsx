@@ -15,8 +15,10 @@ import {
   DivTextInfo,
 } from "./CatalogItem.styled";
 import { Heard } from "components/Icons/Heard";
+import Modal from "components/Modal/Modal";
 const ITEMS_PER_PAGE = 12;
 const CatalogItem = ({ currentItems, handleLearnMore }) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
@@ -30,6 +32,12 @@ const CatalogItem = ({ currentItems, handleLearnMore }) => {
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
   return (
     <Container>
       <div className="div-cards-list">
@@ -108,8 +116,9 @@ const CatalogItem = ({ currentItems, handleLearnMore }) => {
               <ButtonLearnMore
                 type="button"
                 className="cards-item-btn"
+                aria-label="Open modal Learn more"
                 id={cart.id}
-                onClick={() => {}}
+                onClick={openModal}
               >
                 Learn more
               </ButtonLearnMore>
@@ -126,6 +135,7 @@ const CatalogItem = ({ currentItems, handleLearnMore }) => {
           </ButtonLoadMore>
         )}
       </div>
+      <Modal isOpen={modalIsOpen} closeModal={closeModal} />
     </Container>
   );
 };

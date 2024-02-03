@@ -5,8 +5,11 @@ import {
   Form,
   DivMileage,
   SelectBrand,
-} from "../../pages/CatalogPage.styled";
+  SelectPrice,
+} from "components/SearchForm/SearchForm.styled";
 import makes from "components/makes.js";
+
+const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
 const SearchForm = ({ handleSubmit, handleMakeChange, selectedMake }) => {
   return (
@@ -31,12 +34,19 @@ const SearchForm = ({ handleSubmit, handleMakeChange, selectedMake }) => {
       </Label>
       <Label className="label">
         Price/1 hour
-        <input
+        <SelectPrice
           type="text"
           name="Price/1 hour"
           placeholder="To $"
           className="input"
-        />
+        >
+          <option value="">To $</option>
+          {PriceSelect.map((price, index) => (
+            <option key={index} value={price}>
+              {price}
+            </option>
+          ))}
+        </SelectPrice>
       </Label>
       <DivMileage>
         <Label className="label">
