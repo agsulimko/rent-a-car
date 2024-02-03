@@ -23,5 +23,15 @@ const DivMileage = styled.div`
 
   align-items: flex-end;
 `;
+const ImputMileageFrom = styled.input``;
+const ImputMileageTo = styled.input``;
 
-export { Label, Form, DivMileage, SelectBrand, SelectPrice };
+export {
+  Label,
+  Form,
+  DivMileage,
+  SelectBrand,
+  SelectPrice,
+  ImputMileageTo,
+  ImputMileageFrom,
+};

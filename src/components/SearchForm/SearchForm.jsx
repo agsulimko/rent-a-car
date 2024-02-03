@@ -5,6 +5,8 @@ import {
   DivMileage,
   SelectBrand,
   SelectPrice,
+  ImputMileageTo,
+  ImputMileageFrom,
 } from "components/SearchForm/SearchForm.styled";
 import makes from "components/makes.js";
 import { useParams } from "react-router-dom";
@@ -74,7 +76,7 @@ const SearchForm = ({
       <DivMileage>
         <Label className="label">
           Car mileage / km
-          <input
+          <ImputMileageFrom
             type="text"
             name="Car mileage / km"
             placeholder="From"
@@ -82,7 +84,7 @@ const SearchForm = ({
           />
         </Label>
         <Label className="label">
-          <input
+          <ImputMileageTo
             type="text"
             name="Car mileage / km"
             placeholder="To"
