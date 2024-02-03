@@ -81,11 +81,6 @@ const CatalogItem = ({ currentItems, handleLearnMore }) => {
                     onClick={() => toggleFavorites(cart.id)}
                   />
 
-                  {/* <Heard
-                    cartId={cart.id}
-                    isFavorite={favorites.includes(cart.id)}
-                    onClick={toggleFavorites}
-                  /> */}
                   {favorites.includes(cart.id)
                     ? "Remove from Favorites"
                     : "Add to Favorites"}
@@ -135,7 +130,11 @@ const CatalogItem = ({ currentItems, handleLearnMore }) => {
           </ButtonLoadMore>
         )}
       </div>
-      <Modal isOpen={modalIsOpen} closeModal={closeModal} />
+      <Modal
+        isOpen={modalIsOpen}
+        closeModal={closeModal}
+        currentItems={currentItems}
+      />
     </Container>
   );
 };
