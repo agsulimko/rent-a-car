@@ -27,9 +27,10 @@ const SearchForm = ({
   const logSelectedMake = (event) => {
     const selectedValue = event.target.value;
     console.log("Selected Car Brand:", selectedValue);
+
     handleMakeChange(event); // Call the original handler to update the state
   };
-
+  // console.log("Selected Car Brand:", selectedValue);
   const logSelectedRentalPrice = (event) => {
     const selectedValue = event.target.value;
     console.log("Selected RentalPrice:", selectedValue);
@@ -53,7 +54,7 @@ const SearchForm = ({
           type="text"
           name="Car brand"
           placeholder="Enter the text"
-          className="input-SelectBrand"
+          className="input-SelectBrand-make"
           value={selectedMake}
           onChange={logSelectedMake} // Use the new logSelectedMake function
           required
@@ -72,7 +73,7 @@ const SearchForm = ({
           type="text"
           name="Price/1 hour"
           placeholder="To $"
-          className="input-SelectPrice"
+          className="input-SelectPrice-rentalPrice"
           value={selectedRentalPrice}
           onChange={logSelectedRentalPrice}
         >
@@ -91,7 +92,7 @@ const SearchForm = ({
             type="text"
             name="Car mileage / km"
             placeholder="From"
-            className="input"
+            className="input-mileage-From"
             value={selectedMileageFrom}
             onChange={logSelectedMileageFrom}
           />
@@ -101,7 +102,7 @@ const SearchForm = ({
             type="text"
             name="Car mileage / km"
             placeholder="To"
-            className="input"
+            className="input-mileage-To"
             value={selectedMileageTo}
             onChange={logSelectedMileageTo}
           />
