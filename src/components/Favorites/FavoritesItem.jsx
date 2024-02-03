@@ -1,5 +1,5 @@
 // FavoritesItem.jsx
-import React from "react";
+import React, { useState } from "react";
 import {
   ButtonHeardIcone,
   ButtonLearnMore,
@@ -15,7 +15,7 @@ import {
   TextRating,
 } from "../../pages/CatalogPage.styled";
 import { Container } from "styles/Container/Container";
-import makes from "components/makes";
+
 import { Heard } from "components/Icons/Heard";
 
 const ITEMS_PER_PAGE = 12;
@@ -27,7 +27,12 @@ const FavoritesItem = ({
   handlePageChange,
   currentPage,
   favoriteAdverts,
+  handleLearnMore,
 }) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
   return (
     <Container>
       <div className="div-cards-list">
@@ -101,7 +106,10 @@ const FavoritesItem = ({
                 type="button"
                 className="cards-item-btn"
                 id={cart.id}
-                onClick={() => {}}
+                onClick={() => {
+                  handleLearnMore(cart.id);
+                  openModal();
+                }}
               >
                 Learn more
               </ButtonLearnMore>

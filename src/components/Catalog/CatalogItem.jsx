@@ -15,14 +15,16 @@ import {
   DivTextInfo,
 } from "./CatalogItem.styled";
 import { Heard } from "components/Icons/Heard";
-import Modal from "components/Modal/Modal";
+// import Modal from "components/Modal/Modal";
+// import ModalLearnMore from "components/Modal/ModalLearnMore"; // Import the ModalLearnMore component
+
 const ITEMS_PER_PAGE = 12;
-const CatalogItem = ({ currentItems, handleLearnMore }) => {
+const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
-
+  // const [selectedItemId, setSelectedItemId] = useState(null);
   const toggleFavorites = (id) => {
     const updatedFavorites = favorites.includes(id)
       ? favorites.filter((favoriteId) => favoriteId !== id)
@@ -35,9 +37,9 @@ const CatalogItem = ({ currentItems, handleLearnMore }) => {
   const openModal = () => {
     setModalIsOpen(true);
   };
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
+  // const closeModal = () => {
+  //   setModalIsOpen(false);
+  // };
   return (
     <Container>
       <div className="div-cards-list">
@@ -113,7 +115,11 @@ const CatalogItem = ({ currentItems, handleLearnMore }) => {
                 className="cards-item-btn"
                 aria-label="Open modal Learn more"
                 id={cart.id}
-                onClick={openModal}
+                onClick={() => {
+                  handleLearnMore(cart.id);
+                  openModal();
+                }}
+                // Pass cart.id to handleLearnMore
               >
                 Learn more
               </ButtonLearnMore>
@@ -124,17 +130,12 @@ const CatalogItem = ({ currentItems, handleLearnMore }) => {
           <ButtonLoadMore
             type="button"
             className="cards-item-btn"
-            onClick={handleLearnMore}
+            onClick={handleLoadMore}
           >
             Load more
           </ButtonLoadMore>
         )}
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        closeModal={closeModal}
-        currentItems={currentItems}
-      />
     </Container>
   );
 };

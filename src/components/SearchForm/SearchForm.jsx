@@ -1,4 +1,3 @@
-// SearchForm.jsx
 import React from "react";
 import {
   Label,
@@ -8,10 +7,31 @@ import {
   SelectPrice,
 } from "components/SearchForm/SearchForm.styled";
 import makes from "components/makes.js";
+import { useParams } from "react-router-dom";
 
 const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
-const SearchForm = ({ handleSubmit, handleMakeChange, selectedMake }) => {
+const SearchForm = ({
+  handleSubmit,
+  handleMakeChange,
+  selectedMake,
+  selectedRentalPrice,
+}) => {
+  // const params = useParams();
+  // console.log("params=", params);
+
+  const logSelectedMake = (event) => {
+    const selectedValue = event.target.value;
+    console.log("Selected Car Brand:", selectedValue);
+    handleMakeChange(event); // Call the original handler to update the state
+  };
+
+  const logSelectedRentalPrice = (event) => {
+    const selectedValue = event.target.value;
+    console.log("Selected RentalPrice:", selectedValue);
+    handleMakeChange(event); // Call the original handler to update the state
+  };
+
   return (
     <Form className="form" onSubmit={handleSubmit}>
       <Label className="label">
@@ -20,8 +40,9 @@ const SearchForm = ({ handleSubmit, handleMakeChange, selectedMake }) => {
           type="text"
           name="Car brand"
           placeholder="Enter the text"
+          className="input-SelectBrand"
           value={selectedMake}
-          onChange={handleMakeChange}
+          onChange={logSelectedMake} // Use the new logSelectedMake function
           required
         >
           <option value="">Enter the text</option>
@@ -38,7 +59,9 @@ const SearchForm = ({ handleSubmit, handleMakeChange, selectedMake }) => {
           type="text"
           name="Price/1 hour"
           placeholder="To $"
-          className="input"
+          className="input-SelectPrice"
+          value={selectedRentalPrice}
+          onChange={logSelectedRentalPrice}
         >
           <option value="">To $</option>
           {PriceSelect.map((price, index) => (

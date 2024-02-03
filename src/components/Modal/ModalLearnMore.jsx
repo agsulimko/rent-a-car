@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "react-modal";
 
 import {
@@ -7,7 +7,7 @@ import {
   Svg,
   ButtonRentalCar,
   ModalWrapp,
-} from "./Modal.styled";
+} from "./ModalLearnMore.styled";
 import sprite from "../../image/sprite.svg";
 import {
   CardItem,
@@ -20,8 +20,19 @@ import {
   Img,
   TextRating,
 } from "pages/CatalogPage.styled";
+Modal.setAppElement("#root");
+const ModalLearnMore = ({
+  isOpen,
+  closeModal,
+  currentItems,
+  selectedItemId,
+}) => {
+  useEffect(() => {
+    Modal.setAppElement("#root"); //
+  }, []);
+  const cart = currentItems.find((item) => item.id === selectedItemId);
+  // console.log("selectedItem:", selectedItem);
 
-const ModalLearnMore = ({ isOpen, closeModal, currentItems }) => {
   return (
     <Modal
       style={ModalStyles}
@@ -36,12 +47,10 @@ const ModalLearnMore = ({ isOpen, closeModal, currentItems }) => {
             <use href={`${sprite}#icon-x-modal`} />
           </Svg>
         </ButtonCloseModal>
-
-        {/* <div className="div-cards-list">
-          <CardList className="cards-list">
-            {currentItems.map((cart, index) => (
+        {cart && (
+          <div className="div-cards-list">
+            <CardList className="cards-list">
               <CardItem
-                key={index}
                 className="cards-item"
                 data-category={cart.category}
                 data-aos="flip-left"
@@ -86,24 +95,20 @@ const ModalLearnMore = ({ isOpen, closeModal, currentItems }) => {
                   </TextRating>
                 </CardStarRating>
               </CardItem>
-            ))}
-          </CardList>
-        </div> */}
+            </CardList>
+          </div>
+        )}
       </ModalWrapp>
+      {cart && (
+        <div>
+          <h2>Order now</h2>
+          <p>ID: {cart.model}</p>
 
-      <div>
-        {/* <ButtonCloseModal onClick={closeModal}>
-          <Svg>
-            <use href={`${sprite}#icon-x-modal`} />
-          </Svg>
-        </ButtonCloseModal> */}
-        <h2>Order now</h2>
-        {/* <p>{currentItems}</p> */}
-
-        <ButtonRentalCar href="tel:+380730000000" class="Button-Rental-Car">
-          Rental car
-        </ButtonRentalCar>
-      </div>
+          <ButtonRentalCar href="tel:+380730000000" class="Button-Rental-Car">
+            Rental car
+          </ButtonRentalCar>
+        </div>
+      )}
     </Modal>
   );
 };
