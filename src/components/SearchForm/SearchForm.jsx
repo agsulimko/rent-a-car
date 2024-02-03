@@ -64,7 +64,7 @@ const SearchForm = ({
           className="input-SelectBrand-make"
           value={selectedMake}
           onChange={logSelectedMake} // Use the new logSelectedMake function
-          required
+          // required
         >
           <option value="">Enter the text</option>
           {makes.map((make, index) => (
