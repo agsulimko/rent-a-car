@@ -18,6 +18,8 @@ const SearchForm = ({
   handleMakeChange,
   selectedMake,
   selectedRentalPrice,
+  selectedMileageFrom,
+  selectedMileageTo,
 }) => {
   // const params = useParams();
   // console.log("params=", params);
@@ -32,6 +34,15 @@ const SearchForm = ({
     const selectedValue = event.target.value;
     console.log("Selected RentalPrice:", selectedValue);
     handleMakeChange(event); // Call the original handler to update the state
+  };
+  const logSelectedMileageFrom = (event) => {
+    const selectedValue = event.target.value;
+    console.log("Selected Mileage From:", selectedValue);
+  };
+
+  const logSelectedMileageTo = (event) => {
+    const selectedValue = event.target.value;
+    console.log("Selected Mileage To:", selectedValue);
   };
 
   return (
@@ -81,6 +92,8 @@ const SearchForm = ({
             name="Car mileage / km"
             placeholder="From"
             className="input"
+            value={selectedMileageFrom}
+            onChange={logSelectedMileageFrom}
           />
         </Label>
         <Label className="label">
@@ -89,6 +102,8 @@ const SearchForm = ({
             name="Car mileage / km"
             placeholder="To"
             className="input"
+            value={selectedMileageTo}
+            onChange={logSelectedMileageTo}
           />
         </Label>
       </DivMileage>
