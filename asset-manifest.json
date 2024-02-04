@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/rent-a-car/static/css/main.fd836c48.css",
-    "main.js": "/rent-a-car/static/js/main.3cac7259.js",
-    "static/css/304.77252216.chunk.css": "/rent-a-car/static/css/304.77252216.chunk.css",
-    "static/js/304.a169cd91.chunk.js": "/rent-a-car/static/js/304.a169cd91.chunk.js",
-    "static/css/229.5365960f.chunk.css": "/rent-a-car/static/css/229.5365960f.chunk.css",
-    "static/js/229.5d35540b.chunk.js": "/rent-a-car/static/js/229.5d35540b.chunk.js",
-    "static/css/689.d9c0469b.chunk.css": "/rent-a-car/static/css/689.d9c0469b.chunk.css",
-    "static/js/689.16dbf80a.chunk.js": "/rent-a-car/static/js/689.16dbf80a.chunk.js",
-    "static/js/805.ffeb0ab9.chunk.js": "/rent-a-car/static/js/805.ffeb0ab9.chunk.js",
-    "static/media/Phone.png": "/rent-a-car/static/media/Phone.69e8436d2b4546c19821.png",
+    "main.css": "/rent-a-car/static/css/main.abebd93c.css",
+    "main.js": "/rent-a-car/static/js/main.e1b07312.js",
+    "static/js/469.1e10a307.chunk.js": "/rent-a-car/static/js/469.1e10a307.chunk.js",
+    "static/css/470.b9074d55.chunk.css": "/rent-a-car/static/css/470.b9074d55.chunk.css",
+    "static/js/470.0604608e.chunk.js": "/rent-a-car/static/js/470.0604608e.chunk.js",
+    "static/css/342.b9074d55.chunk.css": "/rent-a-car/static/css/342.b9074d55.chunk.css",
+    "static/js/342.e3b97fe5.chunk.js": "/rent-a-car/static/js/342.e3b97fe5.chunk.js",
+    "static/js/4.c94ed88e.chunk.js": "/rent-a-car/static/js/4.c94ed88e.chunk.js",
+    "static/js/71.4a78e286.chunk.js": "/rent-a-car/static/js/71.4a78e286.chunk.js",
+    "static/media/sprite.svg": "/rent-a-car/static/media/sprite.16c355eef68c565672d54f9dd8174ef8.svg",
     "static/media/inter-latin-ext-400-normal.woff": "/rent-a-car/static/media/inter-latin-ext-400-normal.40b3b0d5e09a90fb6e3e.woff",
     "static/media/inter-latin-ext-400-normal.woff2": "/rent-a-car/static/media/inter-latin-ext-400-normal.0f9e8d4e940df8f6edfe.woff2",
     "static/media/inter-latin-400-normal.woff": "/rent-a-car/static/media/inter-latin-400-normal.08a02fd275ecea6ef662.woff",
@@ -47,18 +47,18 @@
     "static/media/manrope-cyrillic-ext-400-normal.woff": "/rent-a-car/static/media/manrope-cyrillic-ext-400-normal.03566edbfda34929f9fd.woff",
     "static/media/manrope-cyrillic-ext-400-normal.woff2": "/rent-a-car/static/media/manrope-cyrillic-ext-400-normal.6ba15efc9d2f0b9ed4a8.woff2",
     "index.html": "/rent-a-car/index.html",
-    "main.fd836c48.css.map": "/rent-a-car/static/css/main.fd836c48.css.map",
-    "main.3cac7259.js.map": "/rent-a-car/static/js/main.3cac7259.js.map",
-    "304.77252216.chunk.css.map": "/rent-a-car/static/css/304.77252216.chunk.css.map",
-    "304.a169cd91.chunk.js.map": "/rent-a-car/static/js/304.a169cd91.chunk.js.map",
-    "229.5365960f.chunk.css.map": "/rent-a-car/static/css/229.5365960f.chunk.css.map",
-    "229.5d35540b.chunk.js.map": "/rent-a-car/static/js/229.5d35540b.chunk.js.map",
-    "689.d9c0469b.chunk.css.map": "/rent-a-car/static/css/689.d9c0469b.chunk.css.map",
-    "689.16dbf80a.chunk.js.map": "/rent-a-car/static/js/689.16dbf80a.chunk.js.map",
-    "805.ffeb0ab9.chunk.js.map": "/rent-a-car/static/js/805.ffeb0ab9.chunk.js.map"
+    "main.abebd93c.css.map": "/rent-a-car/static/css/main.abebd93c.css.map",
+    "main.e1b07312.js.map": "/rent-a-car/static/js/main.e1b07312.js.map",
+    "469.1e10a307.chunk.js.map": "/rent-a-car/static/js/469.1e10a307.chunk.js.map",
+    "470.b9074d55.chunk.css.map": "/rent-a-car/static/css/470.b9074d55.chunk.css.map",
+    "470.0604608e.chunk.js.map": "/rent-a-car/static/js/470.0604608e.chunk.js.map",
+    "342.b9074d55.chunk.css.map": "/rent-a-car/static/css/342.b9074d55.chunk.css.map",
+    "342.e3b97fe5.chunk.js.map": "/rent-a-car/static/js/342.e3b97fe5.chunk.js.map",
+    "4.c94ed88e.chunk.js.map": "/rent-a-car/static/js/4.c94ed88e.chunk.js.map",
+    "71.4a78e286.chunk.js.map": "/rent-a-car/static/js/71.4a78e286.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fd836c48.css",
-    "static/js/main.3cac7259.js"
+    "static/css/main.abebd93c.css",
+    "static/js/main.e1b07312.js"
   ]
 }
