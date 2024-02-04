@@ -9,7 +9,7 @@ import Loader from "./Loader/Loader";
 const Home = lazy(() => import("../pages/Home"));
 const Catalog = lazy(() => import("../pages/CatalogPage"));
 const Favorites = lazy(() => import("../pages/FavoritesPage"));
-const NotFound = lazy(() => import("../pages/NotFound"));
+// const NotFound = lazy(() => import("../pages/NotFound"));
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
             <Route path="/catalog" element={<Catalog />} />
 
             <Route path="*" element={<Home />} />
-            {/* <Route path="*" element={<NotFound />} /> */}
+            <Route path="*" element={<Home />} />
           </Route>
         </Routes>
       </Suspense>
