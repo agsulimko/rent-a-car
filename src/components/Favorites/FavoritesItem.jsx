@@ -6,18 +6,23 @@ import {
   ButtonLoadMore,
   CardItem,
   CardList,
-  CardStarRating,
-  CardsText,
   CardsTitle,
   DivImg,
   DivTextInfo,
   Img,
-  TextRating,
-} from "../../pages/CatalogPage.styled";
+  SpanCardsTitle,
+  PriceTitle,
+  Vector,
+  DivFirst,
+  DivSecond,
+  DivTitle,
+} from "components/Favorites/FavoritesItem.styled";
 import { Container } from "styles/Container/Container";
 
-import { Heard } from "components/Icons/Heard";
-
+import { HeardRemoveFavorites } from "components/Icons/HeardRemoveFavorites.jsx";
+import { HeardAddFavorites } from "components/Icons/HeardAddFavorites.jsx";
+import {} from "components/Catalog/CatalogItem.styled";
+import substringsToCheck from "components/Catalog/substringsToCheck";
 const ITEMS_PER_PAGE = 12;
 
 const FavoritesItem = ({
@@ -29,7 +34,8 @@ const FavoritesItem = ({
   favoriteAdverts,
   handleLearnMore,
 }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [setModalIsOpen] = useState(false);
+  // modalIsOpen
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -64,47 +70,121 @@ const FavoritesItem = ({
                   type="button"
                   className="btn-heard-icone"
                   aria-label={
-                    favorites.includes(cart.id)
-                      ? "Remove from Favorites"
-                      : "Add to Favorites"
+                    favorites.includes(cart.id) ? (
+                      <HeardRemoveFavorites
+                        cartId={cart.id}
+                        isFavorite={favorites.includes(cart.id)}
+                        onClick={() => toggleFavorite(cart.id)}
+                      />
+                    ) : (
+                      <HeardAddFavorites
+                        cartId={cart.id}
+                        isFavorite={favorites.includes(cart.id)}
+                        onClick={() => toggleFavorite(cart.id)}
+                      />
+                    )
                   }
                   onClick={() => toggleFavorite(cart.id)}
                 >
-                  <Heard
+                  {/* <Heard
                     cartId={cart.id}
                     isFavorite={favorites.includes(cart.id)}
                     onClick={() => toggleFavorite(cart.id)}
-                  />
+                  /> */}
 
-                  {favorites.includes(cart.id)
-                    ? "Remove from Favorites"
-                    : "Add to Favorites"}
+                  {favorites.includes(cart.id) ? (
+                    <HeardRemoveFavorites
+                      cartId={cart.id}
+                      isFavorite={favorites.includes(cart.id)}
+                      onClick={() => toggleFavorite(cart.id)}
+                    />
+                  ) : (
+                    <HeardAddFavorites
+                      cartId={cart.id}
+                      isFavorite={favorites.includes(cart.id)}
+                      onClick={() => toggleFavorite(cart.id)}
+                    />
+                  )}
                 </ButtonHeardIcone>
               </div>
-              <div>
+              <DivTitle className="DivTitle ">
                 <CardsTitle className="cards-item-title">
                   {cart.make}
-                  <span> {cart.model}</span>
-                  {cart.year}
+                  {cart.model.length < 8 && (
+                    <SpanCardsTitle> {cart.model}</SpanCardsTitle>
+                  )}
+                  , {cart.year}
                 </CardsTitle>
-              </div>
+                <PriceTitle>{cart.rentalPrice}</PriceTitle>
+              </DivTitle>
+
               <DivTextInfo className="div-text-info">
-                <p>{cart.rentalPrice}</p>
-                <p>{cart.rentalCompany}</p>
-                <p> {cart.type} </p>
-                <p> {cart.model} </p>
-                <p> {cart.mileage} </p>
-                <p> {cart.functionalities} </p>
+                <DivFirst className="DivFirst ">
+                  <p className="City">
+                    {cart.address.split(",")[1].trim().split(" ")[0]}
+                  </p>
+                  <Vector></Vector>
+                  <p className="Country">
+                    {
+                      cart.address
+                        .split(",")
+                        .slice(2)
+                        .join(",")
+                        .trim()
+                        .split(" ")[0]
+                    }
+                  </p>
+                  <Vector></Vector>
+                  <p className="rentalCompany">{cart.rentalCompany}</p>
+                  {cart.rentalCompany.length < 19 && <Vector></Vector>}
+
+                  {cart.rentalCompany.length < 19 && (
+                    <p className="Class auto">
+                      {cart.accessories
+                        .map((feature) =>
+                          feature.toLowerCase().includes("premium")
+                            ? "Premium"
+                            : ""
+                        )
+                        .find((str) => str === "Premium") || ""}
+                    </p>
+                  )}
+                </DivFirst>
+                <DivSecond className="DivSecond ">
+                  <p> {cart.type} </p>
+                  <Vector></Vector>
+                  <p> {cart.make} </p>
+                  <Vector></Vector>
+                  <p> {cart.mileage} </p>
+
+                  {cart.type.length < 6 && <Vector></Vector>}
+
+                  {cart.type.length < 6 && (
+                    <p>
+                      {cart.accessories
+                        .map((feature) => {
+                          const foundSubstring = substringsToCheck.find(
+                            (substring) =>
+                              feature
+                                .toLowerCase()
+                                .includes(substring.toLowerCase())
+                          );
+
+                          return foundSubstring
+                            ? foundSubstring.charAt(0).toUpperCase() +
+                                foundSubstring.slice(1)
+                            : "";
+                        })
+                        .filter(Boolean)[0] || ""}
+                    </p>
+                  )}
+                </DivSecond>
               </DivTextInfo>
-              <CardsText className="cards-item-text">{cart.address}</CardsText>
-              <CardStarRating className="card_star-rating">
-                <TextRating className="text-rating cards-raiting">
-                  {cart.roundedRating}
-                </TextRating>
-              </CardStarRating>
+
               <ButtonLearnMore
                 type="button"
                 className="cards-item-btn"
+                aria-label="Open modal Learn more"
                 id={cart.id}
                 onClick={() => {
                   handleLearnMore(cart.id);

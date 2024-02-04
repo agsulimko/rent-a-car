@@ -1,117 +1,34 @@
 import styled from 'styled-components';
 
-import { theme } from 'styles/theme';
-import '@fontsource/inter';
+// import { theme } from 'styles/theme';
+
 const H1 = styled.h1`
-  font-weight: ${theme.fontWeight.regular};
-  font-size: 26px;
-  color: ${theme.color.black_full};
-  text-transform: uppercase;
-  margin-bottom: 14px;
-
-  @media (min-width: 768px) {
-    font-size: 36px;
-    width: 446px;
-    margin-bottom: 16px;
-  }
+  padding-top: 350px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: white;
+  margin-top: 0;
 `;
 
-const SpanH1 = styled.span`
-  font-weight: ${theme.fontWeight.regular};
-  font-style: italic; /* Set font style to italic */
-  color: ${theme.color.green_full};
-`;
-
-const Text = styled.p`
-  /* color: ${theme.colors.black_full}; */
-  font-size: 14px;
-  @media (min-width: 768px) {
-    font-size: 16px;
-    width: 408px;
-  }
-`;
-const Title = styled.div`
-  width: 335px;
-  @media (min-width: 768px) {
-    font-size: 36px;
-    width: 446px;
-  }
-`;
-const ButtonOrderNow = styled.button`
-  display: block;
-  padding: 10px 20px;
-  /* width: 127px;
-  height: 45px; */
-  border-radius: 15px;
-  font-weight: ${theme.fontWeight.medium};
-  font-size: 14px;
-  border: 0.5px solid rgba(155, 181, 55, 1);
-  color: ${theme.color.black_full};
-`;
-
-const Hero = styled.section`
-  /* display: flex; */
-`;
-
-const DivHero = styled.div`
-  /* display: flex; */
-`;
-
-const SwiperLink = styled.a`
-  display: flex;
-  gap: 8px;
-`;
-const CardShef = styled.div`
-  overflow: hidden;
-  width: 80px;
-  height: 280px;
-  background-color: black;
-  border-radius: 15px;
-`;
-const CardFood = styled.div`
-  overflow: hidden;
-  width: 200px;
-  height: 280px;
-  background-color: black;
-  border-radius: 15px;
-  background-image: radial-gradient(circle, #363e14 0.01%, #050505 140px);
-`;
-const CardTasty = styled.div`
-  overflow: hidden;
-  width: 200px;
-  height: 280px;
-  background-color: black;
-  border-radius: 15px;
-`;
-
-const SwiperTitle = styled.div``;
-
-const SwiperName = styled.p`
+const H2 = styled.h2`
+  color: rgb(200, 233, 235);
+  text-align: center;
+  width: 800px;
   margin: 0 auto;
-  margin-bottom: 8px;
-  width: 157px;
-  text-transform: uppercase;
-  color: ${theme.color.black_full};
-  font-weight: ${theme.fontWeight.medium};
-  font-size: 10px;
 `;
-const SwiperArea = styled.p`
-  color: ${theme.color.white_full};
-  font-size: 8px;
+
+const MainHome = styled.main`
+  background-color: dimgray;
+  height: 1000px;
+  background-repeat: no-repeat;
+  max-width: 1440px;
+  background-position: center;
+  background-size: cover;
+  background-image: linear-gradient(
+      rgba(46, 47, 66, 0.1),
+      rgba(46, 47, 66, 0.7)
+    ),
+    url('https://ftp.goit.study/img/cars-test-task/mercedes_slk_class.jpeg');
 `;
-export {
-  H1,
-  SpanH1,
-  Text,
-  Title,
-  ButtonOrderNow,
-  Hero,
-  DivHero,
-  SwiperLink,
-  CardTasty,
-  CardFood,
-  CardShef,
-  SwiperTitle,
-  SwiperName,
-  SwiperArea,
-};
+
+export { H1, H2, MainHome };

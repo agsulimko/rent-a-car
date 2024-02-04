@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Label,
   Form,
@@ -7,54 +7,79 @@ import {
   SelectPrice,
   ImputMileageTo,
   ImputMileageFrom,
+  ButtonSearch, // Assuming this is a styled component
 } from "components/SearchForm/SearchForm.styled";
 import makes from "components/makes.js";
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import fetchAdverts from "../../redux/thunks";
+import toast from "react-hot-toast";
 
-const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
+const PriceSelect = Array.from(
+  { length: 100 },
+  (_, index) => (index + 1) * 10
+).map(String);
 
 const SearchForm = ({
-  handleSubmit,
   handleMakeChange,
   selectedMake,
+  handleRentalPriceChange,
   selectedRentalPrice,
   selectedMileageFrom,
   selectedMileageTo,
   onSearch,
+  handleMileageToChange,
+  handleMileageFromChange,
 }) => {
-  // const params = useParams();
-  // console.log("params=", params);
+  const dispatch = useDispatch();
 
+  // const [isFormSubmitted, setFormSubmitted] = useState(false);
+  const [selectedCarBrand, setSelectedCarBrand] = useState("");
   const logSelectedMake = (event) => {
     const selectedValue = event.target.value;
-    console.log("Selected Car Brand:", selectedValue);
+    // console.log("Selected Car Brand:", selectedValue);
+    setSelectedCarBrand(selectedValue);
+    handleMakeChange(event);
+  };
 
-    handleMakeChange(event); // Call the original handler to update the state
-  };
-  // console.log("Selected Car Brand:", selectedValue);
   const logSelectedRentalPrice = (event) => {
-    const selectedValue = event.target.value;
-    console.log("Selected RentalPrice:", selectedValue);
-    handleMakeChange(event); // Call the original handler to update the state
+    // const selectedValue = event.target.value;
+    // console.log("Selected RentalPrice:", selectedValue);
+    handleRentalPriceChange(event);
   };
+
   const logSelectedMileageFrom = (event) => {
     const selectedValue = event.target.value;
     console.log("Selected Mileage From:", selectedValue);
+    // handleMileageFromChange(event);
   };
 
   const logSelectedMileageTo = (event) => {
     const selectedValue = event.target.value;
     console.log("Selected Mileage To:", selectedValue);
+    handleMileageToChange(event);
+  };
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    if (selectedCarBrand.length === 0 && selectedRentalPrice.length === 0) {
+      toast.error("Nothing found, please make a new request");
+
+      return;
+    }
+
+    dispatch(
+      fetchAdverts({
+        rentalPrice: selectedRentalPrice,
+        make: selectedCarBrand,
+      })
+    );
+
+    onSearch();
+    // setFormSubmitted(true);
   };
 
   return (
-    <Form
-      className="form"
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSearch();
-      }}
-    >
+    <Form className="form" onSubmit={handleSearch}>
       <Label className="label">
         Car brand
         <SelectBrand
@@ -63,8 +88,7 @@ const SearchForm = ({
           placeholder="Enter the text"
           className="input-SelectBrand-make"
           value={selectedMake}
-          onChange={logSelectedMake} // Use the new logSelectedMake function
-          // required
+          onChange={logSelectedMake}
         >
           <option value="">Enter the text</option>
           {makes.map((make, index) => (
@@ -115,9 +139,9 @@ const SearchForm = ({
           />
         </Label>
       </DivMileage>
-      <button className="btn" type="submit">
+      <ButtonSearch className="btn" type="submit">
         Search
-      </button>
+      </ButtonSearch>
     </Form>
   );
 };

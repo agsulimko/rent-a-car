@@ -1,10 +1,9 @@
-import css from "./Layout.module.css";
 import styled from "styled-components";
 // import React, { useEffect } from "react";
 // import { Suspense, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { Container } from "styles/Container/Container";
-import { Header } from "./Layout.styled";
+import { Header, UlListLayout } from "./Layout.styled";
 // import { selectAuth, selectUser } from "../../redux/auth/auchSelectors";
 // import { useDispatch, useSelector } from "react-redux";
 
@@ -55,7 +54,7 @@ const Layout = () => {
     <>
       <Container>
         <Header>
-          <ul className={css.listLayout}>
+          <UlListLayout>
             <li>
               <StyledLink to="/">Home</StyledLink>
             </li>
@@ -65,7 +64,7 @@ const Layout = () => {
             <li>
               <StyledLink to="/favorites">Favorites</StyledLink>
             </li>
-          </ul>
+          </UlListLayout>
         </Header>
       </Container>
       <main>

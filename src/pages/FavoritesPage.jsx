@@ -119,6 +119,8 @@ const Favorites = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false); // Updated the state name
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [selectedRentalPrice, setSelectedRentalPrice] = useState(0);
+  const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
     dispatch(fetchAdverts());
@@ -141,8 +143,21 @@ const Favorites = () => {
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
+  const handleSearch = () => {
+    // Filter items based on the selected car brand
+    // const filteredItems = currentItems.filter((item) =>
+    //   selectedMake ? item.make === selectedMake : true
+    // );
+
+    setFilteredItems(filteredItems);
+  };
+
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
+  };
+
+  const handleLoadMore = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
   };
 
   const handleLearnMore = (id) => {
@@ -173,12 +188,19 @@ const Favorites = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const handleRentalPriceChange = (event) => {
+    setSelectedRentalPrice(event.target.value);
+  };
   return (
     <Container>
       <SearchForm
         handleSubmit={handleSubmit}
         handleMakeChange={handleMakeChange}
+        handleRentalPriceChange={handleRentalPriceChange}
         selectedMake={selectedMake}
+        selectedRentalPrice={selectedRentalPrice}
+        onSearch={handleSearch}
       />
       <FavoritesItem
         currentFavoriteAdverts={currentFavoriteAdverts}
@@ -188,6 +210,7 @@ const Favorites = () => {
         currentPage={currentPage}
         favoriteAdverts={favoriteAdverts}
         handleLearnMore={handleLearnMore}
+        handleLoadMore={handleLoadMore}
       />
 
       <ModalLearnMore

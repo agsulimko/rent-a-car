@@ -17,7 +17,7 @@ const Catalog = () => {
   const adverts = useSelector(selectAdverts) || [];
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedMake, setSelectedMake] = useState("");
-  const [selectedRentalPrice, setSelectedRentalPrice] = useState("");
+  const [selectedRentalPrice, setSelectedRentalPrice] = useState(0);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [filteredItems, setFilteredItems] = useState([]);
 
@@ -32,12 +32,16 @@ const Catalog = () => {
   const currentItems = adverts.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleSearch = () => {
-    // Filter items based on the selected car brand
-    const filteredItems = currentItems.filter((item) =>
+    const newFilteredItems = currentItems.filter((item) =>
       selectedMake ? item.make === selectedMake : true
     );
+    setFilteredItems(newFilteredItems);
+    // Filter items based on the selected car brand
+    // const filteredItems = currentItems.filter((item) =>
+    //   selectedMake ? item.make === selectedMake : true
+    // );
 
-    setFilteredItems(filteredItems);
+    // setFilteredItems(filteredItems);
   };
 
   const handleLoadMore = () => {
@@ -53,6 +57,7 @@ const Catalog = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Your form submission logic
+    handleSearch();
   };
 
   const handleMakeChange = (event) => {

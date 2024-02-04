@@ -36,6 +36,9 @@ export const GlobalStyles = css`
     margin-top: 0;
   }
 
+  p {
+    margin-bottom: 0;
+  }
   p:last-child {
     margin-bottom: 0;
   }

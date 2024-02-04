@@ -21,7 +21,8 @@ const App = () => {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/catalog" element={<Catalog />} />
 
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<Home />} />
+            {/* <Route path="*" element={<NotFound />} /> */}
           </Route>
         </Routes>
       </Suspense>

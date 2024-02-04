@@ -2,27 +2,33 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://65b95a82b71048505a8ab881.mockapi.io/api';
 
-//65b95a82b71048505a8ab881.mockapi.io/api/adverts
-// api.js
-export const getAdverts = async () => {
-  const { data } = await axios.get(`/adverts`);
-  // console.log('data=', data);
+export const getAdverts = async filters => {
+  const { rentalPrice, make } = filters;
+  let queryParams = '';
+  console.log('rentalPrice=', rentalPrice);
+  if (rentalPrice) {
+    queryParams += `?rentalPrice=${rentalPrice}`;
+  }
+
+  if (make) {
+    queryParams += queryParams ? `&make=${make}` : `?make=${make}`;
+  }
+
+  // if (mileageFrom) {
+  //   queryParams += queryParams
+  //     ? `&mileageFrom=${mileageFrom}`
+  //     : `?mileageFrom=${mileageFrom}`;
+  // }
+
+  // if (mileageTo) {
+  //   queryParams += queryParams
+  //     ? `&mileageTo=${mileageTo}`
+  //     : `?mileageTo=${mileageTo}`;
+  // }
+
+  const url = `/adverts${queryParams}`;
+  console.log('Request URL:', url);
+
+  const { data } = await axios.get(url);
   return data;
 };
-
-// export const getExercisesMuscles = async () => {
-//   const { data } = await axios.get(`exercises/filters?filter=Muscles`);
-//   return data;
-// };
-
-// export const getExercisesEquipment = async () => {
-//   const { data } = await axios.get(`exercises/filters?filter=Equipment`);
-//   return data;
-// };
-
-// export const getAllExercises = async (filter, category) => {
-//   const { data } = await axios(`exercises/exercises`, {
-//     params: { filter: `${filter}`, category: `${category}` },
-//   });
-//   return data;
-// };

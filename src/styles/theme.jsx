@@ -15,26 +15,22 @@ export const theme = Object.freeze({
     medium: "16px",
     large: "22px",
   },
-  backgroundColor: {
-    //   White
-    white_full: "#ffffff",
-  },
 
   color: {
     //   White
     white_full: "#ffffff",
     //   White_dark
-    white_dark: "#F7F7FB",
+    white_dark: "#f7f7fb",
     //   Black
     black_full: "#050505",
     //   Black_light
-    black_light: "rgb(18, 20, 23)",
+    black_light: "#121417",
     //   Gray
     gray_full: "#8A8A89",
     //Blue__light
-    blue__light: "#3470FF",
-    //Blue__dark
-    blue__dark: "#0B44CD",
+    blue_light: "#3470FF",
+    //Blue_dark
+    blue_dark: "#0B44CD",
   },
 });
 // spacing: (value) => `${4 * value}px`,

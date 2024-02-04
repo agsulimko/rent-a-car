@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { theme } from 'styles/theme.jsx';
 
 const CardItem = styled.li`
-  border: 0.5px solid black;
   position: relative;
   width: 274px;
   height: 426px;
@@ -53,6 +52,7 @@ const CardList = styled.ul`
 `;
 
 const DivImg = styled.div`
+  margin-bottom: 14px;
   overflow: hidden;
   border-radius: 15px;
 `;
@@ -68,35 +68,70 @@ const Img = styled.img`
   /* height: 50%; */
   /* min-height: 280px; */
 `;
+const DivTitle = styled.div`
+  display: flex;
+
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: ${theme.fontWeight.medium};
+  line-height: 1.5;
+  color: ${theme.color.black_light};
+
+  margin-bottom: 8px;
+`;
 
 const CardsTitle = styled.h3`
-  position: absolute;
+  margin-bottom: 0;
+  /* position: absolute;
+
   top: 180px;
-  left: 16px;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 18px;
-  letter-spacing: 0;
-  color: #f8f8f8;
-  // color: #000;
-  margin-bottom: 8px;
-  text-overflow: ellipsis;
+  left: 16px; */
+
+  /* text-overflow: ellipsis;
   -webkit-line-clamp: 1;
   line-clamp: 2;
   -webkit-box-orient: vertical;
   display: -webkit-box;
   position: absolute;
-  overflow: hidden;
+  overflow: hidden; */
 `;
 
+const PriceTitle = styled.h3`
+  margin-bottom: 0;
+  /* margin-left: auto; */
+`;
+
+const SpanCardsTitle = styled.span`
+  color: ${theme.color.blue_light};
+`;
 const DivTextInfo = styled.div`
   display: flex;
+  flex-direction: column;
+  font-weight: ${theme.fontWeight.regular};
+  font-size: 12px;
+  line-height: 1.5;
+  /* line-height: 150%; */
+  color: rgba(18, 20, 23, 0.5);
+`;
+const DivFirst = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+const DivSecond = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
+const Vector = styled.div`
+  width: 1px;
+  height: 15px;
+  background-color: rgba(18, 20, 23, 0.1);
 `;
 
 const CardsText = styled.p`
-  position: absolute;
+  /* position: absolute;
   top: 200px;
-  left: 16px;
+  left: 16px; */
   color: #f8f8f8;
   // color: #000;
   margin-bottom: 16px;
@@ -140,24 +175,59 @@ const ButtonHeardIcone = styled.button`
     stroke: #3470ff;
   }
 `;
+const HeardAddFavorites = styled.button`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 0;
+  width: 46px;
+  height: 46px;
+
+  &:hover,
+  &:focus {
+    fill: #3470ff;
+    stroke-width: 1px;
+    stroke: #3470ff;
+  }
+`;
+const HeardRemoveFavorites = styled.button`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 0;
+  width: 46px;
+  height: 46px;
+
+  &:hover,
+  &:focus {
+    fill: #3470ff;
+    stroke-width: 1px;
+    stroke: #3470ff;
+  }
+`;
 
 const ButtonLearnMore = styled.button`
   /* display: block; */
   margin: 0;
+  margin-top: 28px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   /* position: absolute; */
   /* right: 16px;
   bottom: 16px; */
   font-size: 14px;
   font-weight: ${theme.fontWeight.semiBold};
   width: 100%;
+  line-height: 1.43;
+  /* line-height: 143%; */
   /* height: 30px; */
-  border-radius: 8px;
+  border-radius: 12px;
   color: ${theme.color.white_full};
-  background-color: ${theme.color.blue__light};
+  background-color: ${theme.color.blue_light};
 
   &:hover,
   &:focus {
-    background-color: ${theme.color.blue__dark};
+    background-color: ${theme.color.blue_dark};
   }
 `;
 
@@ -173,16 +243,21 @@ const ButtonLoadMore = styled.button`
   /* width: 90px;
   height: 30px; */
   border-radius: 8px;
-  color: ${theme.color.blue__light};
+  color: ${theme.color.blue_light};
+
+  line-height: 1.5;
+  /* line-height: 150%; */
+  text-decoration: underline;
+  color: #3470ff;
 
   &:hover,
   &:focus {
-    color: ${theme.color.blue__dark};
+    color: ${theme.color.blue_dark};
   }
 `;
 
 export {
-  ButtonHeardIcone,
+  SpanCardsTitle,
   ButtonLoadMore,
   ButtonLearnMore,
   CardItem,
@@ -194,4 +269,12 @@ export {
   Img,
   DivImg,
   DivTextInfo,
+  DivTitle,
+  PriceTitle,
+  Vector,
+  DivFirst,
+  DivSecond,
+  HeardAddFavorites,
+  HeardRemoveFavorites,
+  ButtonHeardIcone,
 };
