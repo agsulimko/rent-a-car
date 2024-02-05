@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "styles/theme";
 // import React, { useEffect } from "react";
 // import { Suspense, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
@@ -14,15 +15,15 @@ import { Header, UlListLayout } from "./Layout.styled";
 // import "@fontsource/roboto/500.css";
 // import Loader from "components/Loader/Loader";
 const StyledLink = styled(NavLink)`
-  padding: 8px 16px;
-  border-radius: 4px;
+  padding: 12px 30px;
+  border-radius: 12px;
   text-decoration: none;
   color: black;
   font-weight: 500;
 
   &.active {
     color: white;
-    background-color: rgb(103, 103, 238);
+    background-color: ${theme.color.blue_light};
   }
 `;
 

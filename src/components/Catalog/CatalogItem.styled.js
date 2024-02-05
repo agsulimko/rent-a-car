@@ -36,7 +36,7 @@ const CardList = styled.ul`
   display: flex;
 
   flex-wrap: wrap;
-  justify-content: center;
+
   margin-bottom: 100px;
   /* display: grid;
   justify-items: center; */

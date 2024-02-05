@@ -89,6 +89,8 @@ const SearchForm = ({
           className="input-SelectBrand-make"
           value={selectedMake}
           onChange={logSelectedMake}
+          style={{ margin: 0, padding: 10, border: "1px solid initial" }}
+          focusstyle={{ borderColor: "white" }}
         >
           <option value="">Enter the text</option>
           {makes.map((make, index) => (
