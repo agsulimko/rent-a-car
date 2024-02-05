@@ -21,6 +21,7 @@ import { HeardRemoveFavorites } from "components/Icons/HeardRemoveFavorites.jsx"
 import { HeardAddFavorites } from "components/Icons/HeardAddFavorites.jsx";
 
 import substringsToCheck from "./substringsToCheck";
+import sprite from "../../image/sprite.svg";
 // import Modal from "components/Modal/Modal";
 // import ModalLearnMore from "components/Modal/ModalLearnMore"; // Import the ModalLearnMore component
 
@@ -101,17 +102,13 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
                   /> */}
 
                   {favorites.includes(cart.id) ? (
-                    <HeardRemoveFavorites
-                      cartId={cart.id}
-                      isFavorite={favorites.includes(cart.id)}
-                      onClick={() => toggleFavorites(cart.id)}
-                    />
+                    <svg>
+                      <use href={`${sprite}#icon-heard_active`}></use>
+                    </svg>
                   ) : (
-                    <HeardAddFavorites
-                      cartId={cart.id}
-                      isFavorite={favorites.includes(cart.id)}
-                      onClick={() => toggleFavorites(cart.id)}
-                    />
+                    <svg>
+                      <use href={`${sprite}#icon-heard`}></use>
+                    </svg>
                   )}
                 </ButtonHeardIcone>
               </div>

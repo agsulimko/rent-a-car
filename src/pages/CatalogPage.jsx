@@ -36,12 +36,6 @@ const Catalog = () => {
       selectedMake ? item.make === selectedMake : true
     );
     setFilteredItems(newFilteredItems);
-    // Filter items based on the selected car brand
-    // const filteredItems = currentItems.filter((item) =>
-    //   selectedMake ? item.make === selectedMake : true
-    // );
-
-    // setFilteredItems(filteredItems);
   };
 
   const handleLoadMore = () => {

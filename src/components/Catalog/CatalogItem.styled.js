@@ -255,8 +255,10 @@ const ButtonLoadMore = styled.button`
     color: ${theme.color.blue_dark};
   }
 `;
+const SvgActive = styled.svg``;
 
 export {
+  SvgActive,
   SpanCardsTitle,
   ButtonLoadMore,
   ButtonLearnMore,
