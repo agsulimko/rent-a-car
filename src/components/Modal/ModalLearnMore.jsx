@@ -16,7 +16,6 @@ import {
   Img,
   DivTitle,
   SpanCardsTitle,
-  DivTextInfo2,
   Div,
   Vector,
   PTextInfo,

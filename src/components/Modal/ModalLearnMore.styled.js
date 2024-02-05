@@ -294,7 +294,6 @@ const DivTextInfo = styled.div`
   gap: 5px;
   white-space: nowrap;
 `;
-const DivTextInfo2 = styled.div``;
 
 const CardsText = styled.p`
   //   position: absolute;
@@ -335,7 +334,6 @@ export {
   DivTitle,
   PriceTitle,
   Div,
-  DivTextInfo2,
   Vector,
   PTextInfo,
   PDescription,
