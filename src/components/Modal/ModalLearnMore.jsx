@@ -16,9 +16,8 @@ import {
   Img,
   DivTitle,
   SpanCardsTitle,
-  // PriceTitle,
-  DivSecond,
-  DivFirst,
+  DivTextInfo2,
+  Div,
   Vector,
   PTextInfo,
   PDescription,
@@ -26,6 +25,9 @@ import {
   H4TitleRental,
   RentalConditions,
   SpanAge,
+  DivRentalConditions,
+  DivWrappRentalConditions,
+  DivWrappRentalConditions2,
 } from "./ModalLearnMore.styled";
 import substringsToCheck from "components/Catalog/substringsToCheck";
 
@@ -76,13 +78,13 @@ const ModalLearnMore = ({
                 <DivTitle className="DivTitle">
                   <CardsTitle className="cards-item-title">
                     {cart.make}
-                    {<SpanCardsTitle> {cart.model}</SpanCardsTitle>},{" "}
-                    {cart.year}
+                    {<SpanCardsTitle> {cart.model}</SpanCardsTitle>},{cart.year}
                   </CardsTitle>
                   {/* <PriceTitle>{cart.rentalPrice}</PriceTitle> */}
                 </DivTitle>
-                <DivTextInfo className="div-text-info">
-                  <DivFirst className="DivFirst ">
+                <Div>
+                  {/* ===================================== */}
+                  <DivTextInfo className="DivTextInfo ">
                     <PTextInfo className="City">
                       {cart.address.split(",")[1].trim().split(" ")[0]}
                     </PTextInfo>
@@ -103,9 +105,10 @@ const ModalLearnMore = ({
 
                     <PTextInfo className="Year:">Year: {cart.year}</PTextInfo>
                     <Vector></Vector>
-                    <PTextInfo className="Type:">Year: {cart.type}</PTextInfo>
-                  </DivFirst>
-                  <DivSecond className="Fuel Consumption:">
+                    <PTextInfo className="Type:">Type: {cart.type}</PTextInfo>
+                  </DivTextInfo>
+                  {/* ======================================= */}
+                  <DivTextInfo className="Fuel Consumption:">
                     <PTextInfo>
                       Fuel Consumption: {cart.fuelConsumption}{" "}
                     </PTextInfo>
@@ -113,17 +116,24 @@ const ModalLearnMore = ({
                     <PTextInfo className="Engine Size:">
                       Engine Size: {cart.engineSize}{" "}
                     </PTextInfo>
-                  </DivSecond>
-                  <PDescription className="description">
-                    {cart.description}
-                  </PDescription>
-                  <H4Title className="H4">
-                    Accessories and functionalities:
-                  </H4Title>
-                  <DivFirst>
+                  </DivTextInfo>
+
+                  {/* ============================================================== */}
+                </Div>
+                <PDescription className="description">
+                  {cart.description}
+                </PDescription>
+                <H4Title className="H4">
+                  Accessories and functionalities:
+                </H4Title>
+                <Div>
+                  {/* ============================================================== */}
+
+                  <DivTextInfo>
                     <PTextInfo className="text">
                       {cart.accessories[0]}
                     </PTextInfo>
+
                     <Vector></Vector>
 
                     <PTextInfo className="text">
@@ -133,8 +143,11 @@ const ModalLearnMore = ({
                     <PTextInfo className="text">
                       {cart.functionalities[0]}
                     </PTextInfo>
-                  </DivFirst>
-                  <DivFirst className="DivFirst ">
+                  </DivTextInfo>
+
+                  {/* ============================================================== */}
+
+                  <DivTextInfo className="DivFirst ">
                     <PTextInfo className="text">
                       {cart.accessories
                         .map((feature) => {
@@ -160,54 +173,63 @@ const ModalLearnMore = ({
                     <PTextInfo className="text">
                       {cart.functionalities[2]}
                     </PTextInfo>
-                  </DivFirst>
-                  <H4TitleRental className="H4 Rental">
-                    Rental Conditions:
-                  </H4TitleRental>
+                  </DivTextInfo>
+                  {/* ============================================== */}
+                </Div>
+                <H4TitleRental className="H4 Rental">
+                  Rental Conditions:
+                </H4TitleRental>
 
-                  <RentalConditions className="text">
-                    Minimum age :
-                    <SpanAge className="Span min Age">
+                <DivWrappRentalConditions>
+                  <DivRentalConditions>
+                    <RentalConditions className="text">
+                      Minimum age :
+                      <SpanAge className="Span min Age">
+                        {cart.rentalConditions
+                          .substring(
+                            cart.rentalConditions.indexOf(":") + 1,
+                            cart.rentalConditions.indexOf(
+                              "\n",
+                              cart.rentalConditions.indexOf(":") + 1
+                            )
+                          )
+                          .trim()}
+                      </SpanAge>
+                    </RentalConditions>
+                  </DivRentalConditions>
+                  <DivRentalConditions>
+                    <RentalConditions className="text">
                       {cart.rentalConditions
                         .substring(
-                          cart.rentalConditions.indexOf(":") + 1,
+                          cart.rentalConditions.indexOf("\n") + 1,
                           cart.rentalConditions.indexOf(
                             "\n",
-                            cart.rentalConditions.indexOf(":") + 1
+                            cart.rentalConditions.indexOf("\n") + 1
                           )
                         )
                         .trim()}
-                    </SpanAge>
-                  </RentalConditions>
-                  <RentalConditions className="text">
-                    {cart.rentalConditions
-                      .substring(
-                        cart.rentalConditions.indexOf("\n") + 1,
-                        cart.rentalConditions.indexOf(
-                          "\n",
-                          cart.rentalConditions.indexOf("\n") + 1
-                        )
-                      )
-                      .trim()}
-                  </RentalConditions>
-
-                  <RentalConditions className="text">
-                    {cart.rentalConditions.slice(
-                      cart.rentalConditions.lastIndexOf("\n") + 1
-                    )}
-                  </RentalConditions>
-                  <RentalConditions className="text">
-                    Mileage:<SpanAge>{cart.mileage}</SpanAge>
-                  </RentalConditions>
-                  <RentalConditions className="text">
-                    Price: <SpanAge>{cart.rentalPrice}</SpanAge>
-                  </RentalConditions>
-                  {/*  <RentalConditions className="text">
-                    {cart.accessories[1]}
-                  </RentalConditions> */}
-
-                  {/* <DivSecond className="Fuel Consumption:"></DivSecond>{" "} */}
-                </DivTextInfo>
+                    </RentalConditions>
+                  </DivRentalConditions>
+                </DivWrappRentalConditions>
+                <DivWrappRentalConditions2>
+                  <DivRentalConditions>
+                    <RentalConditions className="text">
+                      {cart.rentalConditions.slice(
+                        cart.rentalConditions.lastIndexOf("\n") + 1
+                      )}
+                    </RentalConditions>
+                  </DivRentalConditions>
+                  <DivRentalConditions>
+                    <RentalConditions className="text">
+                      Mileage:<SpanAge>{cart.mileage}</SpanAge>
+                    </RentalConditions>
+                  </DivRentalConditions>
+                  <DivRentalConditions>
+                    <RentalConditions className="text">
+                      Price: <SpanAge>{cart.rentalPrice}</SpanAge>
+                    </RentalConditions>
+                  </DivRentalConditions>
+                </DivWrappRentalConditions2>
               </CardItem>
             </CardList>
           </div>

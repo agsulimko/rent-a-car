@@ -123,8 +123,8 @@ const DivSecond = styled.div`
 `;
 
 const Vector = styled.div`
-  width: 1px;
-  height: 15px;
+  width: 1.8px;
+  height: 16px;
   background-color: rgba(18, 20, 23, 0.1);
 `;
 

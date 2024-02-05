@@ -102,18 +102,9 @@ const SpanCardsTitle = styled.span`
   color: ${theme.color.blue_light};
 `;
 
-const DivFirst = styled.div`
-  display: flex;
-  gap: 5px;
-`;
-const DivSecond = styled.div`
-  display: flex;
-  gap: 5px;
-`;
-
 const Vector = styled.div`
-  width: 1px;
-  height: 15px;
+  width: 1.8px;
+  height: 16px;
   background-color: rgba(18, 20, 23, 0.1);
 `;
 
@@ -125,6 +116,8 @@ const PTextInfo = styled.p`
   line-height: 1.5;
   /* line-height: 150%; */
   color: rgba(18, 20, 23, 0.5);
+
+  /* white-space: nowrap; */
 `;
 const PDescription = styled.p`
   font-weight: ${theme.fontWeight.regular};
@@ -132,6 +125,8 @@ const PDescription = styled.p`
   line-height: 1.43;
   /* line-height: 143%; */
   color: ${theme.color.black_light};
+  margin-top: 14px;
+  margin-bottom: 24px;
 `;
 
 const H4Title = styled.h4`
@@ -140,6 +135,7 @@ const H4Title = styled.h4`
   line-height: 1.43;
   /* line-height: 143%; */
   color: ${theme.color.black_light};
+  margin-bottom: 8px;
 `;
 const H4TitleRental = styled.h4`
   font-weight: ${theme.fontWeight.medium};
@@ -147,6 +143,8 @@ const H4TitleRental = styled.h4`
   line-height: 1.43;
   /* line-height: 143%; */
   color: ${theme.color.black_light};
+  margin-top: 24px;
+  margin-bottom: 8px;
 `;
 
 const RentalConditions = styled.p`
@@ -157,15 +155,49 @@ const RentalConditions = styled.p`
   /* line-height: 150%; */
   letter-spacing: -0.02em;
   color: #363535;
+  padding: 7px 14px;
 `;
 
 const SpanAge = styled.span`
   color: ${theme.color.blue_light};
 `;
 
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const DivRentalConditions = styled.div`
+  display: inline-block;
+  border-radius: 35px;
+  background: #f9f9f9;
+`;
+
+const DivWrappRentalConditions = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 8px;
+`;
+const DivWrappRentalConditions2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 24px;
+`;
+
+// const Div2 = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 4px;
+//   margin-bottom: 24px;
+// `;
+
 // PriceTitle ??????
 const PriceTitle = styled.h3`
   margin-bottom: 0;
+
   /* margin-left: auto; */
 `;
 const CardItem = styled.li`
@@ -219,6 +251,7 @@ const CardList = styled.ul`
 `;
 
 const DivImg = styled.div`
+  margin-bottom: 14px;
   //   overflow: hidden;
   //   border-radius: 15px;
 `;
@@ -245,7 +278,7 @@ const CardsTitle = styled.h3`
   //   letter-spacing: 0;
   //   color: #f8f8f8;
   //   // color: #000;
-  //   margin-bottom: 8px;
+  margin-bottom: 0;
   //   text-overflow: ellipsis;
   //   -webkit-line-clamp: 1;
   //   line-clamp: 2;
@@ -258,7 +291,10 @@ const CardsTitle = styled.h3`
 
 const DivTextInfo = styled.div`
   display: flex;
+  gap: 5px;
+  white-space: nowrap;
 `;
+const DivTextInfo2 = styled.div``;
 
 const CardsText = styled.p`
   //   position: absolute;
@@ -298,12 +334,15 @@ export {
   DivTextInfo,
   DivTitle,
   PriceTitle,
-  DivSecond,
-  DivFirst,
+  Div,
+  DivTextInfo2,
   Vector,
   PTextInfo,
   PDescription,
   H4Title,
   H4TitleRental,
   SpanAge,
+  DivRentalConditions,
+  DivWrappRentalConditions,
+  DivWrappRentalConditions2,
 };
