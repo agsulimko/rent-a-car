@@ -115,7 +115,7 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
                   )}
                 </ButtonHeardIcone>
               </div>
-              <DivTitle className="DivTitle ">
+              <DivTitle className="DivTitle">
                 <CardsTitle className="cards-item-title">
                   {cart.make}
                   {cart.model.length < 8 && (

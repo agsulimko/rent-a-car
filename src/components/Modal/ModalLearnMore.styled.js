@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 import { theme } from 'styles/theme';
 
-const ModalWrapp = styled.div``;
-
 const ButtonCloseModal = styled.button`
   display: flex;
   position: absolute;
@@ -32,6 +30,9 @@ const ModalStyles = {
   content: {
     width: '541px',
     height: '752px',
+    padding: '40px',
+    boxSizing: 'border-box',
+    borderRadius: '24px',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -46,6 +47,22 @@ const Svg = styled.svg`
   stroke: #121417;
 `;
 
+const ModalWrapp = styled.div`
+  /* padding: 20px 20px; */
+`;
+
+const Img = styled.img`
+  /* width: 274px; */
+  border-radius: 14px;
+  width: 461px;
+  height: 248px;
+  object-fit: cover;
+
+  overflow: hidden;
+  /* height: 50%; */
+  /* min-height: 280px; */
+`;
+
 const ButtonRentalCar = styled.a`
   /* display: flex; */
   /* position: absolute;
@@ -58,7 +75,7 @@ const ButtonRentalCar = styled.a`
   font-size: 14px;
   line-height: 1.43;
   cursor: pointer;
-  background-color: ${theme.color.blue__light};
+  background-color: ${theme.color.blue_light};
   align-items: center;
   padding: 12px 50px;
   border-radius: 12px;
@@ -66,95 +83,177 @@ const ButtonRentalCar = styled.a`
 
   &:hover,
   &:focus {
-    background-color: ${theme.color.blue__dark};
+    background-color: ${theme.color.blue_dark};
   }
 `;
+const DivTitle = styled.div`
+  display: flex;
 
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: ${theme.fontWeight.medium};
+  line-height: 1.5;
+  color: ${theme.color.black_light};
+
+  margin-bottom: 8px;
+`;
+
+const SpanCardsTitle = styled.span`
+  color: ${theme.color.blue_light};
+`;
+
+const DivFirst = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+const DivSecond = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
+const Vector = styled.div`
+  width: 1px;
+  height: 15px;
+  background-color: rgba(18, 20, 23, 0.1);
+`;
+
+const PTextInfo = styled.p`
+  /* display: flex;
+  flex-direction: column; */
+  font-weight: ${theme.fontWeight.regular};
+  font-size: 12px;
+  line-height: 1.5;
+  /* line-height: 150%; */
+  color: rgba(18, 20, 23, 0.5);
+`;
+const PDescription = styled.p`
+  font-weight: ${theme.fontWeight.regular};
+  font-size: 14px;
+  line-height: 1.43;
+  /* line-height: 143%; */
+  color: ${theme.color.black_light};
+`;
+
+const H4Title = styled.h4`
+  font-weight: ${theme.fontWeight.medium};
+  font-size: 14px;
+  line-height: 1.43;
+  /* line-height: 143%; */
+  color: ${theme.color.black_light};
+`;
+const H4TitleRental = styled.h4`
+  font-weight: ${theme.fontWeight.medium};
+  font-size: 14px;
+  line-height: 1.43;
+  /* line-height: 143%; */
+  color: ${theme.color.black_light};
+`;
+
+const RentalConditions = styled.p`
+  font-family: ${theme.fontFamily.montserrat}, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  /* line-height: 150%; */
+  letter-spacing: -0.02em;
+  color: #363535;
+`;
+
+const SpanAge = styled.span`
+  color: ${theme.color.blue_light};
+`;
+
+// PriceTitle ??????
+const PriceTitle = styled.h3`
+  margin-bottom: 0;
+  /* margin-left: auto; */
+`;
 const CardItem = styled.li`
-  border: 0.5px solid black;
-  position: relative;
-  width: 274px;
-  height: 426px;
-  /* width: 250px;
-  height: 287px; */
-  /* margin-bottom: 16px; */
+  //   position: relative;
+  //   width: 274px;
+  //   height: 426px;
+  //   /* width: 250px;
+  //   height: 287px; */
+  //   /* margin-bottom: 16px; */
 
-  transition: all 0.5s ease;
-  overflow: hidden;
-  /* padding-bottom: 0; */
+  //   transition: all 0.5s ease;
+  //   overflow: hidden;
+  //   /* padding-bottom: 0; */
 
-  & img {
-    /* max-width: 120%; */
-  }
-  &:hover,
-  &:focus {
-    filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.3));
-  }
-  /* {
-    width: 240px;
-    height: 264px;
-    & img {
-      width: 264px;
-      height: 264px;
-      max-width: 150%;
-    }
-  } */
+  //   & img {
+  //     /* max-width: 120%; */
+  //   }
+  //   &:hover,
+  //   &:focus {
+  //     filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.3));
+  //   }
+  //   /* {
+  //     width: 240px;
+  //     height: 264px;
+  //     & img {
+  //       width: 264px;
+  //       height: 264px;
+  //       max-width: 150%;
+  //     }
+  //   } */
 `;
 
 const CardList = styled.ul`
-  display: flex;
+  //   /* display: flex; */
+  //   width: 461px;
+  //   height: 248px;
+  //   flex-wrap: wrap;
+  //   justify-content: center;
 
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 100px;
-  /* display: grid;
-  justify-items: center; */
-  /* width: 335px; */
-  /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
-  gap: 24px;
-  /* column-gap: 16px;
-  row-gap: 32px; */
-  /* gap: 32px 16px; */
-  /* display: flex;
-  flex-wrap: wrap;
-  gap: 16px; */
+  //   /* display: grid;
+  //   justify-items: center; */
+  //   /* width: 335px; */
+  //   /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+  //   gap: 24px;
+  //   /* column-gap: 16px;
+  //   row-gap: 32px; */
+  //   /* gap: 32px 16px; */
+  //   /* display: flex;
+  //   flex-wrap: wrap;
+  //   gap: 16px; */
 `;
 
 const DivImg = styled.div`
-  overflow: hidden;
-  border-radius: 15px;
+  //   overflow: hidden;
+  //   border-radius: 15px;
 `;
 
-const Img = styled.img`
-  /* width: 274px; */
-  width: 401px;
-  height: 268px;
-  border-radius: 15px;
-  object-fit: cover;
-  max-width: 120%;
-  overflow: hidden;
-  /* height: 50%; */
-  /* min-height: 280px; */
-`;
+// const Img = styled.img`
+//   /* width: 274px; */
+//   border-radius: 14px;
+//   width: 461px;
+//   height: 248px;
+//   object-fit: cover;
+
+//   overflow: hidden;
+//   /* height: 50%; */
+//   /* min-height: 280px; */
+// `;
 
 const CardsTitle = styled.h3`
-  position: absolute;
-  top: 180px;
-  left: 16px;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 18px;
-  letter-spacing: 0;
-  color: #f8f8f8;
-  // color: #000;
-  margin-bottom: 8px;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 1;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  position: absolute;
-  overflow: hidden;
+  //   position: absolute;
+  //   top: 180px;
+  //   left: 16px;
+  //   font-size: 14px;
+  //   font-weight: 600;
+  //   line-height: 18px;
+  //   letter-spacing: 0;
+  //   color: #f8f8f8;
+  //   // color: #000;
+  //   margin-bottom: 8px;
+  //   text-overflow: ellipsis;
+  //   -webkit-line-clamp: 1;
+  //   line-clamp: 2;
+  //   -webkit-box-orient: vertical;
+  //   display: -webkit-box;
+  //   position: absolute;
+  //   overflow: hidden;
+  //
 `;
 
 const DivTextInfo = styled.div`
@@ -162,38 +261,29 @@ const DivTextInfo = styled.div`
 `;
 
 const CardsText = styled.p`
-  position: absolute;
-  top: 200px;
-  left: 16px;
-  color: #f8f8f8;
-  // color: #000;
-  margin-bottom: 16px;
-  height: 30px;
-  // height: 29px;
-  overflow: hidden;
-  width: 303px;
-  font-size: 12px;
-  line-height: 16px;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-`;
-const CardStarRating = styled.div`
-  overflow: hidden;
-  border-radius: 15px;
-`;
-const TextRating = styled.p`
-  position: absolute;
-  bottom: 22px;
-  left: 16px;
-  font-size: 14px;
-  color: #f8f8f8;
-  // color: #000;
+  //   position: absolute;
+  //   top: 200px;
+  //   left: 16px;
+  //   color: #f8f8f8;
+  //   // color: #000;
+  //   margin-bottom: 16px;
+  //   height: 30px;
+  //   // height: 29px;
+  //   overflow: hidden;
+  //   width: 303px;
+  //   font-size: 12px;
+  //   line-height: 16px;
+  //   text-overflow: ellipsis;
+  //   -webkit-line-clamp: 2;
+  //   line-clamp: 2;
+  //   -webkit-box-orient: vertical;
+  //   display: -webkit-box;
+  //
 `;
 
 export {
+  RentalConditions,
+  SpanCardsTitle,
   ButtonCloseModal,
   ModalStyles,
   Svg,
@@ -201,11 +291,19 @@ export {
   ModalWrapp,
   CardItem,
   CardList,
-  CardStarRating,
   CardsText,
   CardsTitle,
-  TextRating,
   Img,
   DivImg,
   DivTextInfo,
+  DivTitle,
+  PriceTitle,
+  DivSecond,
+  DivFirst,
+  Vector,
+  PTextInfo,
+  PDescription,
+  H4Title,
+  H4TitleRental,
+  SpanAge,
 };
