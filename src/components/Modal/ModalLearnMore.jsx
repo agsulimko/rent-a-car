@@ -79,10 +79,8 @@ const ModalLearnMore = ({
                     {cart.make}
                     {<SpanCardsTitle> {cart.model}</SpanCardsTitle>},{cart.year}
                   </CardsTitle>
-                  {/* <PriceTitle>{cart.rentalPrice}</PriceTitle> */}
                 </DivTitle>
                 <Div>
-                  {/* ===================================== */}
                   <DivTextInfo className="DivTextInfo ">
                     <PTextInfo className="City">
                       {cart.address.split(",")[1].trim().split(" ")[0]}
@@ -182,7 +180,7 @@ const ModalLearnMore = ({
                 <DivWrappRentalConditions>
                   <DivRentalConditions>
                     <RentalConditions className="text">
-                      Minimum age :
+                      Minimum age: <span> </span>
                       <SpanAge className="Span min Age">
                         {cart.rentalConditions
                           .substring(
@@ -220,12 +218,13 @@ const ModalLearnMore = ({
                   </DivRentalConditions>
                   <DivRentalConditions>
                     <RentalConditions className="text">
-                      Mileage:<SpanAge>{cart.mileage}</SpanAge>
+                      Mileage:
+                      <SpanAge> {cart.mileage.toLocaleString("en-IN")}</SpanAge>
                     </RentalConditions>
                   </DivRentalConditions>
                   <DivRentalConditions>
                     <RentalConditions className="text">
-                      Price: <SpanAge>{cart.rentalPrice}</SpanAge>
+                      Price: <SpanAge>{cart.rentalPrice.substring(1)}$</SpanAge>
                     </RentalConditions>
                   </DivRentalConditions>
                 </DivWrappRentalConditions2>

@@ -152,7 +152,7 @@ const FavoritesItem = ({
                   <Vector></Vector>
                   <p> {cart.make} </p>
                   <Vector></Vector>
-                  <p> {cart.mileage} </p>
+                  <p> {cart.id} </p>
 
                   {cart.type.length < 6 && <Vector></Vector>}
 

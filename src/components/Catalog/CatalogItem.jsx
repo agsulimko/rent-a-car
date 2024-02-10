@@ -22,13 +22,11 @@ import { HeardAddFavorites } from "components/Icons/HeardAddFavorites.jsx";
 
 import substringsToCheck from "./substringsToCheck";
 import sprite from "../../image/sprite.svg";
-// import Modal from "components/Modal/Modal";
-// import ModalLearnMore from "components/Modal/ModalLearnMore"; // Import the ModalLearnMore component
 
 const ITEMS_PER_PAGE = 12;
 const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
   const [setModalIsOpen] = useState(false);
-  // modalIsOpen
+
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
@@ -45,8 +43,6 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
   const openModal = () => {
     setModalIsOpen(true);
   };
-  // const address = "321 Example Road, Odessa, Ukraine";
-  // const city = cart.address.split(",")[1].trim().split(" ")[0];
 
   return (
     <Container>
@@ -95,12 +91,6 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
                   }
                   onClick={() => toggleFavorites(cart.id)}
                 >
-                  {/* <Heard
-                    cartId={cart.id}
-                    isFavorite={favorites.includes(cart.id)}
-                    onClick={() => toggleFavorites(cart.id)}
-                  /> */}
-
                   {favorites.includes(cart.id) ? (
                     <svg>
                       <use href={`${sprite}#icon-heard_active`}></use>
@@ -160,7 +150,7 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
                   <Vector></Vector>
                   <p> {cart.make} </p>
                   <Vector></Vector>
-                  <p> {cart.mileage} </p>
+                  <p> {cart.id} </p>
                   {cart.type.length < 6 && <Vector></Vector>}
                   {cart.type.length < 6 && (
                     <p>
@@ -214,13 +204,3 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
 };
 
 export default CatalogItem;
-
-//  aria-label={
-//                     favorites.includes(cart.id)
-//                       ? "Remove from Favorites"
-//                       : "Add to Favorites"
-//                   }
-
-//  {favorites.includes(cart.id)
-//                     ? "Remove from Favorites"
-//                     : "Add to Favorites"}

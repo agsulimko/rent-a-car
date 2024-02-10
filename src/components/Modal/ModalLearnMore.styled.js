@@ -1,5 +1,3 @@
-// ButtonCloseModal, ModalStyles;
-
 import styled from 'styled-components';
 
 import { theme } from 'styles/theme';
@@ -9,8 +7,7 @@ const ButtonCloseModal = styled.button`
   position: absolute;
   top: 14px;
   right: 14px;
-  /* width: 24px; */
-  /* height: 24px; */
+
   line-height: 0;
   cursor: pointer;
   background-color: transparent;
@@ -47,30 +44,18 @@ const Svg = styled.svg`
   stroke: #121417;
 `;
 
-const ModalWrapp = styled.div`
-  /* padding: 20px 20px; */
-`;
+const ModalWrapp = styled.div``;
 
 const Img = styled.img`
-  /* width: 274px; */
   border-radius: 14px;
   width: 461px;
   height: 248px;
   object-fit: cover;
 
   overflow: hidden;
-  /* height: 50%; */
-  /* min-height: 280px; */
 `;
 
 const ButtonRentalCar = styled.a`
-  /* display: flex; */
-  /* position: absolute;
-  top: 14px;
-  right: 14px; */
-  /* width: 24px; */
-  /* height: 24px; */
-  /* line-height: 0; */
   font-weight: ${theme.fontWeight.semiBold};
   font-size: 14px;
   line-height: 1.43;
@@ -90,12 +75,20 @@ const DivTitle = styled.div`
   display: flex;
 
   justify-content: space-between;
-  font-size: 15px;
-  font-weight: ${theme.fontWeight.medium};
-  line-height: 1.5;
-  color: ${theme.color.black_light};
 
   margin-bottom: 8px;
+`;
+
+const CardsTitle = styled.h3`
+  font-weight: ${theme.fontWeight.medium};
+  color: ${theme.color.black_light};
+  //   position: absolute;
+  //   top: 180px;
+  //   left: 16px;
+  font-size: 18px;
+  line-height: 1.33;
+
+  margin-bottom: 0;
 `;
 
 const SpanCardsTitle = styled.span`
@@ -109,15 +102,11 @@ const Vector = styled.div`
 `;
 
 const PTextInfo = styled.p`
-  /* display: flex;
-  flex-direction: column; */
   font-weight: ${theme.fontWeight.regular};
   font-size: 12px;
   line-height: 1.5;
   /* line-height: 150%; */
   color: rgba(18, 20, 23, 0.5);
-
-  /* white-space: nowrap; */
 `;
 const PDescription = styled.p`
   font-weight: ${theme.fontWeight.regular};
@@ -160,6 +149,8 @@ const RentalConditions = styled.p`
 
 const SpanAge = styled.span`
   color: ${theme.color.blue_light};
+
+  font-weight: 600;
 `;
 
 const Div = styled.div`
@@ -187,106 +178,15 @@ const DivWrappRentalConditions2 = styled.div`
   margin-bottom: 24px;
 `;
 
-// const Div2 = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 4px;
-//   margin-bottom: 24px;
-// `;
-
-// PriceTitle ??????
 const PriceTitle = styled.h3`
   margin-bottom: 0;
-
-  /* margin-left: auto; */
 `;
-const CardItem = styled.li`
-  //   position: relative;
-  //   width: 274px;
-  //   height: 426px;
-  //   /* width: 250px;
-  //   height: 287px; */
-  //   /* margin-bottom: 16px; */
+const CardItem = styled.li``;
 
-  //   transition: all 0.5s ease;
-  //   overflow: hidden;
-  //   /* padding-bottom: 0; */
-
-  //   & img {
-  //     /* max-width: 120%; */
-  //   }
-  //   &:hover,
-  //   &:focus {
-  //     filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.3));
-  //   }
-  //   /* {
-  //     width: 240px;
-  //     height: 264px;
-  //     & img {
-  //       width: 264px;
-  //       height: 264px;
-  //       max-width: 150%;
-  //     }
-  //   } */
-`;
-
-const CardList = styled.ul`
-  //   /* display: flex; */
-  //   width: 461px;
-  //   height: 248px;
-  //   flex-wrap: wrap;
-  //   justify-content: center;
-
-  //   /* display: grid;
-  //   justify-items: center; */
-  //   /* width: 335px; */
-  //   /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
-  //   gap: 24px;
-  //   /* column-gap: 16px;
-  //   row-gap: 32px; */
-  //   /* gap: 32px 16px; */
-  //   /* display: flex;
-  //   flex-wrap: wrap;
-  //   gap: 16px; */
-`;
+const CardList = styled.ul``;
 
 const DivImg = styled.div`
   margin-bottom: 14px;
-  //   overflow: hidden;
-  //   border-radius: 15px;
-`;
-
-// const Img = styled.img`
-//   /* width: 274px; */
-//   border-radius: 14px;
-//   width: 461px;
-//   height: 248px;
-//   object-fit: cover;
-
-//   overflow: hidden;
-//   /* height: 50%; */
-//   /* min-height: 280px; */
-// `;
-
-const CardsTitle = styled.h3`
-  //   position: absolute;
-  //   top: 180px;
-  //   left: 16px;
-  //   font-size: 14px;
-  //   font-weight: 600;
-  //   line-height: 18px;
-  //   letter-spacing: 0;
-  //   color: #f8f8f8;
-  //   // color: #000;
-  margin-bottom: 0;
-  //   text-overflow: ellipsis;
-  //   -webkit-line-clamp: 1;
-  //   line-clamp: 2;
-  //   -webkit-box-orient: vertical;
-  //   display: -webkit-box;
-  //   position: absolute;
-  //   overflow: hidden;
-  //
 `;
 
 const DivTextInfo = styled.div`
@@ -295,26 +195,7 @@ const DivTextInfo = styled.div`
   white-space: nowrap;
 `;
 
-const CardsText = styled.p`
-  //   position: absolute;
-  //   top: 200px;
-  //   left: 16px;
-  //   color: #f8f8f8;
-  //   // color: #000;
-  //   margin-bottom: 16px;
-  //   height: 30px;
-  //   // height: 29px;
-  //   overflow: hidden;
-  //   width: 303px;
-  //   font-size: 12px;
-  //   line-height: 16px;
-  //   text-overflow: ellipsis;
-  //   -webkit-line-clamp: 2;
-  //   line-clamp: 2;
-  //   -webkit-box-orient: vertical;
-  //   display: -webkit-box;
-  //
-`;
+const CardsText = styled.p``;
 
 export {
   RentalConditions,

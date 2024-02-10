@@ -3,6 +3,7 @@ import { theme } from "styles/theme";
 import "@fontsource/inter"; // Import the entire Inter font family
 import "@fontsource/manrope";
 import "@fontsource/montserrat";
+
 // import "@fontsource/manrope/400.css"; // Regular
 // import "@fontsource/manrope/500.css"; // Medium
 // import "@fontsource/manrope/600.css"; // Semi-Bold
