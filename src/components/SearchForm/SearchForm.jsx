@@ -109,6 +109,8 @@ const SearchForm = ({
           className="input-SelectPrice-rentalPrice"
           value={selectedRentalPrice}
           onChange={logSelectedRentalPrice}
+          style={{ margin: 0, padding: 10, border: "1px solid initial" }}
+          focusstyle={{ borderColor: "white" }}
         >
           <option value="">To $</option>
           {PriceSelect.map((price, index) => (
@@ -126,6 +128,8 @@ const SearchForm = ({
             name="Car mileage / km"
             placeholder="From"
             className="input-mileage-From"
+            style={{ opacity: 1, color: "black", border: "1px solid initial" }}
+            focusstyle={{ borderColor: "white" }}
             value={selectedMileageFrom}
             onChange={logSelectedMileageFrom}
           />

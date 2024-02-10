@@ -12,8 +12,7 @@ export const HeardAddFavorites = ({
       xmlns="http://www.w3.org/2000/svg"
       overflow="hidden"
       viewBox="0 0 18 18"
-      className={`icon-heard ${isFavorite ? "favorite" : ""}`}
-      onClick={() => onClick(cartId)}
+      className="svg-herd-add"
     >
       <g fill="none">
         <path

@@ -19,9 +19,10 @@ import {
 } from "components/Favorites/FavoritesItem.styled";
 import { Container } from "styles/Container/Container";
 
-import { HeardRemoveFavorites } from "components/Icons/HeardRemoveFavorites.jsx";
-import { HeardAddFavorites } from "components/Icons/HeardAddFavorites.jsx";
-import { SvgActive } from "components/Catalog/CatalogItem.styled";
+import {
+  SvgHeard,
+  SvgHeardActive,
+} from "components/Catalog/CatalogItem.styled";
 import substringsToCheck from "components/Catalog/substringsToCheck";
 import sprite from "../../image/sprite.svg";
 const ITEMS_PER_PAGE = 12;
@@ -70,37 +71,16 @@ const FavoritesItem = ({
                 <ButtonHeardIcone
                   type="button"
                   className="btn-heard-icone"
-                  aria-label={
-                    favorites.includes(cart.id) ? (
-                      <HeardRemoveFavorites
-                        cartId={cart.id}
-                        isFavorite={favorites.includes(cart.id)}
-                        onClick={() => toggleFavorite(cart.id)}
-                      />
-                    ) : (
-                      <HeardAddFavorites
-                        cartId={cart.id}
-                        isFavorite={favorites.includes(cart.id)}
-                        onClick={() => toggleFavorite(cart.id)}
-                      />
-                    )
-                  }
                   onClick={() => toggleFavorite(cart.id)}
                 >
-                  {/* <Heard
-                    cartId={cart.id}
-                    isFavorite={favorites.includes(cart.id)}
-                    onClick={() => toggleFavorite(cart.id)}
-                  /> */}
-
                   {favorites.includes(cart.id) ? (
-                    <SvgActive>
+                    <SvgHeardActive>
                       <use href={`${sprite}#icon-heard_active`}></use>
-                    </SvgActive>
+                    </SvgHeardActive>
                   ) : (
-                    <SvgActive>
+                    <SvgHeard>
                       <use href={`${sprite}#icon-heard`}></use>
-                    </SvgActive>
+                    </SvgHeard>
                   )}
                 </ButtonHeardIcone>
               </div>

@@ -124,9 +124,9 @@ const ButtonHeardIcone = styled.button`
   width: 46px;
   height: 46px;
 
-  &:hover,
-  &:focus {
-    fill: #3470ff;
+  &:hover g,
+  &:focus g {
+    fill: #34ffaa;
     stroke-width: 1px;
     stroke: #3470ff;
   }

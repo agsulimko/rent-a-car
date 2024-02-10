@@ -123,16 +123,27 @@ const ButtonHeardIcone = styled.button`
   z-index: 0;
   width: 46px;
   height: 46px;
-
-  &:hover,
+  stroke: rgba(255, 255, 255, 0.8);
+  /* &:hover,
   &:focus {
     fill: #3470ff;
     stroke-width: 1px;
     stroke: #3470ff;
-  }
+  } */
 `;
-const HeardAddFavorites = styled.button`
-  position: absolute;
+const SvgHeardActive = styled.svg`
+  width: 18px;
+  height: 18px;
+  fill: #3470ff;
+  stroke: #3470ff;
+  &:hover,
+  &:focus {
+    fill: none;
+    stroke-width: 1px;
+    stroke: rgba(255, 255, 255, 0.8);
+  }
+
+  /* position: absolute;
   top: 0px;
   right: 0px;
   z-index: 0;
@@ -144,10 +155,22 @@ const HeardAddFavorites = styled.button`
     fill: #3470ff;
     stroke-width: 1px;
     stroke: #3470ff;
-  }
+  } */
 `;
-const HeardRemoveFavorites = styled.button`
-  position: absolute;
+const SvgHeard = styled.svg`
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.5px;
+  stroke: rgba(255, 255, 255, 0.8);
+  fill: none;
+
+  &:hover,
+  &:focus {
+    fill: #3470ff;
+    stroke-width: 1px;
+    stroke: #3470ff;
+  }
+  /* position: absolute;
   top: 0px;
   right: 0px;
   z-index: 0;
@@ -159,7 +182,7 @@ const HeardRemoveFavorites = styled.button`
     fill: #3470ff;
     stroke-width: 1px;
     stroke: #3470ff;
-  }
+  } */
 `;
 
 const ButtonLearnMore = styled.button`
@@ -225,7 +248,7 @@ export {
   Vector,
   DivFirst,
   DivSecond,
-  HeardAddFavorites,
-  HeardRemoveFavorites,
+  SvgHeardActive,
+  SvgHeard,
   ButtonHeardIcone,
 };

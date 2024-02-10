@@ -34,9 +34,15 @@ const SelectBrand = styled.select`
   line-height: 1.11; //  111%;
   color: ${theme.color.black_light};
   background: ${theme.color.white_dark};
+  font-family: ${theme.fontFamily.manrope};
+  font-weight: ${theme.fontWeight.medium};
+  font-size: 18px;
+  line-height: 1.11;
+  color: #121417;
 `;
 const SelectPrice = styled.select`
   padding: 14px 18px;
+  margin-right: 0;
   width: 125px;
   height: 48px;
   background: ${theme.color.white_dark};
@@ -45,6 +51,11 @@ const SelectPrice = styled.select`
   line-height: 1.11; //  111%;
   color: ${theme.color.black_light};
   border-radius: 14px;
+  font-family: ${theme.fontFamily.manrope};
+  font-weight: ${theme.fontWeight.medium};
+  font-size: 18px;
+  line-height: 1.11;
+  color: #121417;
 `;
 
 const DivMileage = styled.div`
@@ -62,11 +73,24 @@ const ImputMileageFrom = styled.input`
   font-weight: ${theme.fontWeight.medium};
   font-size: 18px;
   line-height: 1.11; //  111%;
-  color: ${theme.color.black_light};
+
+  color: ${theme.color.black_dark};
+  /* color: inherit; */
+  /* opacity: 1; */
   background: ${theme.color.white_dark};
   border-color: ${theme.color.white_dark};
   border: none;
   padding-left: 24px;
+
+  &::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 1;
+    font-family: ${theme.fontFamily.manrope};
+    font-weight: ${theme.fontWeight.medium};
+    font-size: 18px;
+    line-height: 1.11;
+    color: #121417;
+  }
 `;
 const ImputMileageTo = styled.input`
   width: 160px;
@@ -77,11 +101,23 @@ const ImputMileageTo = styled.input`
   font-weight: ${theme.fontWeight.medium};
   font-size: 18px;
   line-height: 1.11; //  111%;
-  color: ${theme.color.black_light};
+  color: ${theme.color.black_dark};
+  /* color: inherit; */
+  /* opacity: 1; */
   background: ${theme.color.white_dark};
   border-color: ${theme.color.white_dark};
   border: none;
   padding-left: 24px;
+
+  &::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 1;
+    font-family: ${theme.fontFamily.manrope};
+    font-weight: ${theme.fontWeight.medium};
+    font-size: 18px;
+    line-height: 1.11;
+    color: #121417;
+  }
 `;
 const ButtonSearch = styled.button`
   font-weight: ${theme.fontWeight.semiBold};

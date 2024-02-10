@@ -16,9 +16,11 @@ import {
   Vector,
   DivFirst,
   DivSecond,
+  SvgHeard,
+  SvgHeardActive,
 } from "./CatalogItem.styled";
-import { HeardRemoveFavorites } from "components/Icons/HeardRemoveFavorites.jsx";
-import { HeardAddFavorites } from "components/Icons/HeardAddFavorites.jsx";
+// import { HeardRemoveFavorites } from "components/Icons/HeardRemoveFavorites.jsx";
+// import { HeardAddFavorites } from "components/Icons/HeardAddFavorites.jsx";
 
 import substringsToCheck from "./substringsToCheck";
 import sprite from "../../image/sprite.svg";
@@ -74,31 +76,16 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
                 <ButtonHeardIcone
                   type="button"
                   className="btn-heard-icone"
-                  aria-label={
-                    favorites.includes(cart.id) ? (
-                      <HeardRemoveFavorites
-                        cartId={cart.id}
-                        isFavorite={favorites.includes(cart.id)}
-                        onClick={() => toggleFavorites(cart.id)}
-                      />
-                    ) : (
-                      <HeardAddFavorites
-                        cartId={cart.id}
-                        isFavorite={favorites.includes(cart.id)}
-                        onClick={() => toggleFavorites(cart.id)}
-                      />
-                    )
-                  }
                   onClick={() => toggleFavorites(cart.id)}
                 >
                   {favorites.includes(cart.id) ? (
-                    <svg>
+                    <SvgHeardActive>
                       <use href={`${sprite}#icon-heard_active`}></use>
-                    </svg>
+                    </SvgHeardActive>
                   ) : (
-                    <svg>
+                    <SvgHeard>
                       <use href={`${sprite}#icon-heard`}></use>
-                    </svg>
+                    </SvgHeard>
                   )}
                 </ButtonHeardIcone>
               </div>
