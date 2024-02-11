@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-// import { theme } from 'styles/theme';
-
 const H1 = styled.h1`
   padding-top: 350px;
   margin-bottom: 40px;

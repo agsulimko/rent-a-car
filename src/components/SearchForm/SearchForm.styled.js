@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 import { theme } from 'styles';
 
-// import { theme } from 'styles/theme.jsx';
-
-// import { theme } from 'styles';
-// import { theme } from 'styles';
-
 const Form = styled.form`
   display: flex;
   justify-content: center;

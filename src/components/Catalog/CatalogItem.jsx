@@ -19,20 +19,16 @@ import {
   SvgHeard,
   SvgHeardActive,
 } from "./CatalogItem.styled";
-// import { HeardRemoveFavorites } from "components/Icons/HeardRemoveFavorites.jsx";
-// import { HeardAddFavorites } from "components/Icons/HeardAddFavorites.jsx";
 
 import substringsToCheck from "./substringsToCheck";
 import sprite from "../../image/sprite.svg";
 
 const ITEMS_PER_PAGE = 12;
 const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
-  const [setModalIsOpen] = useState(false);
-
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
-  // const [selectedItemId, setSelectedItemId] = useState(null);
+
   const toggleFavorites = (id) => {
     const updatedFavorites = favorites.includes(id)
       ? favorites.filter((favoriteId) => favoriteId !== id)
@@ -40,10 +36,6 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
 
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  };
-
-  const openModal = () => {
-    setModalIsOpen(true);
   };
 
   return (
@@ -168,7 +160,6 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
                 id={cart.id}
                 onClick={() => {
                   handleLearnMore(cart.id);
-                  openModal();
                 }}
               >
                 Learn more

@@ -1,5 +1,5 @@
 // FavoritesItem.jsx
-import React, { useState } from "react";
+import React from "react";
 import {
   ButtonHeardIcone,
   ButtonLearnMore,
@@ -36,11 +36,6 @@ const FavoritesItem = ({
   favoriteAdverts,
   handleLearnMore,
 }) => {
-  const [setModalIsOpen] = useState(false);
-  // modalIsOpen
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
   return (
     <Container>
       <div className="div-cards-list">
@@ -165,7 +160,6 @@ const FavoritesItem = ({
                 id={cart.id}
                 onClick={() => {
                   handleLearnMore(cart.id);
-                  openModal();
                 }}
               >
                 Learn more
@@ -190,44 +184,3 @@ const FavoritesItem = ({
 };
 
 export default FavoritesItem;
-
-//  <ButtonHeardIcone
-//                   type="button"
-//                   className="btn-heard-icone"
-//                   aria-label={
-//                     favorites.includes(cart.id) ? (
-//                       <HeardRemoveFavorites
-//                         cartId={cart.id}
-//                         isFavorite={favorites.includes(cart.id)}
-//                         onClick={() => toggleFavorite(cart.id)}
-//                       />
-//                     ) : (
-//                       <HeardAddFavorites
-//                         cartId={cart.id}
-//                         isFavorite={favorites.includes(cart.id)}
-//                         onClick={() => toggleFavorite(cart.id)}
-//                       />
-//                     )
-//                   }
-//                   onClick={() => toggleFavorite(cart.id)}
-//                 >
-//                   {/* <Heard
-//                     cartId={cart.id}
-//                     isFavorite={favorites.includes(cart.id)}
-//                     onClick={() => toggleFavorite(cart.id)}
-//                   /> */}
-
-//                   {favorites.includes(cart.id) ? (
-//                     <HeardRemoveFavorites
-//                       cartId={cart.id}
-//                       isFavorite={favorites.includes(cart.id)}
-//                       onClick={() => toggleFavorite(cart.id)}
-//                     />
-//                   ) : (
-//                     <HeardAddFavorites
-//                       cartId={cart.id}
-//                       isFavorite={favorites.includes(cart.id)}
-//                       onClick={() => toggleFavorite(cart.id)}
-//                     />
-//                   )}
-//                 </ButtonHeardIcone>
