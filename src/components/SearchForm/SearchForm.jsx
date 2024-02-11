@@ -74,7 +74,7 @@ const SearchForm = ({
       })
     );
 
-    onSearch();
+    // onSearch();
     // setFormSubmitted(true);
   };
 

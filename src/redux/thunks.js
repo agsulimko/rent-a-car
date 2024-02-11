@@ -1,11 +1,29 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getAdverts } from 'api/api';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { getAdverts } from 'api/api';
 
+// const fetchAdverts = createAsyncThunk(
+//   'adverts/fetchAdverts',
+//   async (filters, thunkAPI) => {
+//     try {
+//       const response = await getAdverts(filters);
+//       return response;
+//     } catch (e) {
+//       console.log(e.message);
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
+
+// export default fetchAdverts;
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { getAdverts } from 'api/api';
 const fetchAdverts = createAsyncThunk(
   'adverts/fetchAdverts',
-  async (filters, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const response = await getAdverts(filters);
+      const response = await getAdverts(page);
+
       return response;
     } catch (e) {
       console.log(e.message);
@@ -13,5 +31,4 @@ const fetchAdverts = createAsyncThunk(
     }
   }
 );
-
 export default fetchAdverts;

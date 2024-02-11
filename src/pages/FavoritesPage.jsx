@@ -13,13 +13,16 @@ const ITEMS_PER_PAGE = 12;
 const Favorites = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAdverts);
-  const [favorites, setFavorites] = useState([]);
+  // const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
   const [selectedMake, setSelectedMake] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Updated the state name
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [selectedRentalPrice, setSelectedRentalPrice] = useState(0);
-  const [filteredItems, setFilteredItems] = useState([]);
+  // const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
     dispatch(fetchAdverts());
@@ -43,7 +46,7 @@ const Favorites = () => {
   };
 
   const handleSearch = () => {
-    setFilteredItems(filteredItems);
+    // setFilteredItems(filteredItems);
   };
 
   const handlePageChange = (newPage) => {
