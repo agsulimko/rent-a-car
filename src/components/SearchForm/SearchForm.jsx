@@ -89,8 +89,12 @@ const SearchForm = ({
           className="input-SelectBrand-make"
           value={selectedMake}
           onChange={logSelectedMake}
-          style={{ margin: 0, padding: 10, border: "1px solid initial" }}
-          focusstyle={{ borderColor: "white" }}
+          style={{
+            margin: 0,
+            padding: 10,
+            border: "1px solid initial",
+          }}
+          // focusstyle={{ borderColor: "white" }}
         >
           <option value="">Enter the text</option>
           {makes.map((make, index) => (
@@ -110,7 +114,7 @@ const SearchForm = ({
           value={selectedRentalPrice}
           onChange={logSelectedRentalPrice}
           style={{ margin: 0, padding: 10, border: "1px solid initial" }}
-          focusstyle={{ borderColor: "white" }}
+          // focusstyle={{ borderColor: "white" }}
         >
           <option value="">To $</option>
           {PriceSelect.map((price, index) => (
@@ -129,7 +133,7 @@ const SearchForm = ({
             placeholder="From"
             className="input-mileage-From"
             style={{ opacity: 1, color: "black", border: "1px solid initial" }}
-            focusstyle={{ borderColor: "white" }}
+            // focusstyle={{ borderColor: "white" }}
             value={selectedMileageFrom}
             onChange={logSelectedMileageFrom}
           />
@@ -142,6 +146,7 @@ const SearchForm = ({
             className="input-mileage-To"
             value={selectedMileageTo}
             onChange={logSelectedMileageTo}
+            style={{ opacity: 1, color: "black", border: "1px solid initial" }}
           />
         </Label>
       </DivMileage>
