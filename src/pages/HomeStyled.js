@@ -26,7 +26,7 @@ const MainHome = styled.main`
       rgba(46, 47, 66, 0.1),
       rgba(46, 47, 66, 0.7)
     ),
-    url('https://ftp.goit.study/img/cars-test-task/mercedes_slk_class.jpeg');
+    url('https://ftp.goit.study/img/cars-test-task/pontiac_firebird.jpeg');
 `;
 
 export { H1, H2, MainHome };
