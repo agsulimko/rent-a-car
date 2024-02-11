@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import { theme } from "styles/theme";
-import "@fontsource/inter"; // Import the entire Inter font family
+import "@fontsource/inter";
 import "@fontsource/manrope";
 import "@fontsource/montserrat";
 

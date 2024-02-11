@@ -15,15 +15,3 @@ const fetchAdverts = createAsyncThunk(
 );
 
 export default fetchAdverts;
-
-// const fetchAdverts = filters => async dispatch => {
-//   try {
-//     dispatch(fetchAdvertsStart());
-
-//     const data = await getAdverts(filters);
-
-//     dispatch(fetchAdvertsSuccess(data));
-//   } catch (error) {
-//     dispatch(fetchAdvertsFailure(error.message));
-//   }
-// };

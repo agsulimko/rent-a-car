@@ -50,7 +50,7 @@ const Catalog = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Your form submission logic
+
     handleSearch();
   };
 
@@ -78,9 +78,7 @@ const Catalog = () => {
         handleLearnMore={handleLearnMore}
       />
       <ModalLearnMore
-        // isOpen={modalIsOpen}
         isOpen={isModalOpen}
-        // closeModal={() => setModalIsOpen(false)}
         closeModal={() => setModalOpen(false)}
         currentItems={currentItems}
         selectedItemId={selectedItemId}
