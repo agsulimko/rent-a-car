@@ -25,9 +25,14 @@ const Catalog = () => {
   // const [filteredItems, setFilteredItems] = useState([]);
 
   const [isModalOpen, setModalOpen] = useState(false);
+  const [reloadComponent, setReloadComponent] = useState(false);
+  // useEffect(() => {
+  //   localStorage.removeItem("currentPage");
+  // }, []);
+
   useEffect(() => {
     dispatch(fetchAdverts(currentPage, ITEMS_PER_PAGE, { make: selectedMake })); // eslint-disable-next-line
-  }, [dispatch, currentPage, selectedMake]);
+  }, [dispatch, currentPage, selectedMake, reloadComponent]);
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
@@ -60,6 +65,12 @@ const Catalog = () => {
     setSelectedRentalPrice(event.target.value);
   };
 
+  const handleReloadComponent = () => {
+    setReloadComponent((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
+    setCurrentPage(1); // Сбрасываем текущую страницу на первую
+    localStorage.removeItem("currentPage"); // Удаляем текущую страницу из локального хранилища
+  };
+
   return (
     <Container>
       <SearchForm
@@ -70,6 +81,7 @@ const Catalog = () => {
         selectedRentalPrice={selectedRentalPrice}
         // onSearch={handleSearch}
       />
+      <button onClick={handleReloadComponent}>Reload Component</button>
       <CatalogItem
         // currentItems={filteredItems.length ? filteredItems : currentItems}
         currentItems={adverts}
