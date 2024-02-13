@@ -35,6 +35,7 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
       : [...favorites, id];
 
     setFavorites(updatedFavorites);
+
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 

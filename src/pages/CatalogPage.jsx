@@ -1,7 +1,7 @@
 // Catalog.jsx
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import fetchAdverts from "../redux/thunks";
+import { fetchAdverts } from "../redux/thunks";
 import { selectAdverts } from "../redux/selectors";
 import CatalogItem from "components/Catalog/CatalogItem";
 import SearchForm from "components/SearchForm/SearchForm";

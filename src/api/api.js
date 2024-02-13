@@ -37,3 +37,9 @@ export const getAdverts = async page => {
     throw error;
   }
 };
+
+export const getFavorites = async () => {
+  const { data } = await axios.get(`/adverts`);
+  console.log('data=', data);
+  return data;
+};

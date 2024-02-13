@@ -1,8 +1,9 @@
 // FavoritesPage.jsx
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAdverts } from "../redux/selectors";
-import fetchAdverts from "../redux/thunks";
+import { selectFavorites } from "../redux/selectors";
+import { fetchFavorites } from "../redux/thunks";
+// import fetchAdverts from "../redux/thunks";
 import { Container } from "styles/Container/Container";
 import FavoritesItem from "components/Favorites/FavoritesItem";
 import SearchForm from "components/SearchForm/SearchForm";
@@ -12,20 +13,20 @@ const ITEMS_PER_PAGE = 12;
 
 const Favorites = () => {
   const dispatch = useDispatch();
-  const adverts = useSelector(selectAdverts);
-  // const [favorites, setFavorites] = useState([]);
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("favorites")) || []
-  );
+
+  const [favorites, setFavorites] = useState([]);
   const [selectedMake, setSelectedMake] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Updated the state name
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [selectedRentalPrice, setSelectedRentalPrice] = useState(0);
-  // const [filteredItems, setFilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
+  const adverts = useSelector(selectFavorites) || [];
 
   useEffect(() => {
-    dispatch(fetchAdverts());
+    dispatch(fetchFavorites());
+
+    // eslint-disable-next-line
   }, [dispatch]);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const Favorites = () => {
   };
 
   const handleSearch = () => {
-    // setFilteredItems(filteredItems);
+    setFilteredItems(filteredItems);
   };
 
   const handlePageChange = (newPage) => {
@@ -122,3 +123,58 @@ const Favorites = () => {
 };
 
 export default Favorites;
+// ============================
+
+// import React, { useEffect, useState } from "react";
+// import { useSelector, useDispatch } from "react-redux";
+// // import { selectAdverts } from "../redux/selectors";
+// import { fetchFavorites } from "../redux/thunks";
+
+// import { selectFavorites } from "../redux/selectors";
+
+// const Favorites = () => {
+//   const dispatch = useDispatch();
+//   const [favorites, setFavorites] = useState([]);
+
+//   const [selectedMake, setSelectedMake] = useState("");
+
+//   const adverts = useSelector(selectFavorites) || [];
+//   console.log(adverts);
+//   useEffect(() => {
+//     dispatch(fetchFavorites());
+
+//     // eslint-disable-next-line
+//   }, [dispatch]);
+//   // useEffect(() => {}, []);
+
+//   useEffect(() => {
+//     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+//     setFavorites(storedFavorites);
+//     // eslint-disable-next-line
+//   }, []);
+
+//   const favoriteAdverts = adverts.filter((auto) => favorites.includes(auto.id));
+
+//   const toggleFavorite = (id) => {
+//     const updatedFavorites = favorites.includes(id)
+//       ? favorites.filter((favoriteId) => favoriteId !== id)
+//       : [...favorites, id];
+
+//     setFavorites(updatedFavorites);
+//     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+//   };
+
+//   return (
+//     <>
+//       <ul>
+//         {favoriteAdverts.map((auto, index) => (
+//           <li key={index}>
+//             <p>{auto.id}</p>
+//             {/* <div>{auto.model}</div>  */}
+//           </li>
+//         ))}
+//       </ul>
+//     </>
+//   );
+// };
+// export default Favorites;

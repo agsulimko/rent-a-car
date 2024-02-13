@@ -25,6 +25,8 @@ import {
 } from "components/Catalog/CatalogItem.styled";
 import substringsToCheck from "components/Catalog/substringsToCheck";
 import sprite from "../../image/sprite.svg";
+// import { useSelector } from "react-redux";
+// import { selectFavorites } from "redux/selectors";
 const ITEMS_PER_PAGE = 12;
 
 const FavoritesItem = ({
@@ -36,11 +38,12 @@ const FavoritesItem = ({
   favoriteAdverts,
   handleLearnMore,
 }) => {
+  // const favoriteAdverts = useSelector(selectFavorites);
   return (
     <Container>
       <div className="div-cards-list">
         <CardList className="cards-list">
-          {currentFavoriteAdverts.map((cart, index) => (
+          {favoriteAdverts.map((cart, index) => (
             <CardItem
               key={index}
               className="cards-item"
