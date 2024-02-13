@@ -38,6 +38,20 @@ export const getAdverts = async page => {
   }
 };
 
+// export const getFavorites = async page => {
+//   const url = new URL('/adverts', axios.defaults.baseURL);
+//   url.searchParams.append('page', page);
+//   url.searchParams.append('limit', 12);
+
+//   try {
+//     const { data } = await axios.get(url.toString());
+//     return data;
+//   } catch (error) {
+//     console.error('Failed to fetch adverts:', error.message);
+//     throw error;
+//   }
+// };
+
 export const getFavorites = async () => {
   const { data } = await axios.get(`/adverts`);
   console.log('data=', data);
