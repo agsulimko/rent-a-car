@@ -18,9 +18,9 @@ export const fetchAdverts = createAsyncThunk(
 
 export const fetchFavorites = createAsyncThunk(
   'adverts/fetchFavorites',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const response = await getFavorites();
+      const response = await getFavorites(page);
       // console.log('getFavorites=', response);
       return response;
     } catch (e) {

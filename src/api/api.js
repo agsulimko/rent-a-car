@@ -26,6 +26,7 @@ axios.defaults.baseURL = 'https://65b95a82b71048505a8ab881.mockapi.io/api';
 
 export const getAdverts = async page => {
   const url = new URL('/adverts', axios.defaults.baseURL);
+
   url.searchParams.append('page', page);
   url.searchParams.append('limit', 12);
 
@@ -40,6 +41,7 @@ export const getAdverts = async page => {
 
 // export const getFavorites = async page => {
 //   const url = new URL('/adverts', axios.defaults.baseURL);
+//   // url.searchParams.append('id', '9582');
 //   url.searchParams.append('page', page);
 //   url.searchParams.append('limit', 12);
 
