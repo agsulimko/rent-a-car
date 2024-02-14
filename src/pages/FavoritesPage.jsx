@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAdverts } from "../redux/selectors";
-import fetchAdverts from "../redux/thunks";
+import { fetchFavorites } from "../redux/thunks";
 import { Container } from "styles/Container/Container";
 import FavoritesItem from "components/Favorites/FavoritesItem";
 import SearchForm from "components/SearchForm/SearchForm";
@@ -25,7 +25,7 @@ const Favorites = () => {
   // const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchAdverts());
+    dispatch(fetchFavorites());
   }, [dispatch]);
 
   useEffect(() => {

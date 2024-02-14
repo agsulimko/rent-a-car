@@ -11,7 +11,7 @@ import {
 } from "components/SearchForm/SearchForm.styled";
 import makes from "components/makes.js";
 import { useDispatch } from "react-redux";
-import fetchAdverts from "../../redux/thunks";
+import { fetchAdverts } from "../../redux/thunks";
 import toast from "react-hot-toast";
 
 const PriceSelect = Array.from(

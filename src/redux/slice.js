@@ -1,7 +1,7 @@
 // slice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-import fetchAdverts from './thunks';
+import { fetchAdverts, fetchFavorites } from './thunks';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -18,6 +18,7 @@ const advertsSlice = createSlice({
   name: 'adverts',
   initialState: {
     adverts: [],
+    favorites: [],
     status: '',
     isLoading: false,
     error: null,
@@ -26,11 +27,18 @@ const advertsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchAdverts.pending, handlePending)
+      .addCase(fetchFavorites.pending, handlePending)
       .addCase(fetchAdverts.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.adverts = action.payload;
       })
-      .addCase(fetchAdverts.rejected, handleRejected);
+      .addCase(fetchFavorites.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.adverts = action.payload;
+      })
+      .addCase(fetchAdverts.rejected, handleRejected)
+
+      .addCase(fetchFavorites.rejected, handleRejected);
   },
 });
 
