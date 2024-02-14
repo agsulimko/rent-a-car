@@ -21,25 +21,26 @@ const PriceSelect = Array.from(
 
 const SearchForm = ({
   handleMakeChange,
-  selectedMake,
+  // selectedMake,
   handleRentalPriceChange,
   selectedRentalPrice,
   selectedMileageFrom,
   selectedMileageTo,
-  onSearch,
+  // onSearch,
   handleMileageToChange,
-  handleMileageFromChange,
+  // handleMileageFromChange,
 }) => {
   const dispatch = useDispatch();
-
+  const [selectedMake, setSelectedMake] = useState("");
   // const [isFormSubmitted, setFormSubmitted] = useState(false);
-  const [selectedCarBrand, setSelectedCarBrand] = useState("");
-  const logSelectedMake = (event) => {
-    const selectedValue = event.target.value;
-    // console.log("Selected Car Brand:", selectedValue);
-    setSelectedCarBrand(selectedValue);
-    handleMakeChange(event);
-  };
+  // const [selectedCarBrand, setSelectedCarBrand] = useState("");
+  // const logSelectedMake = (event) => {
+  //   //   const selectedValue = event.target.value;
+  //   // console.log("Selected Car Brand:", selectedValue);
+  //   // setSelectedCarBrand(selectedValue);
+  //   setSelectedMake(selectedValue);
+  //   // handleMakeChange(event);
+  // };
 
   const logSelectedRentalPrice = (event) => {
     // const selectedValue = event.target.value;
@@ -61,21 +62,19 @@ const SearchForm = ({
 
   const handleSearch = (event) => {
     event.preventDefault();
-    if (selectedCarBrand.length === 0 && selectedRentalPrice.length === 0) {
+    if (selectedMake.length === 0 && selectedRentalPrice.length === 0) {
       toast.error("Nothing found, please make a new request");
 
       return;
     }
 
-    dispatch(
-      fetchAdverts({
-        rentalPrice: selectedRentalPrice,
-        make: selectedCarBrand,
-      })
-    );
-
-    // onSearch();
-    // setFormSubmitted(true);
+    // dispatch(
+    //   fetchAdverts({
+    //     rentalPrice: selectedRentalPrice,
+    //     make: selectedCarBrand,
+    //   })
+    // );
+    dispatch(fetchAdverts(1, selectedMake)); // Загружаем объявления с первой страницы и выбранной маркой авто
   };
 
   return (
@@ -88,7 +87,10 @@ const SearchForm = ({
           placeholder="Enter the text"
           className="input-SelectBrand-make"
           value={selectedMake}
-          onChange={logSelectedMake}
+          onChange={(e) => {
+            setSelectedMake(e.target.value);
+            handleMakeChange(e); // Добавляем вызов функции handleMakeChange при изменении значения
+          }}
           style={{
             margin: 0,
             padding: 10,
