@@ -1,9 +1,10 @@
 // FavoritesPage.jsx
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectFavorites } from "../redux/selectors";
+// import { selectFavorites } from "../redux/selectors";
+import { selectAdverts } from "../redux/selectors";
+// import { fetchFavorites } from "../redux/thunks";
 import { fetchFavorites } from "../redux/thunks";
-// import fetchAdverts from "../redux/thunks";
 import { Container } from "styles/Container/Container";
 import FavoritesItem from "components/Favorites/FavoritesItem";
 import SearchForm from "components/SearchForm/SearchForm";
@@ -14,15 +15,18 @@ const ITEMS_PER_PAGE = 12;
 const Favorites = () => {
   const dispatch = useDispatch();
 
-  const [favorites, setFavorites] = useState([]);
+  // const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
   const [selectedMake, setSelectedMake] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false); // Updated the state name
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [selectedRentalPrice, setSelectedRentalPrice] = useState(0);
-  const [filteredItems, setFilteredItems] = useState([]);
-  const adverts = useSelector(selectFavorites) || [];
-
+  // const [filteredItems, setFilteredItems] = useState([]);
+  // const adverts = useSelector(selectFavorites) || [];
+  const adverts = useSelector(selectAdverts);
   useEffect(() => {
     dispatch(fetchFavorites());
 
@@ -47,7 +51,7 @@ const Favorites = () => {
   };
 
   const handleSearch = () => {
-    setFilteredItems(filteredItems);
+    // setFilteredItems(filteredItems);
   };
 
   const handlePageChange = (newPage) => {

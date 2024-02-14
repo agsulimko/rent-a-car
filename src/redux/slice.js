@@ -36,7 +36,8 @@ const advertsSlice = createSlice({
       })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.favorites = action.payload;
+        // state.favorites = action.payload;
+        state.adverts = action.payload;
       })
       .addCase(fetchAdverts.rejected, handleRejected)
 

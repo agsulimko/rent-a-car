@@ -43,7 +43,7 @@ const FavoritesItem = ({
     <Container>
       <div className="div-cards-list">
         <CardList className="cards-list">
-          {favoriteAdverts.map((cart, index) => (
+          {currentFavoriteAdverts.map((cart, index) => (
             <CardItem
               key={index}
               className="cards-item"

@@ -14,7 +14,6 @@ export const fetchAdverts = createAsyncThunk(
     }
   }
 );
-// export default fetchAdverts;
 
 export const fetchFavorites = createAsyncThunk(
   'adverts/fetchFavorites',
@@ -29,4 +28,3 @@ export const fetchFavorites = createAsyncThunk(
     }
   }
 );
-// export default fetchFavorites;
