@@ -21,9 +21,8 @@ const CardItem = styled.li`
 const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  /* margin-bottom: 100px; */
-  /* по макету 100px */
-  margin-bottom: 50px;
+  margin-bottom: 100px;
+
   gap: 24px;
 `;
 
@@ -178,6 +177,7 @@ const ButtonToUp = styled.button`
   }
 `;
 const ButtonLoadMore = styled.button`
+  padding-bottom: 150px;
   display: block;
   margin-left: 546px;
   text-decoration: underline;
