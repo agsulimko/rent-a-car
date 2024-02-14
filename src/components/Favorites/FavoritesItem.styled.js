@@ -21,7 +21,9 @@ const CardItem = styled.li`
 const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
+  /* по макету 100px */
+  margin-bottom: 50px;
   gap: 24px;
 `;
 
