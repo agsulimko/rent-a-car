@@ -18,13 +18,20 @@ import {
   DivSecond,
   SvgHeard,
   SvgHeardActive,
+  ButtonToUp,
 } from "./CatalogItem.styled";
 
 import substringsToCheck from "./substringsToCheck";
 import sprite from "../../image/sprite.svg";
 
 const ITEMS_PER_PAGE = 12;
-const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
+const CatalogItem = ({
+  currentItems,
+  handleLoadMore,
+  handleLearnMore,
+  handleReloadComponent,
+  currentPage,
+}) => {
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
@@ -167,14 +174,17 @@ const CatalogItem = ({ currentItems, handleLoadMore, handleLearnMore }) => {
               </ButtonLearnMore>
             </CardItem>
           ))}
-        </CardList>
+        </CardList>{" "}
+        {currentPage > 1 && (
+          <ButtonToUp onClick={handleReloadComponent}>To up ⇈</ButtonToUp>
+        )}
         {currentItems.length > 0 && currentItems.length >= ITEMS_PER_PAGE && (
           <ButtonLoadMore
             type="button"
             className="cards-item-btn"
             onClick={handleLoadMore}
           >
-            Load more
+            Load more ⇊
           </ButtonLoadMore>
         )}
       </div>

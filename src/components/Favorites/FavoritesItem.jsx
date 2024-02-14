@@ -16,6 +16,7 @@ import {
   DivFirst,
   DivSecond,
   DivTitle,
+  ButtonToUp,
 } from "components/Favorites/FavoritesItem.styled";
 import { Container } from "styles/Container/Container";
 
@@ -37,8 +38,17 @@ const FavoritesItem = ({
   currentPage,
   favoriteAdverts,
   handleLearnMore,
+  handleReloadComponentFavorites,
+  reloadComponentFavorites,
 }) => {
   // const favoriteAdverts = useSelector(selectFavorites);
+
+  const handleToUp = () => {
+    // Обработчик для кнопки "To up"
+
+    handleReloadComponentFavorites(); // Вызываем функцию из родительского компонента
+  };
+
   return (
     <Container>
       <div className="div-cards-list">
@@ -170,6 +180,9 @@ const FavoritesItem = ({
             </CardItem>
           ))}
         </CardList>
+        {currentPage > 1 && (
+          <ButtonToUp onClick={handleToUp}>To up ⇈</ButtonToUp>
+        )}
         {favoriteAdverts.length > 0 &&
           favoriteAdverts.length >= ITEMS_PER_PAGE &&
           currentFavoriteAdverts.length >= ITEMS_PER_PAGE && (
@@ -178,7 +191,7 @@ const FavoritesItem = ({
               className="cards-item-btn"
               onClick={() => handlePageChange(currentPage + 1)}
             >
-              Load more
+              Load more ⇊
             </ButtonLoadMore>
           )}
       </div>

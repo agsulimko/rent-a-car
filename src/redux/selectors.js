@@ -2,7 +2,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 export const selectAdverts = state => state.adverts.adverts;
-// export const selectFavorites = state => state.adverts.favorites;
+export const selectFavorites = state => state.adverts.favorites;
 
 export const selectLoading = state => state.adverts.isLoading;
 

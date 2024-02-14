@@ -153,6 +153,28 @@ const ButtonLearnMore = styled.button`
   }
 `;
 
+const ButtonToUp = styled.button`
+  display: block;
+  margin-left: 565px;
+  margin-bottom: 20px;
+
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: ${theme.fontWeight.medium};
+
+  border-radius: 8px;
+  color: ${theme.color.blue_light};
+
+  line-height: 1.5;
+  /* line-height: 150%; */
+  text-decoration: underline;
+  color: #3470ff;
+
+  &:hover,
+  &:focus {
+    color: ${theme.color.blue_dark};
+  }
+`;
 const ButtonLoadMore = styled.button`
   display: block;
   margin-left: 546px;
@@ -190,4 +212,5 @@ export {
   DivFirst,
   DivSecond,
   ButtonHeardIcone,
+  ButtonToUp,
 };
