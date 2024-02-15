@@ -14,7 +14,6 @@ export const fetchAdverts = createAsyncThunk(
     }
   }
 );
-
 export const fetchFavorites = createAsyncThunk(
   'adverts/fetchFavorites',
   async (page, thunkAPI) => {
