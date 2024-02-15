@@ -70,30 +70,29 @@ const SearchForm = ({
     if (!selectedCarBrand) {
       // if (!selectedCarBrand && !selectedRentalPrice)
       toast.error("Nothing found, please make a new request");
+      dispatch(fetchAdverts({ page: 1 }));
+    } else {
+      const filter = selectedCarBrand;
 
-      return;
+      // if (selectedRentalPrice) filter.rentalPrice = selectedRentalPrice;
+      //   dispatch(
+      //     fetchAdverts({
+      //       rentalPrice: selectedRentalPrice,
+      //       make: selectedCarBrand,
+      //     })
+      //   );
+
+      //   // onSearch();
+      //   // setFormSubmitted(true);
+      // };
+
+      dispatch(
+        fetchAdverts({
+          page: 1,
+          filter: filter,
+        })
+      );
     }
-
-    const filter = selectedCarBrand;
-
-    // if (selectedRentalPrice) filter.rentalPrice = selectedRentalPrice;
-    //   dispatch(
-    //     fetchAdverts({
-    //       rentalPrice: selectedRentalPrice,
-    //       make: selectedCarBrand,
-    //     })
-    //   );
-
-    //   // onSearch();
-    //   // setFormSubmitted(true);
-    // };
-
-    dispatch(
-      fetchAdverts({
-        page: 1,
-        filter: filter,
-      })
-    );
   };
 
   return (
