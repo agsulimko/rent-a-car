@@ -23,9 +23,9 @@ const SearchForm = ({
   handleMakeChange,
   selectedMake,
   handleRentalPriceChange,
-  selectedRentalPrice,
-  selectedMileageFrom,
-  selectedMileageTo,
+  // selectedRentalPrice,
+  // selectedMileageFrom,
+  // selectedMileageTo,
   onSearch,
   handleMileageToChange,
   handleMileageFromChange,
@@ -34,52 +34,70 @@ const SearchForm = ({
 
   // const [isFormSubmitted, setFormSubmitted] = useState(false);
   const [selectedCarBrand, setSelectedCarBrand] = useState("");
-  const logSelectedMake = (event) => {
-    const selectedValue = event.target.value;
-    // console.log("Selected Car Brand:", selectedValue);
-    setSelectedCarBrand(selectedValue);
-    handleMakeChange(event);
-  };
+  // const [selectedRentalPrice, setSelectedRentalPrice] = useState("");
 
-  const logSelectedRentalPrice = (event) => {
-    // const selectedValue = event.target.value;
-    // console.log("Selected RentalPrice:", selectedValue);
-    handleRentalPriceChange(event);
-  };
+  // const [selectedMileageFrom, setSelectedMileageFrom] = useState("");
 
-  const logSelectedMileageFrom = (event) => {
-    const selectedValue = event.target.value;
-    console.log("Selected Mileage From:", selectedValue);
-    // handleMileageFromChange(event);
-  };
+  // const [selectedMileageTo, setSelectedMileageTo] = useState("");
+  // const logSelectedMake = (event) => {
+  //   const selectedValue = event.target.value;
+  //   // console.log("Selected Car Brand:", selectedValue);
+  //   setSelectedCarBrand(selectedValue);
+  //   handleMakeChange(event);
+  // };
 
-  const logSelectedMileageTo = (event) => {
-    const selectedValue = event.target.value;
-    console.log("Selected Mileage To:", selectedValue);
-    handleMileageToChange(event);
-  };
+  // const logSelectedRentalPrice = (event) => {
+  //   // const selectedValue = event.target.value;
+  //   // console.log("Selected RentalPrice:", selectedValue);
+  //   handleRentalPriceChange(event);
+  // };
+
+  // const logSelectedMileageFrom = (event) => {
+  //   const selectedValue = event.target.value;
+  //   console.log("Selected Mileage From:", selectedValue);
+  //   // handleMileageFromChange(event);
+  // };
+
+  // const logSelectedMileageTo = (event) => {
+  //   const selectedValue = event.target.value;
+  //   console.log("Selected Mileage To:", selectedValue);
+  //   handleMileageToChange(event);
+  // };
 
   const handleSearch = (event) => {
     event.preventDefault();
-    if (selectedCarBrand.length === 0 && selectedRentalPrice.length === 0) {
+    console.log(selectedCarBrand);
+    if (!selectedCarBrand) {
+      // if (!selectedCarBrand && !selectedRentalPrice)
       toast.error("Nothing found, please make a new request");
 
       return;
     }
 
+    const filter = selectedCarBrand;
+
+    // if (selectedRentalPrice) filter.rentalPrice = selectedRentalPrice;
+    //   dispatch(
+    //     fetchAdverts({
+    //       rentalPrice: selectedRentalPrice,
+    //       make: selectedCarBrand,
+    //     })
+    //   );
+
+    //   // onSearch();
+    //   // setFormSubmitted(true);
+    // };
+
     dispatch(
       fetchAdverts({
-        rentalPrice: selectedRentalPrice,
-        make: selectedCarBrand,
+        page: 1,
+        filter: filter,
       })
     );
-
-    // onSearch();
-    // setFormSubmitted(true);
   };
 
   return (
-    <Form className="form" onSubmit={handleSearch}>
+    <Form className="form">
       <Label className="label">
         Car brand
         <SelectBrand
@@ -87,8 +105,10 @@ const SearchForm = ({
           name="Car brand"
           placeholder="Enter the text"
           className="input-SelectBrand-make"
-          value={selectedMake}
-          onChange={logSelectedMake}
+          // value={selectedMake}
+          // onChange={logSelectedMake}
+          value={selectedCarBrand}
+          onChange={(e) => setSelectedCarBrand(e.target.value)}
           style={{
             margin: 0,
             padding: 10,
@@ -111,8 +131,8 @@ const SearchForm = ({
           name="Price/1 hour"
           placeholder="To $"
           className="input-SelectPrice-rentalPrice"
-          value={selectedRentalPrice}
-          onChange={logSelectedRentalPrice}
+          // value={selectedRentalPrice}
+          // onChange={logSelectedRentalPrice}
           style={{ margin: 0, padding: 10, border: "1px solid initial" }}
           // focusstyle={{ borderColor: "white" }}
         >
@@ -134,8 +154,8 @@ const SearchForm = ({
             className="input-mileage-From"
             style={{ opacity: 1, color: "black", border: "1px solid initial" }}
             // focusstyle={{ borderColor: "white" }}
-            value={selectedMileageFrom}
-            onChange={logSelectedMileageFrom}
+            // value={selectedMileageFrom}
+            // onChange={logSelectedMileageFrom}
           />
         </Label>
         <Label className="label">
@@ -144,13 +164,13 @@ const SearchForm = ({
             name="Car mileage / km"
             placeholder="To"
             className="input-mileage-To"
-            value={selectedMileageTo}
-            onChange={logSelectedMileageTo}
+            // value={selectedMileageTo}
+            // onChange={logSelectedMileageTo}
             style={{ opacity: 1, color: "black", border: "1px solid initial" }}
           />
         </Label>
       </DivMileage>
-      <ButtonSearch className="btn" type="submit">
+      <ButtonSearch className="btn" type="button" onClick={handleSearch}>
         Search
       </ButtonSearch>
     </Form>
