@@ -27,8 +27,12 @@ const Catalog = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [reloadComponent, setReloadComponent] = useState(false);
 
+  // useEffect(() => {
+  //   dispatch(fetchAdverts(currentPage, ITEMS_PER_PAGE, { make: selectedMake })); // eslint-disable-next-line
+  // }, [dispatch, currentPage, selectedMake, reloadComponent]);
+
   useEffect(() => {
-    dispatch(fetchAdverts(currentPage, ITEMS_PER_PAGE, { make: selectedMake })); // eslint-disable-next-line
+    dispatch(fetchAdverts({ page: currentPage, filter: selectedMake }));
   }, [dispatch, currentPage, selectedMake, reloadComponent]);
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
