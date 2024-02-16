@@ -39,7 +39,6 @@ const FavoritesItem = ({
   favoriteAdverts,
   handleLearnMore,
   handleReloadComponentFavorites,
-  reloadComponentFavorites,
 }) => {
   // const favoriteAdverts = useSelector(selectFavorites);
 

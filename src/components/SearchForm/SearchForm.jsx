@@ -21,14 +21,14 @@ const PriceSelect = Array.from(
 
 const SearchForm = ({
   handleMakeChange,
-  selectedMake,
-  handleRentalPriceChange,
+  // selectedMake,
+  // handleRentalPriceChange,
   // selectedRentalPrice,
   // selectedMileageFrom,
   // selectedMileageTo,
-  onSearch,
-  handleMileageToChange,
-  handleMileageFromChange,
+  // onSearch,
+  // handleMileageToChange,
+  // handleMileageFromChange,
 }) => {
   const dispatch = useDispatch();
 

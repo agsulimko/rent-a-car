@@ -21,13 +21,13 @@ const Favorites = () => {
     JSON.parse(localStorage.getItem("favorites")) || []
   );
   const [selectedMake, setSelectedMake] = useState("");
-  // const [currentPage, setCurrentPage] = useState(1);
+
   const [currentPage, setCurrentPage] = useState(
     parseInt(localStorage.getItem("currentPageFavorites"), 10) || 1
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
-  const [selectedRentalPrice, setSelectedRentalPrice] = useState(0);
+
   const [reloadComponentFavorites, setReloadComponentFavorites] = useState(
     false
   );
@@ -56,10 +56,6 @@ const Favorites = () => {
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
-  const handleSearch = () => {
-    // setFilteredItems(filteredItems);
-  };
-
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
     setCurrentPageFavorites(newPage);
@@ -83,11 +79,6 @@ const Favorites = () => {
     setIsModalOpen(true); // Updated the state name
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Your form submission logic
-  };
-
   const handleMakeChange = (event) => {
     setSelectedMake(event.target.value);
   };
@@ -105,9 +96,9 @@ const Favorites = () => {
     setIsModalOpen(false);
   };
 
-  const handleRentalPriceChange = (event) => {
-    setSelectedRentalPrice(event.target.value);
-  };
+  // const handleRentalPriceChange = (event) => {
+  //   setSelectedRentalPrice(event.target.value);
+  // };
 
   const handleReloadComponentFavorites = () => {
     setReloadComponentFavorites((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
@@ -120,12 +111,8 @@ const Favorites = () => {
   return (
     <Container>
       <SearchForm
-        handleSubmit={handleSubmit}
         handleMakeChange={handleMakeChange}
-        handleRentalPriceChange={handleRentalPriceChange}
         selectedMake={selectedMake}
-        selectedRentalPrice={selectedRentalPrice}
-        onSearch={handleSearch}
       />
       <FavoritesItem
         currentFavoriteAdverts={currentFavoriteAdverts}
@@ -143,7 +130,6 @@ const Favorites = () => {
       <ModalLearnMore
         isOpen={isModalOpen}
         closeModal={handleCloseModal}
-        // closeModal={() => setIsModalOpen(false)}
         currentItems={currentFavoriteAdverts}
         selectedItemId={selectedItemId}
       />
