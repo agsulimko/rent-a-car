@@ -1,3 +1,4 @@
+// SearchForm.jsx
 import React, { useState } from "react";
 import {
   Label,
@@ -14,13 +15,11 @@ import { useDispatch } from "react-redux";
 import { fetchAdverts } from "../../redux/thunks";
 import toast from "react-hot-toast";
 
-const PriceSelect = Array.from(
-  { length: 100 },
-  (_, index) => (index + 1) * 10
-).map(String);
+const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
 const SearchForm = ({
-  handleMakeChange,
+  handleRentalPriceChange,
+
   // selectedMake,
   // handleRentalPriceChange,
   // selectedRentalPrice,
@@ -66,7 +65,7 @@ const SearchForm = ({
   const handleSearch = (event) => {
     event.preventDefault();
 
-    console.log(selectRentalPrice);
+    // console.log(selectRentalPrice);
     if (!selectCarBrand && !selectRentalPrice) {
       // if (!selectedCarBrand && !selectedRentalPrice)
       toast.error("Nothing found, please make a new request");
@@ -92,6 +91,12 @@ const SearchForm = ({
         rentalPrice: rentalPrice,
       })
     );
+  };
+
+  const handleRentalPriceInputChange = (event) => {
+    const price = event.target.value;
+    setSelectRentalPrice(price);
+    handleRentalPriceChange(price);
   };
 
   return (
@@ -130,7 +135,8 @@ const SearchForm = ({
           placeholder="To $"
           className="input-SelectPrice-rentalPrice"
           value={selectRentalPrice}
-          onChange={(e) => setSelectRentalPrice(e.target.value)}
+          // onChange={(e) => setSelectRentalPrice(e.target.value)}
+          onChange={handleRentalPriceInputChange}
           style={{ margin: 0, padding: 10, border: "1px solid initial" }}
           // focusstyle={{ borderColor: "white" }}
         >

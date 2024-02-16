@@ -26,8 +26,7 @@ import {
 } from "components/Catalog/CatalogItem.styled";
 import substringsToCheck from "components/Catalog/substringsToCheck";
 import sprite from "../../image/sprite.svg";
-// import { useSelector } from "react-redux";
-// import { selectFavorites } from "redux/selectors";
+
 const ITEMS_PER_PAGE = 12;
 
 const FavoritesItem = ({
@@ -40,8 +39,6 @@ const FavoritesItem = ({
   handleLearnMore,
   handleReloadComponentFavorites,
 }) => {
-  // const favoriteAdverts = useSelector(selectFavorites);
-
   const handleToUp = () => {
     // Обработчик для кнопки "To up"
 

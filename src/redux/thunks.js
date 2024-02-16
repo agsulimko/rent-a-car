@@ -3,9 +3,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getAdverts, getFavorites } from 'api/api';
 export const fetchAdverts = createAsyncThunk(
   'adverts/fetchAdverts',
-  async ({ page, make, rentalPrice }, thunkAPI) => {
+  async ({ page, make }, thunkAPI) => {
     try {
-      const response = await getAdverts(page, make, rentalPrice);
+      const response = await getAdverts(page, make);
 
       return response;
     } catch (e) {

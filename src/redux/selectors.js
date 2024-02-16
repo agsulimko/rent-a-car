@@ -8,7 +8,7 @@ export const selectLoading = state => state.adverts.isLoading;
 
 export const selectFilter = state => state.filter;
 
-export const selectFilteredContacts = createSelector(
+export const selectFiltered = createSelector(
   [selectAdverts, selectFilter, selectLoading],
   (adverts, filter, isLoading) => {
     const normalizedValue = filter.toLowerCase().trim();

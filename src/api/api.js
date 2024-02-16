@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://65b95a82b71048505a8ab881.mockapi.io/api';
 
-export const getAdverts = async (page, make, rentalPrice) => {
+export const getAdverts = async (page, make) => {
   const url = new URL('/adverts', axios.defaults.baseURL);
 
   url.searchParams.append('page', page);
@@ -10,9 +10,9 @@ export const getAdverts = async (page, make, rentalPrice) => {
   if (make) {
     url.searchParams.append('make', make);
   }
-  if (rentalPrice) {
-    url.searchParams.append('rentalPrice', rentalPrice);
-  }
+  // if (rentalPrice) {
+  //   url.searchParams.append('rentalPrice', rentalPrice);
+  // }
 
   try {
     const { data } = await axios.get(url.toString());
