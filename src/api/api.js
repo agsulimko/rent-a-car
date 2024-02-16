@@ -16,6 +16,7 @@ export const getAdverts = async (page, make, rentalPrice) => {
 
   try {
     const { data } = await axios.get(url.toString());
+
     return data;
   } catch (error) {
     console.error('Failed to fetch adverts:', error.message);
@@ -36,9 +37,24 @@ export const getFavorites = async (page, id) => {
 
   try {
     const { data } = await axios.get(url.toString());
+    console.log('data=', data);
     return data;
   } catch (error) {
     console.error('Failed to fetch adverts:', error.message);
     throw error;
   }
 };
+
+// export const getPrice = async (page, id) => {
+//   const url = new URL('/adverts', axios.defaults.baseURL);
+
+//   url.searchParams.append('limit', 12);
+
+//   try {
+//     const { data } = await axios.get(url.toString());
+//     return data;
+//   } catch (error) {
+//     console.error('Failed to fetch adverts:', error.message);
+//     throw error;
+//   }
+// };
