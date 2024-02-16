@@ -22,14 +22,9 @@ const Catalog = () => {
   const [selectedMake, setSelectedMake] = useState("");
   const [selectedRentalPrice, setSelectedRentalPrice] = useState(0);
   const [selectedItemId, setSelectedItemId] = useState(null);
-  // const [filteredItems, setFilteredItems] = useState([]);
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [reloadComponent, setReloadComponent] = useState(false);
-
-  // useEffect(() => {
-  //   dispatch(fetchAdverts(currentPage, ITEMS_PER_PAGE, { make: selectedMake })); // eslint-disable-next-line
-  // }, [dispatch, currentPage, selectedMake, reloadComponent]);
 
   useEffect(() => {
     dispatch(fetchAdverts({ page: currentPage, filter: selectedMake }));
@@ -52,11 +47,9 @@ const Catalog = () => {
     setModalOpen(true);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // handleSearch();
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  // };
 
   const handleMakeChange = (event) => {
     setSelectedMake(event.target.value);
@@ -75,18 +68,15 @@ const Catalog = () => {
   return (
     <Container>
       <SearchForm
-        handleSubmit={handleSubmit}
+        // handleSubmit={handleSubmit}
         handleMakeChange={handleMakeChange}
         handleRentalPriceChange={handleRentalPriceChange}
         selectedMake={selectedMake}
         selectedRentalPrice={selectedRentalPrice}
-        // onSearch={handleSearch}
       />
-      {/* <button onClick={handleReloadComponent}>Reload Component</button> */}
+
       <CatalogItem
-        // currentItems={filteredItems.length ? filteredItems : currentItems}
         currentItems={adverts}
-        // currentItems={currentItems}
         handleLoadMore={handleLoadMore}
         handleLearnMore={handleLearnMore}
         handleReloadComponent={handleReloadComponent}
