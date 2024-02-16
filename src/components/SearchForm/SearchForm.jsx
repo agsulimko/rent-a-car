@@ -65,7 +65,7 @@ const SearchForm = ({
 
   const handleSearch = (event) => {
     event.preventDefault();
-    console.log(selectCarBrand);
+
     console.log(selectRentalPrice);
     if (!selectCarBrand && !selectRentalPrice) {
       // if (!selectedCarBrand && !selectedRentalPrice)
@@ -82,7 +82,7 @@ const SearchForm = ({
     if (selectRentalPrice) {
       rentalPrice = selectRentalPrice;
     }
-    console.log(make);
+
     console.log(rentalPrice);
 
     dispatch(
