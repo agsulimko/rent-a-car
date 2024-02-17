@@ -33,6 +33,7 @@ const Favorites = () => {
   );
 
   const adverts = useSelector(selectAdverts);
+
   useEffect(() => {
     dispatch(fetchFavorites());
 
@@ -63,8 +64,9 @@ const Favorites = () => {
   };
 
   const handleLoadMore = () => {
-    setCurrentPage((prevPage) => {
+    setCurrentPageFavorites((prevPage) => {
       const nextPage = prevPage + 1;
+
       setCurrentPageFavorites(nextPage);
       localStorage.setItem("currentPageFavorites", nextPage);
       return nextPage;
@@ -83,6 +85,14 @@ const Favorites = () => {
     setSelectedMake(event.target.value);
   };
 
+  const resetCurrentPageFavorites = () => {
+    setCurrentPageFavorites(1);
+    localStorage.setItem("currentPageFavorites", 1);
+  };
+
+  useEffect(() => {
+    resetCurrentPageFavorites();
+  }, []);
   // Calculate pagination
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
 
@@ -91,7 +101,8 @@ const Favorites = () => {
     indexOfFirstItem,
     indexOfLastItem
   );
-
+  const hasFavorites = currentFavoriteAdverts.length > 0;
+  console.log("hasFavorites=", hasFavorites);
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -102,11 +113,12 @@ const Favorites = () => {
 
   const handleReloadComponentFavorites = () => {
     setReloadComponentFavorites((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
-    // setCurrentPageFavorites(1); // Сбрасываем текущую страницу на первую
+    resetCurrentPageFavorites(); // Сбрасываем текущую страницу на первую // Сбрасываем текущую страницу на первую
     setCurrentPage(1); // Добавляем сброс текущей страницы при нажатии кнопки "To up"
 
     // localStorage.removeItem("currentPagefavorites"); // Удаляем текущую страницу из локального хранилища
   };
+  // Проверяем, есть ли элементы на текущей странице избранных
 
   return (
     <Container>
@@ -125,6 +137,8 @@ const Favorites = () => {
         handleLoadMore={handleLoadMore}
         handleReloadComponentFavorites={handleReloadComponentFavorites}
         reloadComponentFavorites={reloadComponentFavorites}
+        hasFavorites={hasFavorites}
+        currentPageFavorites={currentPageFavorites}
       />
 
       <ModalLearnMore

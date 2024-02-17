@@ -37,7 +37,7 @@ export const getFavorites = async (page, id) => {
 
   try {
     const { data } = await axios.get(url.toString());
-    console.log('data=', data);
+    // console.log('data=', data);
     return data;
   } catch (error) {
     console.error('Failed to fetch adverts:', error.message);
