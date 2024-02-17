@@ -138,8 +138,8 @@ const ButtonLearnMore = styled.button`
   margin-top: 28px;
   padding-top: 12px;
   padding-bottom: 12px;
-
-  font-size: 14px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
   font-weight: ${theme.fontWeight.semiBold};
   width: 100%;
   line-height: 1.43;

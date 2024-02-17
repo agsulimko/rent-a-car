@@ -7,6 +7,7 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Header = styled.header`
+  font-family: 'Manrope', sans-serif;
   display: flex;
   align-items: center;
   margin-bottom: 40px;
