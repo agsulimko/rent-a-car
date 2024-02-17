@@ -101,8 +101,7 @@ const Favorites = () => {
     indexOfFirstItem,
     indexOfLastItem
   );
-  const hasFavorites = currentFavoriteAdverts.length > 0;
-  console.log("hasFavorites=", hasFavorites);
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -137,7 +136,6 @@ const Favorites = () => {
         handleLoadMore={handleLoadMore}
         handleReloadComponentFavorites={handleReloadComponentFavorites}
         reloadComponentFavorites={reloadComponentFavorites}
-        hasFavorites={hasFavorites}
         currentPageFavorites={currentPageFavorites}
       />
 

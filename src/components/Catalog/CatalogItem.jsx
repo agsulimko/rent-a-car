@@ -46,7 +46,7 @@ const CatalogItem = ({
 
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
-  console.log(arrayRentalPrice);
+  // console.log(arrayRentalPrice);
 
   return (
     <Container>

@@ -47,10 +47,6 @@ const FavoritesItem = ({
     handleReloadComponentFavorites(); // Вызываем функцию из родительского компонента
   };
 
-  console.log(favoriteAdverts);
-  const index = favoriteAdverts.length / ITEMS_PER_PAGE;
-  console.log(index);
-
   return (
     <Container>
       <div className="div-cards-list">
@@ -188,7 +184,7 @@ const FavoritesItem = ({
         {favoriteAdverts.length > 0 &&
           favoriteAdverts.length >= ITEMS_PER_PAGE &&
           currentFavoriteAdverts.length >= ITEMS_PER_PAGE &&
-          currentPageFavorites !== index && (
+          currentPageFavorites !== favoriteAdverts.length / ITEMS_PER_PAGE && (
             <ButtonLoadMore
               type="button"
               className="cards-item-btn"

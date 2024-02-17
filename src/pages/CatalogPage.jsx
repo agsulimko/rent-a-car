@@ -9,10 +9,8 @@ import SearchForm from "components/SearchForm/SearchForm";
 import ModalLearnMore from "components/Modal/ModalLearnMore";
 
 import { Container } from "styles/Container/Container";
-// import SearchItem from "components/Search/SearchItem";
 
 const ITEMS_PER_PAGE = 12;
-// const arrayRentalPrice = [];
 
 const Catalog = () => {
   const dispatch = useDispatch();
@@ -52,11 +50,9 @@ const Catalog = () => {
   };
 
   const handleRentalPriceChange = (rentalPrice) => {
-    // setRentalPrice(rentalPrice);
-    // Здесь вы можете делать что-то с полученным значением selectRentalPrice
     allAdverts.map((advert) => {
       const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
-      // console.log("Received Rental Price:", rentalPriceCurrent);
+
       if (rentalPriceCurrent <= rentalPrice) {
         arrayRentalPrice.push(advert.id);
         setArrayRentalPrice(arrayRentalPrice);
@@ -66,15 +62,13 @@ const Catalog = () => {
     });
   };
 
-  // console.log("Received Rental Price:", rentalPrice);
-  console.log("arrayRentalPrice=", arrayRentalPrice);
+  // console.log("arrayRentalPrice=", arrayRentalPrice);
 
   const handleReloadComponent = () => {
     setReloadComponent((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
     setCurrentPage(1); // Сбрасываем текущую страницу на первую
     localStorage.removeItem("currentPage"); // Удаляем текущую страницу из локального хранилища
   };
-  // console.log("Current Rental Price:", selectRentalPrice);
 
   return (
     <Container>

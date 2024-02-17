@@ -82,7 +82,7 @@ const SearchForm = ({
       rentalPrice = selectRentalPrice;
     }
 
-    console.log(rentalPrice);
+    // console.log(rentalPrice);
 
     dispatch(
       fetchAdverts({
