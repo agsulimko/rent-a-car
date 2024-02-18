@@ -58,7 +58,7 @@ const DivMileage = styled.div`
 
   align-items: flex-end;
 `;
-const ImputMileageFrom = styled.input`
+const SelectMileageFrom = styled.input`
   width: 160px;
   height: 48px;
   border-top-left-radius: 14px;
@@ -87,7 +87,7 @@ const ImputMileageFrom = styled.input`
     color: #121417;
   }
 `;
-const ImputMileageTo = styled.input`
+const SelectMileageTo = styled.input`
   width: 160px;
   height: 48px;
   border-top-right-radius: 14px;
@@ -138,8 +138,8 @@ export {
   DivMileage,
   SelectBrand,
   SelectPrice,
-  ImputMileageTo,
-  ImputMileageFrom,
+  SelectMileageTo,
+  SelectMileageFrom,
   ButtonSearch,
   DualInputMileage,
 };
