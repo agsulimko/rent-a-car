@@ -8,12 +8,14 @@ import {
   SelectPrice,
   SelectMileageTo,
   SelectMileageFrom,
-  ButtonSearch, // Assuming this is a styled component
+  ButtonSearch,
+  ButtonReset,
 } from "components/SearchForm/SearchForm.styled";
 import makes from "components/makes.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchAdverts } from "../../redux/thunks";
 import toast from "react-hot-toast";
+import { selectAdverts } from "../../redux/selectors";
 
 const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
@@ -21,14 +23,8 @@ const SearchForm = ({
   handleRentalPriceChange,
   handleMileageFromChange,
   handleMileageToChange,
-  // selectedMake,
-  // handleRentalPriceChange,
-  // selectedRentalPrice,
-  // selectedMileageFrom,
-  // selectedMileageTo,
-  // onSearch,
-  // handleMileageToChange,
-  // handleMileageFromChange,
+  // handleBrandChange,
+  arrayRentalPrice,
 }) => {
   const dispatch = useDispatch();
 
@@ -36,58 +32,24 @@ const SearchForm = ({
   const [selectRentalPrice, setSelectRentalPrice] = useState("");
   const [selectMileageFrom, setSelectMileageFrom] = useState("");
   const [selectMileageTo, setSelectMileageTo] = useState("");
+  const adverts = useSelector(selectAdverts) || [];
 
-  // const [selectedMileageFrom, setSelectedMileageFrom] = useState("");
-
-  // const [selectedMileageTo, setSelectedMileageTo] = useState("");
-  // const logSelectedMake = (event) => {
-  //   const selectedValue = event.target.value;
-  //   // console.log("Selected Car Brand:", selectedValue);
-  //   setSelectedCarBrand(selectedValue);
-  //   handleMakeChange(event);
-  // };
-
-  // const logSelectedRentalPrice = (event) => {
-  //   // const selectedValue = event.target.value;
-  //   // console.log("Selected RentalPrice:", selectedValue);
-  //   handleRentalPriceChange(event);
-  // };
-
-  // const logSelectedMileageFrom = (event) => {
-  //   const selectedValue = event.target.value;
-  //   console.log("Selected Mileage From:", selectedValue);
-  //   // handleMileageFromChange(event);
-  // };
-
-  // const logSelectedMileageTo = (event) => {
-  //   const selectedValue = event.target.value;
-  //   console.log("Selected Mileage To:", selectedValue);
-  //   handleMileageToChange(event);
-  // };
-
-  const handleSearch = (event) => {
+  const handleSearch = (event, adverts) => {
     event.preventDefault();
 
     // console.log(selectRentalPrice);
-    if (
-      !selectCarBrand &&
-      !selectRentalPrice &&
-      !selectMileageFrom &&
-      !selectMileageTo
-    ) {
-      // if (!selectedCarBrand && !selectedRentalPrice)
-      toast.error("Nothing found, please make a new request");
-      dispatch(fetchAdverts({ page: 1 }));
-      return;
-    }
+
     // const filter = selectCarBrand;
     // const price = "$" + selectRentalPrice;
     let make = "";
+    // let brand = "";
     let rentalPrice = "";
     let mileageFrom = "";
     let mileageTo = "";
+
     if (selectCarBrand) {
       make = selectCarBrand;
+      // brand = selectCarBrand;
     }
     if (selectRentalPrice) {
       rentalPrice = selectRentalPrice;
@@ -99,11 +61,33 @@ const SearchForm = ({
       mileageTo = selectMileageTo;
       // console.log(rentalPrice);
     }
+    // console.log("arrayPrice=", price);
+    if (
+      !selectCarBrand &&
+      !selectRentalPrice &&
+      !selectMileageFrom &&
+      !selectMileageTo
+    ) {
+      toast.error("Nothing found, please make a new request", {
+        duration: 3000,
+        position: "top-center",
+      });
 
+      dispatch(fetchAdverts({ page: 1 }));
+      //   return;
+    }
+
+    if (!selectCarBrand && arrayRentalPrice.length === 0) {
+      toast.error("Nothing found, please make a new request", {
+        duration: 3000,
+        position: "top-center",
+      });
+    }
     dispatch(
       fetchAdverts({
         page: 1,
         make: make,
+        // brand: brand,
         rentalPrice: rentalPrice,
         mileageFrom: mileageFrom,
         mileageTo: mileageTo,
@@ -111,14 +95,22 @@ const SearchForm = ({
     );
   };
 
+  // const handleBrandInputChange = (event) => {
+  //   const brand = event.target.value;
+  //   setSelectRentalPrice(brand);
+
+  //   handleBrandChange(brand);
+  // };
+
   const handleRentalPriceInputChange = (event) => {
-    const price = event.target.value;
-    setSelectRentalPrice(price);
-    handleRentalPriceChange(price);
+    const rentalPrice = event.target.value;
+    setSelectRentalPrice(rentalPrice);
+
+    handleRentalPriceChange(rentalPrice);
   };
   const handleMileageFromInputChange = (event) => {
     const mileageFrom = event.target.value;
-    console.log("mileageFrom=", mileageFrom);
+
     setSelectMileageFrom(mileageFrom);
     handleMileageFromChange(mileageFrom);
   };
@@ -127,6 +119,21 @@ const SearchForm = ({
     const mileageTo = event.target.value;
     setSelectMileageTo(mileageTo);
     handleMileageToChange(mileageTo);
+  };
+  const handleResetFilters = () => {
+    // Функция для сброса всех выбранных фильтров
+    setSelectCarBrand([]);
+
+    setSelectRentalPrice([]);
+    setSelectMileageFrom([]);
+    setSelectMileageTo([]);
+    console.log("selectRentalPrice=", selectRentalPrice);
+    console.log("selectCarBrandrice=", selectCarBrand);
+    console.log("selectMileageFrom=", selectMileageFrom);
+    console.log("selectMileageTo=", selectMileageTo);
+
+    dispatch(fetchAdverts({ page: 1 })); // Fetch adverts with reset filters
+    window.location.reload(); // Reload the page
   };
 
   return (
@@ -138,10 +145,11 @@ const SearchForm = ({
           name="Car brand"
           placeholder="Enter the text"
           className="input-SelectBrand-make"
-          // value={selectedMake}
-          // onChange={logSelectedMake}
-          value={selectCarBrand}
-          onChange={(e) => setSelectCarBrand(e.target.value)}
+          // value={selectCarBrand}
+          onClick={(e) => {
+            // handleBrandInputChange();
+            setSelectCarBrand(e.target.value);
+          }}
           style={{
             margin: 0,
             padding: 10,
@@ -158,15 +166,14 @@ const SearchForm = ({
         </SelectBrand>
       </Label>
       <Label className="label">
-        Price/1 hour
+        Price/1 day
         <SelectPrice
           type="text"
           name="Price/1 hour"
           placeholder="To $"
           className="input-SelectPrice-rentalPrice"
-          value={selectRentalPrice}
-          // onChange={(e) => setSelectRentalPrice(e.target.value)}
-          onChange={handleRentalPriceInputChange}
+          // value={selectRentalPrice}
+          onClick={handleRentalPriceInputChange}
           style={{ margin: 0, padding: 10, border: "1px solid initial" }}
           // focusstyle={{ borderColor: "white" }}
         >
@@ -192,8 +199,8 @@ const SearchForm = ({
               border: "1px solid initial",
             }}
             // focusstyle={{ borderColor: "white" }}
-            value={selectMileageFrom}
-            onChange={handleMileageFromInputChange}
+            // value={selectMileageFrom}
+            onClick={handleMileageFromInputChange}
           />
         </Label>
         <Label className="label">
@@ -202,10 +209,8 @@ const SearchForm = ({
             name="Car mileage / km"
             placeholder="To"
             className="input-mileage-To"
-            // value={selectedMileageTo}
-            // onClick={logSelectedMileageTo}
-            value={selectMileageTo}
-            onChange={handleMileageToInputChange}
+            // value={selectMileageTo}
+            onClick={handleMileageToInputChange}
             style={{
               opacity: 1,
               color: "black",
@@ -214,9 +219,17 @@ const SearchForm = ({
           />
         </Label>
       </DivMileage>
-      <ButtonSearch className="btn" type="button" onClick={handleSearch}>
+      <ButtonSearch
+        className="btn"
+        type="button"
+        onClick={(e) => handleSearch(e, adverts)}
+      >
         Search
       </ButtonSearch>
+
+      <ButtonReset className="btn" type="button" onClick={handleResetFilters}>
+        Reset Filters
+      </ButtonReset>
     </Form>
   );
 };

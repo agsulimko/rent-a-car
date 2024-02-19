@@ -130,6 +130,22 @@ const ButtonSearch = styled.button`
     background-color: ${theme.color.blue_dark};
   }
 `;
+const ButtonReset = styled.button`
+  font-weight: ${theme.fontWeight.semiBold};
+  font-size: 14px;
+  line-height: 1.43;
+  /* line-height: 143%; */
+  border-radius: 12px;
+  padding: -1px 44px;
+  width: 136px;
+  height: 48px;
+  background-color: ${theme.color.blue_light};
+  color: ${theme.color.white_full};
+  &:hover,
+  &:focus {
+    background-color: ${theme.color.blue_dark};
+  }
+`;
 const DualInputMileage = styled.button``;
 
 export {
@@ -142,4 +158,5 @@ export {
   SelectMileageFrom,
   ButtonSearch,
   DualInputMileage,
+  ButtonReset,
 };

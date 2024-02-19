@@ -8,6 +8,7 @@ import { Global, ThemeProvider } from '@emotion/react';
 import { Provider } from 'react-redux';
 import { store, persistor } from '../src/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Toaster } from 'react-hot-toast';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <BrowserRouter basename="/rent-a-car">
           <PersistGate loading={null} persistor={persistor}>
             <App />
+            <Toaster />
           </PersistGate>
         </BrowserRouter>
       </ThemeProvider>

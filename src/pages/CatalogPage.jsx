@@ -52,18 +52,26 @@ const Catalog = () => {
     setModalOpen(true);
   };
 
-  const handleRentalPriceChange = (rentalPrice) => {
+  const handleRentalPriceChange = (rentalPriceSelect) => {
     allAdverts.map((advert) => {
       const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
-
-      if (rentalPriceCurrent <= rentalPrice) {
+      // if (rentalPriceSelect) {
+      //     // arrayPrice.push(rentalPriceSelect);
+      //     setPrice(Number(rentalPriceSelect));
+      //   }
+      if (rentalPriceCurrent <= rentalPriceSelect) {
         arrayRentalPrice.push(advert.id);
+
         setArrayRentalPrice(arrayRentalPrice);
         return { ...advert, rentalPriceCurrent };
       }
+
       return null;
     });
   };
+
+  // console.log("rentalPriceCurrent=", rentalPriceCurrent);
+
   const handleMileageFromChange = (mileageFromSelect) => {
     const filteredAdverts = allAdverts.filter((advert) => {
       const mileageFromCurrent = Number(advert.mileage); // преобразование в число
@@ -75,7 +83,7 @@ const Catalog = () => {
 
   const handleMileageToChange = (mileageToSelect) => {
     allAdverts.map((advert) => {
-      const mileageToCurrent = Number(advert.mileage); //  преобразование в число
+      const mileageToCurrent = Number(advert.mileage); // преобразование в число
 
       if (mileageToCurrent <= Number(mileageToSelect)) {
         arrayMileageTo.push(advert.id);
@@ -85,8 +93,6 @@ const Catalog = () => {
       return null;
     });
   };
-
-  // console.log("arrayRentalPrice=", arrayRentalPrice);
 
   const handleReloadComponent = () => {
     setReloadComponent((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
@@ -98,15 +104,10 @@ const Catalog = () => {
     <Container>
       <SearchForm
         handleRentalPriceChange={handleRentalPriceChange}
-        передаємо
-        значення
-        импутів
-        з
-        SearchForm
-        у
-        CatalogPage
+        // передаємо значення импутів з SearchForm у CatalogPage
         handleMileageFromChange={handleMileageFromChange} // передаємо значення импутів з SearchForm у CatalogPage
         handleMileageToChange={handleMileageToChange} // передаємо значення импутів з SearchForm у CatalogPage
+        arrayRentalPrice={arrayRentalPrice}
       />
 
       <CatalogItem
@@ -119,6 +120,8 @@ const Catalog = () => {
         arrayMileageTo={arrayMileageTo}
         arrayMileageFrom={arrayMileageFrom}
       />
+      {/* {currentItems.length === 0 &&
+        toast.error("Nothing found based on your search criteria")} */}
 
       <ModalLearnMore
         isOpen={isModalOpen}

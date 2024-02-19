@@ -190,23 +190,6 @@ const CatalogItem = ({
                       arrayMileageFrom.includes(cart.id)) &&
                     (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
                 )
-                // .filter((cart) => arrayRentalPrice.includes(cart.id))
-                // ----------------
-                // .filter((cart) => {
-                //   const id = cart.id;
-                //   const meetsRentalPriceCriteria = arrayRentalPrice.includes(
-                //     id
-                //   );
-                //   const meetsMileageFromCriteria = arrayMileageFrom.includes(
-                //     id
-                //   );
-                //   const meetsMileageToCriteria = arrayMileageTo.includes(id);
-                //   return (
-                //     meetsRentalPriceCriteria &&
-                //     meetsMileageFromCriteria &&
-                //     meetsMileageToCriteria
-                //   );
-                // })
                 .map((cart, index) => (
                   <CardItem
                     key={index}
