@@ -6,8 +6,8 @@ import {
   DivMileage,
   SelectBrand,
   SelectPrice,
-  ImputMileageTo,
-  ImputMileageFrom,
+  SelectMileageTo,
+  SelectMileageFrom,
   ButtonSearch, // Assuming this is a styled component
 } from "components/SearchForm/SearchForm.styled";
 import makes from "components/makes.js";
@@ -19,7 +19,8 @@ const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
 const SearchForm = ({
   handleRentalPriceChange,
-
+  handleMileageFromChange,
+  handleMileageToChange,
   // selectedMake,
   // handleRentalPriceChange,
   // selectedRentalPrice,
@@ -33,6 +34,8 @@ const SearchForm = ({
 
   const [selectCarBrand, setSelectCarBrand] = useState("");
   const [selectRentalPrice, setSelectRentalPrice] = useState("");
+  const [selectMileageFrom, setSelectMileageFrom] = useState("");
+  const [selectMileageTo, setSelectMileageTo] = useState("");
 
   // const [selectedMileageFrom, setSelectedMileageFrom] = useState("");
 
@@ -66,7 +69,12 @@ const SearchForm = ({
     event.preventDefault();
 
     // console.log(selectRentalPrice);
-    if (!selectCarBrand && !selectRentalPrice) {
+    if (
+      !selectCarBrand &&
+      !selectRentalPrice &&
+      !selectMileageFrom &&
+      !selectMileageTo
+    ) {
       // if (!selectedCarBrand && !selectedRentalPrice)
       toast.error("Nothing found, please make a new request");
       dispatch(fetchAdverts({ page: 1 }));
@@ -76,19 +84,29 @@ const SearchForm = ({
     // const price = "$" + selectRentalPrice;
     let make = "";
     let rentalPrice = "";
-
-    if (selectCarBrand) make = selectCarBrand;
+    let mileageFrom = "";
+    let mileageTo = "";
+    if (selectCarBrand) {
+      make = selectCarBrand;
+    }
     if (selectRentalPrice) {
       rentalPrice = selectRentalPrice;
     }
-
-    // console.log(rentalPrice);
+    if (selectMileageFrom) {
+      mileageFrom = selectMileageFrom;
+    }
+    if (selectMileageTo) {
+      mileageTo = selectMileageTo;
+      // console.log(rentalPrice);
+    }
 
     dispatch(
       fetchAdverts({
         page: 1,
         make: make,
         rentalPrice: rentalPrice,
+        mileageFrom: mileageFrom,
+        mileageTo: mileageTo,
       })
     );
   };
@@ -97,6 +115,18 @@ const SearchForm = ({
     const price = event.target.value;
     setSelectRentalPrice(price);
     handleRentalPriceChange(price);
+  };
+  const handleMileageFromInputChange = (event) => {
+    const mileageFrom = event.target.value;
+    console.log("mileageFrom=", mileageFrom);
+    setSelectMileageFrom(mileageFrom);
+    handleMileageFromChange(mileageFrom);
+  };
+
+  const handleMileageToInputChange = (event) => {
+    const mileageTo = event.target.value;
+    setSelectMileageTo(mileageTo);
+    handleMileageToChange(mileageTo);
   };
 
   return (
@@ -151,26 +181,36 @@ const SearchForm = ({
       <DivMileage>
         <Label className="label">
           Car mileage / km
-          <ImputMileageFrom
+          <SelectMileageFrom
             type="text"
             name="Car mileage / km"
             placeholder="From"
             className="input-mileage-From"
-            style={{ opacity: 1, color: "black", border: "1px solid initial" }}
+            style={{
+              opacity: 1,
+              color: "black",
+              border: "1px solid initial",
+            }}
             // focusstyle={{ borderColor: "white" }}
-            // value={selectedMileageFrom}
-            // onChange={logSelectedMileageFrom}
+            value={selectMileageFrom}
+            onChange={handleMileageFromInputChange}
           />
         </Label>
         <Label className="label">
-          <ImputMileageTo
+          <SelectMileageTo
             type="text"
             name="Car mileage / km"
             placeholder="To"
             className="input-mileage-To"
             // value={selectedMileageTo}
-            // onChange={logSelectedMileageTo}
-            style={{ opacity: 1, color: "black", border: "1px solid initial" }}
+            // onClick={logSelectedMileageTo}
+            value={selectMileageTo}
+            onChange={handleMileageToInputChange}
+            style={{
+              opacity: 1,
+              color: "black",
+              border: "1px solid initial",
+            }}
           />
         </Label>
       </DivMileage>
@@ -180,5 +220,4 @@ const SearchForm = ({
     </Form>
   );
 };
-
 export default SearchForm;

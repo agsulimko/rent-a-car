@@ -27,6 +27,8 @@ import sprite from "../../image/sprite.svg";
 const ITEMS_PER_PAGE = 12;
 const CatalogItem = ({
   arrayRentalPrice,
+  arrayMileageFrom,
+  arrayMileageTo,
   currentItems,
   handleLoadMore,
   handleLearnMore,
@@ -52,7 +54,9 @@ const CatalogItem = ({
     <Container>
       <div className="div-cards-list">
         <CardList className="cards-list">
-          {arrayRentalPrice.length === 0
+          {arrayRentalPrice.length === 0 &&
+          arrayMileageFrom.length === 0 &&
+          arrayMileageTo.length === 0
             ? currentItems.map((cart, index) => (
                 <CardItem
                   key={index}
@@ -178,7 +182,31 @@ const CatalogItem = ({
                 </CardItem>
               ))
             : currentItems
-                .filter((cart) => arrayRentalPrice.includes(cart.id))
+                .filter(
+                  (cart) =>
+                    (!arrayRentalPrice.length ||
+                      arrayRentalPrice.includes(cart.id)) &&
+                    (!arrayMileageFrom.length ||
+                      arrayMileageFrom.includes(cart.id)) &&
+                    (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
+                )
+                // .filter((cart) => arrayRentalPrice.includes(cart.id))
+                // ----------------
+                // .filter((cart) => {
+                //   const id = cart.id;
+                //   const meetsRentalPriceCriteria = arrayRentalPrice.includes(
+                //     id
+                //   );
+                //   const meetsMileageFromCriteria = arrayMileageFrom.includes(
+                //     id
+                //   );
+                //   const meetsMileageToCriteria = arrayMileageTo.includes(id);
+                //   return (
+                //     meetsRentalPriceCriteria &&
+                //     meetsMileageFromCriteria &&
+                //     meetsMileageToCriteria
+                //   );
+                // })
                 .map((cart, index) => (
                   <CardItem
                     key={index}

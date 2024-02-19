@@ -17,6 +17,9 @@ const Catalog = () => {
   const adverts = useSelector(selectAdverts) || [];
   const allAdverts = useSelector(selectFavorites) || [];
   const [arrayRentalPrice, setArrayRentalPrice] = useState([]);
+  const [arrayMileageFrom, setArrayMileageFrom] = useState([]);
+  const [arrayMileageTo, setArrayMileageTo] = useState([]);
+
   // console.log("adverts=", adverts);
   // console.log("allAdverts=", allAdverts);
   const [currentPage, setCurrentPage] = useState(
@@ -61,6 +64,27 @@ const Catalog = () => {
       return null;
     });
   };
+  const handleMileageFromChange = (mileageFromSelect) => {
+    const filteredAdverts = allAdverts.filter((advert) => {
+      const mileageFromCurrent = Number(advert.mileage); // преобразование в число
+      return mileageFromCurrent >= Number(mileageFromSelect);
+    });
+    const newArrayMileageFrom = filteredAdverts.map((advert) => advert.id);
+    setArrayMileageFrom(newArrayMileageFrom);
+  };
+
+  const handleMileageToChange = (mileageToSelect) => {
+    allAdverts.map((advert) => {
+      const mileageToCurrent = Number(advert.mileage); //  преобразование в число
+
+      if (mileageToCurrent <= Number(mileageToSelect)) {
+        arrayMileageTo.push(advert.id);
+        setArrayMileageTo(arrayMileageTo);
+        return { ...advert, mileageToCurrent };
+      }
+      return null;
+    });
+  };
 
   // console.log("arrayRentalPrice=", arrayRentalPrice);
 
@@ -72,7 +96,18 @@ const Catalog = () => {
 
   return (
     <Container>
-      <SearchForm handleRentalPriceChange={handleRentalPriceChange} />
+      <SearchForm
+        handleRentalPriceChange={handleRentalPriceChange}
+        передаємо
+        значення
+        импутів
+        з
+        SearchForm
+        у
+        CatalogPage
+        handleMileageFromChange={handleMileageFromChange} // передаємо значення импутів з SearchForm у CatalogPage
+        handleMileageToChange={handleMileageToChange} // передаємо значення импутів з SearchForm у CatalogPage
+      />
 
       <CatalogItem
         currentItems={adverts}
@@ -81,6 +116,8 @@ const Catalog = () => {
         handleReloadComponent={handleReloadComponent}
         currentPage={currentPage}
         arrayRentalPrice={arrayRentalPrice}
+        arrayMileageTo={arrayMileageTo}
+        arrayMileageFrom={arrayMileageFrom}
       />
 
       <ModalLearnMore
