@@ -33,6 +33,7 @@ const Favorites = () => {
   );
 
   const adverts = useSelector(selectAdverts);
+  console.log("adverts=", adverts);
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -101,6 +102,9 @@ const Favorites = () => {
     indexOfFirstItem,
     indexOfLastItem
   );
+
+  // console.log("favoriteAdverts=", favoriteAdverts);
+  // console.log("currentFavoriteAdverts=", currentFavoriteAdverts);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);

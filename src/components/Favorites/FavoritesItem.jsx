@@ -38,7 +38,7 @@ const FavoritesItem = ({
   favoriteAdverts,
   handleLearnMore,
   handleReloadComponentFavorites,
-  hasFavorites,
+
   currentPageFavorites,
 }) => {
   const handleToUp = () => {
