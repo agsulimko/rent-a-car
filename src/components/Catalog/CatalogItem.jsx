@@ -23,6 +23,8 @@ import {
 
 import substringsToCheck from "./substringsToCheck";
 import sprite from "../../image/sprite.svg";
+import { useSelector } from "react-redux";
+import { selectAdverts, selectFavorites } from "../../redux/selectors";
 // const array = [9582, 9590, 9597, 9583];
 const ITEMS_PER_PAGE = 12;
 const CatalogItem = ({
@@ -38,7 +40,8 @@ const CatalogItem = ({
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
-
+  const adverts = useSelector(selectAdverts) || [];
+  const allAdverts = useSelector(selectFavorites) || [];
   const toggleFavorites = (id) => {
     const updatedFavorites = favorites.includes(id)
       ? favorites.filter((favoriteId) => favoriteId !== id)
@@ -181,7 +184,16 @@ const CatalogItem = ({
                   </ButtonLearnMore>
                 </CardItem>
               ))
-            : currentItems
+            : // : currentItems
+              adverts
+                // .filter(
+                //   (cart) =>
+                //     (!arrayRentalPrice.length ||
+                //       arrayRentalPrice.includes(cart.id)) &&
+                //     (!arrayMileageFrom.length ||
+                //       arrayMileageFrom.includes(cart.id)) &&
+                //     (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
+                // )
                 .filter(
                   (cart) =>
                     (!arrayRentalPrice.length ||

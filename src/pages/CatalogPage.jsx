@@ -52,23 +52,44 @@ const Catalog = () => {
     setModalOpen(true);
   };
 
-  const handleRentalPriceChange = (rentalPriceSelect) => {
+  // const handleRentalPriceChange = (rentalPriceSelect) => {
+  //   allAdverts.map((advert) => {
+  //     const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
+
+  //     if (rentalPriceCurrent <= rentalPriceSelect) {
+  //       arrayRentalPrice.push(advert.id);
+
+  //       setArrayRentalPrice(arrayRentalPrice);
+  //       return { ...advert, rentalPriceCurrent };
+  //     }
+
+  //     return null;
+  //   });
+  // };
+
+  const handleRentalPrice = (inputRentalPrice) => {
+    console.log("inputRentalPrice=", Number(inputRentalPrice));
+    console.log("allAdverts=", allAdverts);
+    // console.log("adverts=", adverts);
     allAdverts.map((advert) => {
       const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
       // if (rentalPriceSelect) {
       //     // arrayPrice.push(rentalPriceSelect);
       //     setPrice(Number(rentalPriceSelect));
       //   }
-      if (rentalPriceCurrent <= rentalPriceSelect) {
+      // console.log("rentalPriceCurrent=", rentalPriceCurrent);
+      if (rentalPriceCurrent <= Number(inputRentalPrice)) {
         arrayRentalPrice.push(advert.id);
 
         setArrayRentalPrice(arrayRentalPrice);
-        return { ...advert, rentalPriceCurrent };
+        // return { ...advert, rentalPriceCurrent };
       }
 
       return null;
     });
   };
+  console.log("arrayRentalPrice=", arrayRentalPrice);
+  // console.log("rentalPriceCurrent=", rentalPriceCurrent);
 
   // console.log("rentalPriceCurrent=", rentalPriceCurrent);
 
@@ -103,7 +124,7 @@ const Catalog = () => {
   return (
     <Container>
       <SearchForm
-        handleRentalPriceChange={handleRentalPriceChange}
+        handleRentalPrice={handleRentalPrice}
         // передаємо значення импутів з SearchForm у CatalogPage
         handleMileageFromChange={handleMileageFromChange} // передаємо значення импутів з SearchForm у CatalogPage
         handleMileageToChange={handleMileageToChange} // передаємо значення импутів з SearchForm у CatalogPage

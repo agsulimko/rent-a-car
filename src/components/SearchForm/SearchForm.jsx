@@ -20,7 +20,8 @@ import { selectAdverts } from "../../redux/selectors";
 const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
 const SearchForm = ({
-  handleRentalPriceChange,
+  handleRentalPrice,
+
   handleMileageFromChange,
   handleMileageToChange,
   // handleBrandChange,
@@ -43,7 +44,7 @@ const SearchForm = ({
     // const price = "$" + selectRentalPrice;
     let make = "";
     // let brand = "";
-    let rentalPrice = "";
+    // let rentalPrice = "";
     let mileageFrom = "";
     let mileageTo = "";
 
@@ -51,9 +52,9 @@ const SearchForm = ({
       make = selectCarBrand;
       // brand = selectCarBrand;
     }
-    if (selectRentalPrice) {
-      rentalPrice = selectRentalPrice;
-    }
+    // if (selectRentalPrice) {
+    //   rentalPrice = selectRentalPrice;
+    // }
     if (selectMileageFrom) {
       mileageFrom = selectMileageFrom;
     }
@@ -88,7 +89,7 @@ const SearchForm = ({
         page: 1,
         make: make,
         // brand: brand,
-        rentalPrice: rentalPrice,
+        // rentalPrice: rentalPrice,
         mileageFrom: mileageFrom,
         mileageTo: mileageTo,
       })
@@ -105,8 +106,8 @@ const SearchForm = ({
   const handleRentalPriceInputChange = (event) => {
     const rentalPrice = event.target.value;
     setSelectRentalPrice(rentalPrice);
-
-    handleRentalPriceChange(rentalPrice);
+    console.log("rentalPrice=", rentalPrice);
+    handleRentalPrice(rentalPrice);
   };
   const handleMileageFromInputChange = (event) => {
     const mileageFrom = event.target.value;
