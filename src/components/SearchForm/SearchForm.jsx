@@ -14,7 +14,7 @@ import {
 import makes from "components/makes.js";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdverts } from "../../redux/thunks";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { selectAdverts } from "../../redux/selectors";
 
 const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
@@ -22,8 +22,8 @@ const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 const SearchForm = ({
   handleRentalPrice,
 
-  handleMileageFromChange,
-  handleMileageToChange,
+  handleMileageFrom,
+  handleMileageTo,
   // handleBrandChange,
   arrayRentalPrice,
 }) => {
@@ -45,8 +45,8 @@ const SearchForm = ({
     let make = "";
     // let brand = "";
     // let rentalPrice = "";
-    let mileageFrom = "";
-    let mileageTo = "";
+    // let mileageFrom = "";
+    // let mileageTo = "";
 
     if (selectCarBrand) {
       make = selectCarBrand;
@@ -55,43 +55,43 @@ const SearchForm = ({
     // if (selectRentalPrice) {
     //   rentalPrice = selectRentalPrice;
     // }
-    if (selectMileageFrom) {
-      mileageFrom = selectMileageFrom;
-    }
-    if (selectMileageTo) {
-      mileageTo = selectMileageTo;
-      // console.log(rentalPrice);
-    }
+    // if (selectMileageFrom) {
+    //   mileageFrom = selectMileageFrom;
+    // }
+    // if (selectMileageTo) {
+    //   mileageTo = selectMileageTo;
+    //   // console.log(rentalPrice);
+    // }
     // console.log("arrayPrice=", price);
-    if (
-      !selectCarBrand &&
-      !selectRentalPrice &&
-      !selectMileageFrom &&
-      !selectMileageTo
-    ) {
-      toast.error("Nothing found, please make a new request", {
-        duration: 3000,
-        position: "top-center",
-      });
+    // if (
+    //   !selectCarBrand &&
+    //   !selectRentalPrice &&
+    //   !selectMileageFrom &&
+    //   !selectMileageTo
+    // ) {
+    //   toast.error("Nothing found, please make a new request!!!!!", {
+    //     duration: 3000,
+    //     position: "top-center",
+    //   });
 
-      dispatch(fetchAdverts({ page: 1 }));
-      //   return;
-    }
+    //   dispatch(fetchAdverts({ page: 1 }));
+    //   //   return;
+    // }
 
-    if (!selectCarBrand && arrayRentalPrice.length === 0) {
-      toast.error("Nothing found, please make a new request", {
-        duration: 3000,
-        position: "top-center",
-      });
-    }
+    // if (!selectCarBrand && arrayRentalPrice.length === 0) {
+    //   toast.error("Nothing found, please make a new request", {
+    //     duration: 3000,
+    //     position: "top-center",
+    //   });
+    // }
     dispatch(
       fetchAdverts({
         page: 1,
         make: make,
         // brand: brand,
         // rentalPrice: rentalPrice,
-        mileageFrom: mileageFrom,
-        mileageTo: mileageTo,
+        // mileageFrom: mileageFrom,
+        // mileageTo: mileageTo,
       })
     );
   };
@@ -103,23 +103,25 @@ const SearchForm = ({
   //   handleBrandChange(brand);
   // };
 
-  const handleRentalPriceInputChange = (event) => {
+  const handleRentalPriceInput = (event) => {
     const rentalPrice = event.target.value;
     setSelectRentalPrice(rentalPrice);
-    console.log("rentalPrice=", rentalPrice);
+    // console.log("rentalPrice=", rentalPrice);
     handleRentalPrice(rentalPrice);
   };
-  const handleMileageFromInputChange = (event) => {
+  const handleMileageFromInput = (event) => {
     const mileageFrom = event.target.value;
 
     setSelectMileageFrom(mileageFrom);
-    handleMileageFromChange(mileageFrom);
+    console.log("mileageFrom=", mileageFrom);
+    handleMileageFrom(mileageFrom);
   };
 
-  const handleMileageToInputChange = (event) => {
+  const handleMileageToInput = (event) => {
     const mileageTo = event.target.value;
     setSelectMileageTo(mileageTo);
-    handleMileageToChange(mileageTo);
+    console.log("mileageTo=", mileageTo);
+    handleMileageTo(mileageTo);
   };
   const handleResetFilters = () => {
     // Функция для сброса всех выбранных фильтров
@@ -174,7 +176,7 @@ const SearchForm = ({
           placeholder="To $"
           className="input-SelectPrice-rentalPrice"
           // value={selectRentalPrice}
-          onClick={handleRentalPriceInputChange}
+          onClick={handleRentalPriceInput}
           style={{ margin: 0, padding: 10, border: "1px solid initial" }}
           // focusstyle={{ borderColor: "white" }}
         >
@@ -201,7 +203,7 @@ const SearchForm = ({
             }}
             // focusstyle={{ borderColor: "white" }}
             // value={selectMileageFrom}
-            onClick={handleMileageFromInputChange}
+            onClick={handleMileageFromInput}
           />
         </Label>
         <Label className="label">
@@ -211,7 +213,7 @@ const SearchForm = ({
             placeholder="To"
             className="input-mileage-To"
             // value={selectMileageTo}
-            onClick={handleMileageToInputChange}
+            onClick={handleMileageToInput}
             style={{
               opacity: 1,
               color: "black",

@@ -30,7 +30,7 @@ export const getAdverts = async (page, make) => {
 //   return data;
 // };
 
-export const getFavorites = async (page, id) => {
+export const getFavorites = async page => {
   const url = new URL('/adverts', axios.defaults.baseURL);
 
   url.searchParams.append('limit', 12);

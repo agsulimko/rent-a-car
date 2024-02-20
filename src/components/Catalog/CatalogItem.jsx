@@ -24,7 +24,7 @@ import {
 import substringsToCheck from "./substringsToCheck";
 import sprite from "../../image/sprite.svg";
 import { useSelector } from "react-redux";
-import { selectAdverts, selectFavorites } from "../../redux/selectors";
+import { selectFavorites } from "../../redux/selectors";
 // const array = [9582, 9590, 9597, 9583];
 const ITEMS_PER_PAGE = 12;
 const CatalogItem = ({
@@ -40,7 +40,7 @@ const CatalogItem = ({
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
-  const adverts = useSelector(selectAdverts) || [];
+  // const adverts = useSelector(selectAdverts) || [];
   const allAdverts = useSelector(selectFavorites) || [];
   const toggleFavorites = (id) => {
     const updatedFavorites = favorites.includes(id)
@@ -51,7 +51,10 @@ const CatalogItem = ({
 
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
-  // console.log(arrayRentalPrice);
+  //  console.log("arrayRentalPrice=", arrayRentalPrice);
+
+  // console.log("arrayMileageFrom=", arrayMileageFrom);
+  // console.log("arrayMileageTo=", arrayMileageTo);
 
   return (
     <Container>
@@ -185,15 +188,8 @@ const CatalogItem = ({
                 </CardItem>
               ))
             : // : currentItems
-              adverts
-                // .filter(
-                //   (cart) =>
-                //     (!arrayRentalPrice.length ||
-                //       arrayRentalPrice.includes(cart.id)) &&
-                //     (!arrayMileageFrom.length ||
-                //       arrayMileageFrom.includes(cart.id)) &&
-                //     (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
-                // )
+              allAdverts
+
                 .filter(
                   (cart) =>
                     (!arrayRentalPrice.length ||

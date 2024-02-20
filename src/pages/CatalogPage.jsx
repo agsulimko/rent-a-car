@@ -33,6 +33,7 @@ const Catalog = () => {
 
   useEffect(() => {
     dispatch(fetchAdverts({ page: currentPage }));
+    // dispatch(fetchAdverts());
   }, [dispatch, currentPage, reloadComponent]);
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
@@ -68,8 +69,8 @@ const Catalog = () => {
   // };
 
   const handleRentalPrice = (inputRentalPrice) => {
-    console.log("inputRentalPrice=", Number(inputRentalPrice));
-    console.log("allAdverts=", allAdverts);
+    // console.log("inputRentalPrice=", Number(inputRentalPrice));
+    // console.log("allAdverts=", allAdverts);
     // console.log("adverts=", adverts);
     allAdverts.map((advert) => {
       const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
@@ -88,33 +89,58 @@ const Catalog = () => {
       return null;
     });
   };
-  console.log("arrayRentalPrice=", arrayRentalPrice);
+  // console.log("arrayRentalPrice=", arrayRentalPrice);
   // console.log("rentalPriceCurrent=", rentalPriceCurrent);
 
   // console.log("rentalPriceCurrent=", rentalPriceCurrent);
 
-  const handleMileageFromChange = (mileageFromSelect) => {
-    const filteredAdverts = allAdverts.filter((advert) => {
-      const mileageFromCurrent = Number(advert.mileage); // преобразование в число
-      return mileageFromCurrent >= Number(mileageFromSelect);
-    });
-    const newArrayMileageFrom = filteredAdverts.map((advert) => advert.id);
-    setArrayMileageFrom(newArrayMileageFrom);
+  // const handleMileageFrom = (inputMileageFrom) => {
+  //   console.log("inputMileageFrom=", Number(inputMileageFrom));
+  //   // console.log("allAdverts=", allAdverts);
+  //   // console.log("adverts=", adverts);
+  //   allAdverts.map((advert) => {
+  //     const mileageFromCurrent = Number(advert.mileage);
+  //     if (mileageFromCurrent >= Number(inputMileageFrom)) {
+  //       arrayMileageFrom.push(advert.id);
+
+  //       setArrayMileageFrom(arrayMileageFrom);
+  //       // return { ...advert, mileageFromCurrent };
+  //     }
+  //     return null;
+  //   });
+  // };
+
+  const handleMileageFrom = (inputMileageFrom) => {
+    const arrayMileageFrom = allAdverts
+      .filter((advert) => Number(advert.mileage) >= Number(inputMileageFrom))
+      .map((advert) => advert.id);
+
+    setArrayMileageFrom(arrayMileageFrom);
   };
 
-  const handleMileageToChange = (mileageToSelect) => {
-    allAdverts.map((advert) => {
-      const mileageToCurrent = Number(advert.mileage); // преобразование в число
+  const handleMileageTo = (inputMileageTo) => {
+    const arrayMileageTo = allAdverts
+      .filter((advert) => Number(advert.mileage) <= Number(inputMileageTo))
+      .map((advert) => advert.id);
 
-      if (mileageToCurrent <= Number(mileageToSelect)) {
-        arrayMileageTo.push(advert.id);
-        setArrayMileageTo(arrayMileageTo);
-        return { ...advert, mileageToCurrent };
-      }
-      return null;
-    });
+    setArrayMileageTo(arrayMileageTo);
   };
 
+  // const handleMileageTo = (inputMileageTo) => {
+  //   allAdverts.map((advert) => {
+
+  //     const mileageToCurrent = Number(advert.mileage); // преобразование в число
+
+  //     if (mileageToCurrent <= Number(inputMileageTo)) {
+  //       arrayMileageTo.push(advert.id);
+  //       setArrayMileageTo(arrayMileageTo);
+  //       // return { ...advert, mileageToCurrent };
+  //     }
+  //     return null;
+  //   });
+  // };
+  console.log("arrayMileageTo=", arrayMileageTo);
+  console.log("arrayMileageFrom=", arrayMileageFrom);
   const handleReloadComponent = () => {
     setReloadComponent((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
     setCurrentPage(1); // Сбрасываем текущую страницу на первую
@@ -126,8 +152,8 @@ const Catalog = () => {
       <SearchForm
         handleRentalPrice={handleRentalPrice}
         // передаємо значення импутів з SearchForm у CatalogPage
-        handleMileageFromChange={handleMileageFromChange} // передаємо значення импутів з SearchForm у CatalogPage
-        handleMileageToChange={handleMileageToChange} // передаємо значення импутів з SearchForm у CatalogPage
+        handleMileageFrom={handleMileageFrom} // передаємо значення импутів з SearchForm у CatalogPage
+        handleMileageTo={handleMileageTo} // передаємо значення импутів з SearchForm у CatalogPage
         arrayRentalPrice={arrayRentalPrice}
       />
 
