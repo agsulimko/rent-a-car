@@ -31,6 +31,7 @@ const CatalogItem = ({
   arrayRentalPrice,
   arrayMileageFrom,
   arrayMileageTo,
+  arrayMake,
   currentItems,
   handleLoadMore,
   handleLearnMore,
@@ -61,6 +62,7 @@ const CatalogItem = ({
       <div className="div-cards-list">
         <CardList className="cards-list">
           {arrayRentalPrice.length === 0 &&
+          arrayMake.lenght === 0 &&
           arrayMileageFrom.length === 0 &&
           arrayMileageTo.length === 0
             ? currentItems.map((cart, index) => (
@@ -189,9 +191,9 @@ const CatalogItem = ({
               ))
             : // : currentItems
               allAdverts
-
                 .filter(
                   (cart) =>
+                    // (!arrayMake.length || arrayMake.includes(cart.id)) &&
                     (!arrayRentalPrice.length ||
                       arrayRentalPrice.includes(cart.id)) &&
                     (!arrayMileageFrom.length ||

@@ -14,14 +14,14 @@ import {
 import makes from "components/makes.js";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdverts } from "../../redux/thunks";
-// import toast from "react-hot-toast";
+import toast from "react-hot-toast";
 import { selectAdverts } from "../../redux/selectors";
 
 const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
 const SearchForm = ({
+  handleMake,
   handleRentalPrice,
-
   handleMileageFrom,
   handleMileageTo,
   // handleBrandChange,
@@ -30,6 +30,7 @@ const SearchForm = ({
   const dispatch = useDispatch();
 
   const [selectCarBrand, setSelectCarBrand] = useState("");
+  const [selectMake, setSelectMake] = useState("");
   const [selectRentalPrice, setSelectRentalPrice] = useState("");
   const [selectMileageFrom, setSelectMileageFrom] = useState("");
   const [selectMileageTo, setSelectMileageTo] = useState("");
@@ -63,20 +64,21 @@ const SearchForm = ({
     //   // console.log(rentalPrice);
     // }
     // console.log("arrayPrice=", price);
-    // if (
-    //   !selectCarBrand &&
-    //   !selectRentalPrice &&
-    //   !selectMileageFrom &&
-    //   !selectMileageTo
-    // ) {
-    //   toast.error("Nothing found, please make a new request!!!!!", {
-    //     duration: 3000,
-    //     position: "top-center",
-    //   });
+    if (
+      !selectMake &&
+      !selectCarBrand &&
+      !selectRentalPrice &&
+      !selectMileageFrom &&
+      !selectMileageTo
+    ) {
+      toast.error("Nothing found, please make a new request!!!!!", {
+        duration: 3000,
+        position: "top-center",
+      });
 
-    //   dispatch(fetchAdverts({ page: 1 }));
-    //   //   return;
-    // }
+      dispatch(fetchAdverts({ page: 1 }));
+      //   return;
+    }
 
     // if (!selectCarBrand && arrayRentalPrice.length === 0) {
     //   toast.error("Nothing found, please make a new request", {
@@ -102,6 +104,14 @@ const SearchForm = ({
 
   //   handleBrandChange(brand);
   // };
+
+  const handleMakeInput = (event) => {
+    const make = event.target.value;
+    setSelectCarBrand(event.target.value);
+    setSelectMake(make);
+    console.log("make=", make);
+    handleMake(make);
+  };
 
   const handleRentalPriceInput = (event) => {
     const rentalPrice = event.target.value;
@@ -149,10 +159,11 @@ const SearchForm = ({
           placeholder="Enter the text"
           className="input-SelectBrand-make"
           // value={selectCarBrand}
-          onClick={(e) => {
-            // handleBrandInputChange();
-            setSelectCarBrand(e.target.value);
-          }}
+          // onClick={(e) => {
+          //   // handleBrandInputChange();
+          //   setSelectCarBrand(e.target.value);
+          // }}
+          onClick={handleMakeInput}
           style={{
             margin: 0,
             padding: 10,

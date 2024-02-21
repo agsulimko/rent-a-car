@@ -14,13 +14,15 @@ const ITEMS_PER_PAGE = 12;
 
 const Catalog = () => {
   const dispatch = useDispatch();
-  const adverts = useSelector(selectAdverts) || [];
+  const adverts = useSelector(selectAdverts);
   const allAdverts = useSelector(selectFavorites) || [];
+
+  const [arrayMake, setArrayMake] = useState([]);
   const [arrayRentalPrice, setArrayRentalPrice] = useState([]);
   const [arrayMileageFrom, setArrayMileageFrom] = useState([]);
   const [arrayMileageTo, setArrayMileageTo] = useState([]);
 
-  // console.log("adverts=", adverts);
+  console.log("adverts=", adverts);
   // console.log("allAdverts=", allAdverts);
   const [currentPage, setCurrentPage] = useState(
     parseInt(localStorage.getItem("currentPage"), 10) || 1
@@ -30,7 +32,7 @@ const Catalog = () => {
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [reloadComponent, setReloadComponent] = useState(false);
-
+  console.log("allAdverts=", allAdverts);
   useEffect(() => {
     dispatch(fetchAdverts({ page: currentPage }));
     // dispatch(fetchAdverts());
@@ -53,21 +55,34 @@ const Catalog = () => {
     setModalOpen(true);
   };
 
-  // const handleRentalPriceChange = (rentalPriceSelect) => {
-  //   allAdverts.map((advert) => {
-  //     const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
+  const handleMake = (inputMake) => {
+    // console.log("inputRentalPrice=", Number(inputRentalPrice));
+    // console.log("allAdverts=", allAdverts);
+    // console.log("inputMake=", inputMake);
+    // allAdverts.map((advert) => {
+    //   console.log("advert.make=", advert.make);
+    //   // if (rentalPriceSelect) {
+    //   //     // arrayPrice.push(rentalPriceSelect);
+    //   //     setPrice(Number(rentalPriceSelect));
+    //   //   }
+    //   // console.log("rentalPriceCurrent=", rentalPriceCurrent);
+    //   if (advert.make === inputMake) {
+    //     arrayMake.push(advert.id);
 
-  //     if (rentalPriceCurrent <= rentalPriceSelect) {
-  //       arrayRentalPrice.push(advert.id);
+    //     setArrayMake(arrayMake);
+    //     console.log("arrayMake=", arrayMake);
+    //     // return { ...advert, rentalPriceCurrent };
+    //   }
 
-  //       setArrayRentalPrice(arrayRentalPrice);
-  //       return { ...advert, rentalPriceCurrent };
-  //     }
-
-  //     return null;
-  //   });
-  // };
-
+    //   return null;
+    // });
+    const filteredAdverts = allAdverts.filter(
+      (advert) => advert.make === inputMake
+    );
+    const ids = filteredAdverts.map((advert) => advert.id);
+    setArrayMake(ids);
+  };
+  console.log("arrayMake=", arrayMake);
   const handleRentalPrice = (inputRentalPrice) => {
     // console.log("inputRentalPrice=", Number(inputRentalPrice));
     // console.log("allAdverts=", allAdverts);
@@ -92,24 +107,7 @@ const Catalog = () => {
   // console.log("arrayRentalPrice=", arrayRentalPrice);
   // console.log("rentalPriceCurrent=", rentalPriceCurrent);
 
-  // console.log("rentalPriceCurrent=", rentalPriceCurrent);
-
-  // const handleMileageFrom = (inputMileageFrom) => {
-  //   console.log("inputMileageFrom=", Number(inputMileageFrom));
-  //   // console.log("allAdverts=", allAdverts);
-  //   // console.log("adverts=", adverts);
-  //   allAdverts.map((advert) => {
-  //     const mileageFromCurrent = Number(advert.mileage);
-  //     if (mileageFromCurrent >= Number(inputMileageFrom)) {
-  //       arrayMileageFrom.push(advert.id);
-
-  //       setArrayMileageFrom(arrayMileageFrom);
-  //       // return { ...advert, mileageFromCurrent };
-  //     }
-  //     return null;
-  //   });
-  // };
-
+  // con
   const handleMileageFrom = (inputMileageFrom) => {
     const arrayMileageFrom = allAdverts
       .filter((advert) => Number(advert.mileage) >= Number(inputMileageFrom))
@@ -126,19 +124,6 @@ const Catalog = () => {
     setArrayMileageTo(arrayMileageTo);
   };
 
-  // const handleMileageTo = (inputMileageTo) => {
-  //   allAdverts.map((advert) => {
-
-  //     const mileageToCurrent = Number(advert.mileage); // преобразование в число
-
-  //     if (mileageToCurrent <= Number(inputMileageTo)) {
-  //       arrayMileageTo.push(advert.id);
-  //       setArrayMileageTo(arrayMileageTo);
-  //       // return { ...advert, mileageToCurrent };
-  //     }
-  //     return null;
-  //   });
-  // };
   console.log("arrayMileageTo=", arrayMileageTo);
   console.log("arrayMileageFrom=", arrayMileageFrom);
   const handleReloadComponent = () => {
@@ -150,6 +135,7 @@ const Catalog = () => {
   return (
     <Container>
       <SearchForm
+        handleMake={handleMake}
         handleRentalPrice={handleRentalPrice}
         // передаємо значення импутів з SearchForm у CatalogPage
         handleMileageFrom={handleMileageFrom} // передаємо значення импутів з SearchForm у CatalogPage
@@ -166,6 +152,7 @@ const Catalog = () => {
         arrayRentalPrice={arrayRentalPrice}
         arrayMileageTo={arrayMileageTo}
         arrayMileageFrom={arrayMileageFrom}
+        arrayMake={arrayMake}
       />
       {/* {currentItems.length === 0 &&
         toast.error("Nothing found based on your search criteria")} */}
