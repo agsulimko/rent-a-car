@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdverts } from "../redux/thunks";
-import { selectAdverts, selectFavorites } from "../redux/selectors";
+import { selectAdverts, selectAutos } from "../redux/selectors";
 import CatalogItem from "components/Catalog/CatalogItem";
 import SearchForm from "components/SearchForm/SearchForm";
 
@@ -15,7 +15,7 @@ const ITEMS_PER_PAGE = 12;
 const Catalog = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAdverts) || [];
-  const allAdverts = useSelector(selectFavorites) || [];
+  const autos = useSelector(selectAutos) || [];
   const [arrayRentalPrice, setArrayRentalPrice] = useState([]);
   const [arrayMileageFrom, setArrayMileageFrom] = useState([]);
   const [arrayMileageTo, setArrayMileageTo] = useState([]);
@@ -72,7 +72,7 @@ const Catalog = () => {
     // console.log("inputRentalPrice=", Number(inputRentalPrice));
     // console.log("allAdverts=", allAdverts);
     // console.log("adverts=", adverts);
-    allAdverts.map((advert) => {
+    autos.map((advert) => {
       const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
       // if (rentalPriceSelect) {
       //     // arrayPrice.push(rentalPriceSelect);
@@ -111,7 +111,7 @@ const Catalog = () => {
   // };
 
   const handleMileageFrom = (inputMileageFrom) => {
-    const arrayMileageFrom = allAdverts
+    const arrayMileageFrom = autos
       .filter((advert) => Number(advert.mileage) >= Number(inputMileageFrom))
       .map((advert) => advert.id);
 
@@ -119,7 +119,7 @@ const Catalog = () => {
   };
 
   const handleMileageTo = (inputMileageTo) => {
-    const arrayMileageTo = allAdverts
+    const arrayMileageTo = autos
       .filter((advert) => Number(advert.mileage) <= Number(inputMileageTo))
       .map((advert) => advert.id);
 
@@ -158,7 +158,7 @@ const Catalog = () => {
       />
 
       <CatalogItem
-        currentItems={adverts}
+        adverts={adverts}
         handleLoadMore={handleLoadMore}
         handleLearnMore={handleLearnMore}
         handleReloadComponent={handleReloadComponent}

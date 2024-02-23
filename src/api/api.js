@@ -2,14 +2,14 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://65b95a82b71048505a8ab881.mockapi.io/api';
 
-export const getAdverts = async (page, make) => {
+export const getAdverts = async page => {
   const url = new URL('/adverts', axios.defaults.baseURL);
 
   url.searchParams.append('page', page);
   url.searchParams.append('limit', 12);
-  if (make) {
-    url.searchParams.append('make', make);
-  }
+  // if (make) {
+  //   url.searchParams.append('make', make);
+  // }
   // if (rentalPrice) {
   //   url.searchParams.append('rentalPrice', rentalPrice);
   // }
@@ -30,11 +30,13 @@ export const getAdverts = async (page, make) => {
 //   return data;
 // };
 
-export const getFavorites = async page => {
+export const getFavorites = async (page, make) => {
   const url = new URL('/adverts', axios.defaults.baseURL);
 
   url.searchParams.append('limit', 12);
-
+  if (make) {
+    url.searchParams.append('make', make);
+  }
   try {
     const { data } = await axios.get(url.toString());
     // console.log('data=', data);
@@ -45,16 +47,21 @@ export const getFavorites = async page => {
   }
 };
 
-// export const getPrice = async (page, id) => {
-//   const url = new URL('/adverts', axios.defaults.baseURL);
+export const getAutos = async make => {
+  const url = new URL('/adverts', axios.defaults.baseURL);
 
-//   url.searchParams.append('limit', 12);
+  // url.searchParams.append('page', page);
+  url.searchParams.append('limit', 12);
+  if (make) {
+    url.searchParams.append('make', make);
+  }
 
-//   try {
-//     const { data } = await axios.get(url.toString());
-//     return data;
-//   } catch (error) {
-//     console.error('Failed to fetch adverts:', error.message);
-//     throw error;
-//   }
-// };
+  try {
+    const { data } = await axios.get(url.toString());
+
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch adverts:', error.message);
+    throw error;
+  }
+};

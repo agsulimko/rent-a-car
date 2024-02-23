@@ -1,7 +1,7 @@
 // slice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchFavorites, fetchAdverts } from './thunks';
+import { fetchFavorites, fetchAdverts, fetchAutos } from './thunks';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -17,6 +17,7 @@ const handleRejected = (state, action) => {
 const initialState = {
   adverts: [],
   favorites: [],
+  autos: [],
   status: '',
   isLoading: false,
   error: null,
@@ -29,6 +30,7 @@ const advertsSlice = createSlice({
     builder
       .addCase(fetchAdverts.pending, handlePending)
       .addCase(fetchFavorites.pending, handlePending)
+      .addCase(fetchAutos.pending, handlePending)
 
       .addCase(fetchAdverts.fulfilled, (state, action) => {
         state.status = 'succeeded';
@@ -36,12 +38,18 @@ const advertsSlice = createSlice({
       })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        // state.favorites = action.payload;
-        state.adverts = action.payload;
+        state.favorites = action.payload;
+        // state.adverts = action.payload;
+      })
+      .addCase(fetchAutos.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+
+        state.autos = action.payload;
       })
       .addCase(fetchAdverts.rejected, handleRejected)
 
-      .addCase(fetchFavorites.rejected, handleRejected);
+      .addCase(fetchFavorites.rejected, handleRejected)
+      .addCase(fetchAutos.rejected, handleRejected);
   },
 });
 

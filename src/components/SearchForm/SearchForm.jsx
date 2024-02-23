@@ -29,7 +29,7 @@ const SearchForm = ({
 }) => {
   const dispatch = useDispatch();
 
-  const [selectCarBrand, setSelectCarBrand] = useState("");
+  const [selectMake, setSelectMake] = useState("");
   const [selectRentalPrice, setSelectRentalPrice] = useState("");
   const [selectMileageFrom, setSelectMileageFrom] = useState("");
   const [selectMileageTo, setSelectMileageTo] = useState("");
@@ -48,8 +48,8 @@ const SearchForm = ({
     // let mileageFrom = "";
     // let mileageTo = "";
 
-    if (selectCarBrand) {
-      make = selectCarBrand;
+    if (selectMake) {
+      make = selectMake;
       // brand = selectCarBrand;
     }
     // if (selectRentalPrice) {
@@ -87,7 +87,7 @@ const SearchForm = ({
     dispatch(
       fetchAdverts({
         page: 1,
-        make: make,
+        // make: make,
         // brand: brand,
         // rentalPrice: rentalPrice,
         // mileageFrom: mileageFrom,
@@ -95,6 +95,15 @@ const SearchForm = ({
       })
     );
   };
+  //  if (selectMake) {
+  //     make = selectMake;
+  //   }
+
+  //   useEffect(() => {
+  //     dispatch(fetchFavorites({ make: make }));
+
+  //     // eslint-disable-next-line
+  //   }, [dispatch, reloadComponentFavorites, currentPageFavorites]);
 
   // const handleBrandInputChange = (event) => {
   //   const brand = event.target.value;
@@ -104,13 +113,13 @@ const SearchForm = ({
   // };
 
   const handleRentalPriceInput = (event) => {
-    const rentalPrice = event.target.value;
+    const rentalPrice = Number(event.target.value);
     setSelectRentalPrice(rentalPrice);
     // console.log("rentalPrice=", rentalPrice);
     handleRentalPrice(rentalPrice);
   };
   const handleMileageFromInput = (event) => {
-    const mileageFrom = event.target.value;
+    const mileageFrom = Number(event.target.value);
 
     setSelectMileageFrom(mileageFrom);
     console.log("mileageFrom=", mileageFrom);
@@ -118,20 +127,20 @@ const SearchForm = ({
   };
 
   const handleMileageToInput = (event) => {
-    const mileageTo = event.target.value;
+    const mileageTo = Number(event.target.value);
     setSelectMileageTo(mileageTo);
     console.log("mileageTo=", mileageTo);
     handleMileageTo(mileageTo);
   };
   const handleResetFilters = () => {
     // Функция для сброса всех выбранных фильтров
-    setSelectCarBrand([]);
+    setSelectMake([]);
 
     setSelectRentalPrice([]);
     setSelectMileageFrom([]);
     setSelectMileageTo([]);
     console.log("selectRentalPrice=", selectRentalPrice);
-    console.log("selectCarBrandrice=", selectCarBrand);
+    console.log("selectCarBrandrice=", selectMake);
     console.log("selectMileageFrom=", selectMileageFrom);
     console.log("selectMileageTo=", selectMileageTo);
 
@@ -151,7 +160,7 @@ const SearchForm = ({
           // value={selectCarBrand}
           onClick={(e) => {
             // handleBrandInputChange();
-            setSelectCarBrand(e.target.value);
+            setSelectMake(e.target.value);
           }}
           style={{
             margin: 0,

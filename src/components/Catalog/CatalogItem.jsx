@@ -31,7 +31,7 @@ const CatalogItem = ({
   arrayRentalPrice,
   arrayMileageFrom,
   arrayMileageTo,
-  currentItems,
+  adverts,
   handleLoadMore,
   handleLearnMore,
   handleReloadComponent,
@@ -63,7 +63,7 @@ const CatalogItem = ({
           {arrayRentalPrice.length === 0 &&
           arrayMileageFrom.length === 0 &&
           arrayMileageTo.length === 0
-            ? currentItems.map((cart, index) => (
+            ? adverts.map((cart, index) => (
                 <CardItem
                   key={index}
                   className="cards-item"
@@ -326,7 +326,7 @@ const CatalogItem = ({
         {currentPage > 1 && (
           <ButtonToUp onClick={handleReloadComponent}>To up ⇈</ButtonToUp>
         )}
-        {currentItems.length > 0 && currentItems.length >= ITEMS_PER_PAGE && (
+        {adverts.length > 0 && adverts.length >= ITEMS_PER_PAGE && (
           <ButtonLoadMore
             type="button"
             className="cards-item-btn"
