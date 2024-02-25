@@ -135,7 +135,7 @@ const SearchForm = ({
   };
   const handleResetFilters = () => {
     // Функция для сброса всех выбранных фильтров
-    setSelectCarBrand([]);
+    setSelectMake([]);
 
     setSelectRentalPrice([]);
     setSelectMileageFrom([]);
