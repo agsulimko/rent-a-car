@@ -11,7 +11,7 @@ import SearchForm from "components/SearchForm/SearchForm";
 import ModalLearnMore from "components/Modal/ModalLearnMore";
 
 const ITEMS_PER_PAGE = 12;
-let make = "";
+// let make = "";
 
 const Favorites = () => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 // Catalog.jsx
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAdverts } from "../redux/thunks";
+import { fetchAdverts, fetchAutos } from "../redux/thunks";
 import { selectAdverts, selectAutos } from "../redux/selectors";
 import CatalogItem from "components/Catalog/CatalogItem";
 import SearchForm from "components/SearchForm/SearchForm";
@@ -9,16 +9,23 @@ import SearchForm from "components/SearchForm/SearchForm";
 import ModalLearnMore from "components/Modal/ModalLearnMore";
 
 import { Container } from "styles/Container/Container";
+// import toast from "react-hot-toast";
 
 const ITEMS_PER_PAGE = 12;
+// let make = "";
+// let resultArrayIdMileage;
 
 const Catalog = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAdverts) || [];
   const autos = useSelector(selectAutos) || [];
-  const [arrayRentalPrice, setArrayRentalPrice] = useState([]);
-  const [arrayMileageFrom, setArrayMileageFrom] = useState([]);
-  const [arrayMileageTo, setArrayMileageTo] = useState([]);
+  const [selectMake, setSelectMake] = useState([]);
+
+  const [arrayIdRentalPrice, setArrayIdRentalPrice] = useState([]);
+  const [arrayIdMileageFrom, setArrayIdMileageFrom] = useState([]);
+  const [arrayIdMileageTo, setArrayIdMileageTo] = useState([]);
+  const [inputMileageTo, setInputMileageTo] = useState(0);
+  const [inputMileageFrom, setInputMileageFrom] = useState(0);
 
   // console.log("adverts=", adverts);
   // console.log("allAdverts=", allAdverts);
@@ -36,6 +43,16 @@ const Catalog = () => {
     // dispatch(fetchAdverts());
   }, [dispatch, currentPage, reloadComponent]);
 
+  // console.log("adverts=", adverts);
+  // if (selectMake) {
+  //   make = selectMake;
+  //   // brand = selectCarBrand;
+  // }
+  useEffect(() => {
+    dispatch(fetchAutos({ make: selectMake }));
+    // eslint-disable-next-line
+  }, [dispatch, selectMake]);
+
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentItems = adverts.slice(indexOfFirstItem, indexOfLastItem);
@@ -49,98 +66,134 @@ const Catalog = () => {
   };
   const handleLearnMore = (id) => {
     setSelectedItemId(id);
-
     setModalOpen(true);
   };
 
-  // const handleRentalPriceChange = (rentalPriceSelect) => {
-  //   allAdverts.map((advert) => {
-  //     const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
+  const handleMake = (inputMake) => {
+    console.log("inputMake=", inputMake.length);
+    setSelectMake(inputMake);
+  };
 
-  //     if (rentalPriceCurrent <= rentalPriceSelect) {
-  //       arrayRentalPrice.push(advert.id);
+  // console.log("arrayMake=", make);
+  const handleRentalPrice = (
+    inputRentalPrice,
+    inputMake,
+    inputMileageFrom,
+    inputMileageTo
+  ) => {
+    console.log("inputRentalPrice=", inputRentalPrice);
 
-  //       setArrayRentalPrice(arrayRentalPrice);
-  //       return { ...advert, rentalPriceCurrent };
-  //     }
-
-  //     return null;
-  //   });
-  // };
-
-  const handleRentalPrice = (inputRentalPrice) => {
-    // console.log("inputRentalPrice=", Number(inputRentalPrice));
     // console.log("allAdverts=", allAdverts);
     // console.log("adverts=", adverts);
+
+    if (
+      inputRentalPrice &&
+      arrayIdRentalPrice.length === 0 &&
+      inputMake === undefined &&
+      inputMileageFrom === undefined &&
+      inputMileageTo === undefined
+    ) {
+      // toast.error("таких цен нет!", {
+      //   duration: 3000,
+      //   position: "top-center",
+      // });
+      setCurrentPage(1); // Установка currentPage в 1
+    }
+
     autos.map((advert) => {
       const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
-      // if (rentalPriceSelect) {
-      //     // arrayPrice.push(rentalPriceSelect);
-      //     setPrice(Number(rentalPriceSelect));
-      //   }
-      // console.log("rentalPriceCurrent=", rentalPriceCurrent);
-      if (rentalPriceCurrent <= Number(inputRentalPrice)) {
-        arrayRentalPrice.push(advert.id);
 
-        setArrayRentalPrice(arrayRentalPrice);
+      if (rentalPriceCurrent <= inputRentalPrice) {
+        arrayIdRentalPrice.push(advert.id);
+
+        setArrayIdRentalPrice(arrayIdRentalPrice);
+
         // return { ...advert, rentalPriceCurrent };
       }
-
-      return null;
+      // else if(rentalPriceCurrent > inputRentalPrice)
+      return null; //
     });
-  };
-  // console.log("arrayRentalPrice=", arrayRentalPrice);
-  // console.log("rentalPriceCurrent=", rentalPriceCurrent);
 
-  // console.log("rentalPriceCurrent=", rentalPriceCurrent);
+    // if (
+    //   inputRentalPrice &&
+    //   arrayRentalPrice.length === 0 &&
+    //   inputMake === undefined &&
+    //   inputMileageFrom === undefined &&
+    //   inputMileageTo === undefined
+    // ) {
+    //   toast.error("таких цен нет!", {
+    //     duration: 3000,
+    //     position: "top-center",
+    //   });
+    // }
 
-  // const handleMileageFrom = (inputMileageFrom) => {
-  //   console.log("inputMileageFrom=", Number(inputMileageFrom));
-  //   // console.log("allAdverts=", allAdverts);
-  //   // console.log("adverts=", adverts);
-  //   allAdverts.map((advert) => {
-  //     const mileageFromCurrent = Number(advert.mileage);
-  //     if (mileageFromCurrent >= Number(inputMileageFrom)) {
-  //       arrayMileageFrom.push(advert.id);
+    //  if (rentalPriceCurrent > inputRentalPrice) {
+    //         arrayRentalPrice.push(advert.id);
+    //         toast.error("таких цен нет!", {
+    //           duration: 3000,
+    //           position: "top-center",
+    //         });
 
-  //       setArrayMileageFrom(arrayMileageFrom);
-  //       // return { ...advert, mileageFromCurrent };
-  //     }
-  //     return null;
-  //   });
-  // };
-
-  const handleMileageFrom = (inputMileageFrom) => {
-    const arrayMileageFrom = autos
-      .filter((advert) => Number(advert.mileage) >= Number(inputMileageFrom))
-      .map((advert) => advert.id);
-
-    setArrayMileageFrom(arrayMileageFrom);
+    // return { ...advert, rentalPriceCurrent };
   };
 
-  const handleMileageTo = (inputMileageTo) => {
-    const arrayMileageTo = autos
+  //  ==============arrayIdMileageFrom===============
+
+  const handleMileageFrom = (inputMileageFrom, inputMileageTo) => {
+    console.log("inputMileageFrom=", inputMileageFrom);
+
+    setInputMileageFrom(inputMileageFrom);
+
+    if (Number(inputMileageFrom) === 0 || inputMileageFrom.length === 0) {
+      const arrayIdMileageFrom = autos.map((advert) => advert.id);
+      setArrayIdMileageFrom(arrayIdMileageFrom);
+    } else {
+      const arrayIdMileageFrom = autos
+        .filter((advert) => Number(advert.mileage) >= Number(inputMileageFrom))
+        .map((advert) => advert.id);
+      setArrayIdMileageFrom(arrayIdMileageFrom);
+    }
+  };
+  // ==============arrayIdMileageFrom===============
+
+  // ==============arrayIdMileageTo===============
+
+  const handleMileageTo = (inputMileageTo, inputMileageFrom) => {
+    console.log("inputMileageTo=", inputMileageTo);
+    setInputMileageTo(inputMileageTo);
+    const arrayIdMileageTo = autos
       .filter((advert) => Number(advert.mileage) <= Number(inputMileageTo))
       .map((advert) => advert.id);
 
-    setArrayMileageTo(arrayMileageTo);
+    setArrayIdMileageTo(arrayIdMileageTo);
   };
+  // ==============arrayIdMileageTo===============
 
-  // const handleMileageTo = (inputMileageTo) => {
-  //   allAdverts.map((advert) => {
+  // ==============resultArrayIdMileage===============
+  let resultArrayIdMileage;
+  if (arrayIdMileageTo.length === 0) {
+    resultArrayIdMileage = arrayIdMileageFrom;
+  }
 
-  //     const mileageToCurrent = Number(advert.mileage); // преобразование в число
+  if (arrayIdMileageTo) {
+    resultArrayIdMileage = arrayIdMileageFrom.filter((id) =>
+      arrayIdMileageTo.includes(id)
+    );
+  }
 
-  //     if (mileageToCurrent <= Number(inputMileageTo)) {
-  //       arrayMileageTo.push(advert.id);
-  //       setArrayMileageTo(arrayMileageTo);
-  //       // return { ...advert, mileageToCurrent };
-  //     }
-  //     return null;
-  //   });
-  // };
-  console.log("arrayMileageTo=", arrayMileageTo);
-  console.log("arrayMileageFrom=", arrayMileageFrom);
+  if (arrayIdMileageFrom.length === 0) {
+    resultArrayIdMileage = arrayIdMileageTo;
+  }
+  console.log(inputMileageFrom, inputMileageTo, resultArrayIdMileage);
+  // ==============resultArrayIdMileage===============
+
+  console.log("selectMake=", selectMake);
+  console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
+  console.log("arrayMileageTo=", arrayIdMileageTo);
+  console.log("arrayMileageFrom=", arrayIdMileageFrom);
+
+  console.log("resultArrayIdMileage=", resultArrayIdMileage);
+
   const handleReloadComponent = () => {
     setReloadComponent((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
     setCurrentPage(1); // Сбрасываем текущую страницу на первую
@@ -150,11 +203,12 @@ const Catalog = () => {
   return (
     <Container>
       <SearchForm
+        handleMake={handleMake}
         handleRentalPrice={handleRentalPrice}
         // передаємо значення импутів з SearchForm у CatalogPage
         handleMileageFrom={handleMileageFrom} // передаємо значення импутів з SearchForm у CatalogPage
         handleMileageTo={handleMileageTo} // передаємо значення импутів з SearchForm у CatalogPage
-        arrayRentalPrice={arrayRentalPrice}
+        arrayRentalPrice={arrayIdRentalPrice}
       />
 
       <CatalogItem
@@ -163,9 +217,9 @@ const Catalog = () => {
         handleLearnMore={handleLearnMore}
         handleReloadComponent={handleReloadComponent}
         currentPage={currentPage}
-        arrayRentalPrice={arrayRentalPrice}
-        arrayMileageTo={arrayMileageTo}
-        arrayMileageFrom={arrayMileageFrom}
+        arrayRentalPrice={arrayIdRentalPrice}
+        arrayMileageTo={arrayIdMileageTo}
+        arrayMileageFrom={arrayIdMileageFrom}
       />
       {/* {currentItems.length === 0 &&
         toast.error("Nothing found based on your search criteria")} */}

@@ -2,14 +2,15 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://65b95a82b71048505a8ab881.mockapi.io/api';
 
-export const getAdverts = async page => {
+export const getAdverts = async (page, make) => {
   const url = new URL('/adverts', axios.defaults.baseURL);
-
-  url.searchParams.append('page', page);
+  if (page) {
+    url.searchParams.append('page', page);
+  }
   url.searchParams.append('limit', 12);
-  // if (make) {
-  //   url.searchParams.append('make', make);
-  // }
+  if (make) {
+    url.searchParams.append('make', make);
+  }
   // if (rentalPrice) {
   //   url.searchParams.append('rentalPrice', rentalPrice);
   // }
@@ -47,11 +48,14 @@ export const getFavorites = async (page, make) => {
   }
 };
 
-export const getAutos = async make => {
+export const getAutos = async (page, make) => {
   const url = new URL('/adverts', axios.defaults.baseURL);
 
+  if (page) {
+    url.searchParams.append('page', page);
+  }
   // url.searchParams.append('page', page);
-  url.searchParams.append('limit', 12);
+  // url.searchParams.append('limit', 12);
   if (make) {
     url.searchParams.append('make', make);
   }

@@ -24,7 +24,7 @@ import {
 import substringsToCheck from "./substringsToCheck";
 import sprite from "../../image/sprite.svg";
 import { useSelector } from "react-redux";
-import { selectFavorites } from "../../redux/selectors";
+import { selectAutos } from "../../redux/selectors";
 // const array = [9582, 9590, 9597, 9583];
 const ITEMS_PER_PAGE = 12;
 const CatalogItem = ({
@@ -41,7 +41,7 @@ const CatalogItem = ({
     JSON.parse(localStorage.getItem("favorites")) || []
   );
   // const adverts = useSelector(selectAdverts) || [];
-  const allAdverts = useSelector(selectFavorites) || [];
+  const autos = useSelector(selectAutos) || [];
   const toggleFavorites = (id) => {
     const updatedFavorites = favorites.includes(id)
       ? favorites.filter((favoriteId) => favoriteId !== id)
@@ -54,15 +54,13 @@ const CatalogItem = ({
   //  console.log("arrayRentalPrice=", arrayRentalPrice);
 
   // console.log("arrayMileageFrom=", arrayMileageFrom);
-  // console.log("arrayMileageTo=", arrayMileageTo);
+  // console.log("adverts=", adverts);
 
   return (
     <Container>
       <div className="div-cards-list">
         <CardList className="cards-list">
-          {arrayRentalPrice.length === 0 &&
-          arrayMileageFrom.length === 0 &&
-          arrayMileageTo.length === 0
+          {adverts
             ? adverts.map((cart, index) => (
                 <CardItem
                   key={index}
@@ -188,7 +186,7 @@ const CatalogItem = ({
                 </CardItem>
               ))
             : // : currentItems
-              allAdverts
+              autos
 
                 .filter(
                   (cart) =>
