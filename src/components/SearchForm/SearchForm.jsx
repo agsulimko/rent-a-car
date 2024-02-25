@@ -12,10 +12,11 @@ import {
   ButtonReset,
 } from "components/SearchForm/SearchForm.styled";
 import makes from "components/makes.js";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAdverts, fetchAutos } from "../../redux/thunks";
+import { useSelector } from "react-redux";
+// import { fetchAdverts, fetchAutos } from "../../redux/thunks";
 import toast from "react-hot-toast";
 import { selectAdverts } from "../../redux/selectors";
+import { fetchAdverts } from "../../redux/thunks";
 
 const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
@@ -25,9 +26,9 @@ const SearchForm = ({
   handleMileageFrom,
   handleMileageTo,
   handleResetArrays,
+  handleReloadAdverts,
+  handleReloadComponent,
 }) => {
-  const dispatch = useDispatch();
-
   const [selectMake, setSelectMake] = useState("");
   const [selectRentalPrice, setSelectRentalPrice] = useState("");
   const [selectMileageFrom, setSelectMileageFrom] = useState("");
@@ -60,10 +61,10 @@ const SearchForm = ({
     // let mileageFrom = "";
     // let mileageTo = "";
     // let make = "";
-    // if (selectMake) {
-    //   make = selectMake;
-
-    // }
+    if (selectMake) {
+      //   make = selectMake;
+      console.log("selectMake=", selectMake);
+    }
     // if (selectRentalPrice) {
     //   rentalPrice = selectRentalPrice;
     // }
@@ -74,11 +75,12 @@ const SearchForm = ({
     //   mileageTo = selectMileageTo;
     //   // console.log(rentalPrice);
     // }
-    // console.log("arrayPrice=", price);
+    // console.log("selectMileageFrom=", selectMileageFrom);
     if (
       !selectMake &&
       !selectRentalPrice &&
       !selectMileageFrom &&
+      selectMileageFrom !== 0 &&
       !selectMileageTo
     ) {
       toast.error("Nothing found, please make a new request!!!!!", {
@@ -86,8 +88,17 @@ const SearchForm = ({
         position: "top-center",
       });
 
-      dispatch(fetchAdverts({ page: 1 }));
-      //   return;
+      // dispatch(fetchAdverts({ page: 1 }));
+      // dispatch(
+      //   fetchAutos({
+      //     page: 1,
+      //     make: selectMake,
+      //     // brand: brand,
+      //     // rentalPrice: rentalPrice,
+      //     // mileageFrom: mileageFrom,
+      //     // mileageTo: mileageTo,
+      //   })
+      // );
     }
 
     // if (!selectMake && arrayRentalPrice.length === 0) {
@@ -96,16 +107,16 @@ const SearchForm = ({
     //     position: "top-center",
     //   });
     // }
-    dispatch(
-      fetchAutos({
-        page: 1,
-        make: selectMake,
-        // brand: brand,
-        // rentalPrice: rentalPrice,
-        // mileageFrom: mileageFrom,
-        // mileageTo: mileageTo,
-      })
-    );
+    // dispatch(
+    //   fetchAutos({
+    //     page: 1,
+    //     make: selectMake,
+    //     // brand: brand,
+    //     // rentalPrice: rentalPrice,
+    //     // mileageFrom: mileageFrom,
+    //     // mileageTo: mileageTo,
+    //   })
+    // );
 
     // Сброс значений полей ввода
     // setSelectMake("");
@@ -125,7 +136,7 @@ const SearchForm = ({
     const make = event.target.value;
     // setSelectCarBrand(make);
     setSelectMake(make);
-    console.log("make=", make);
+    console.log("ADDmake=", make);
     // handleMake(make);
   };
 
@@ -133,7 +144,7 @@ const SearchForm = ({
     // setValue(event.target.value);
     const rentalPrice = Number(event.target.value);
     setSelectRentalPrice(rentalPrice);
-    console.log("rentalPrice=", rentalPrice);
+    // console.log("rentalPrice=", rentalPrice);
     // handleRentalPrice(rentalPrice);
   };
   const handleMileageFromInput = (event) => {
@@ -141,7 +152,7 @@ const SearchForm = ({
     const mileageFrom = Number(event.target.value);
 
     setSelectMileageFrom(mileageFrom);
-    console.log("mileageFrom=", mileageFrom);
+    // console.log("mileageFrom=", mileageFrom);
     // handleMileageFrom(mileageFrom);
   };
 
@@ -149,7 +160,7 @@ const SearchForm = ({
     // setValue(event.target.value);
     const mileageTo = Number(event.target.value);
     setSelectMileageTo(mileageTo);
-    console.log("mileageTo=", mileageTo);
+    // console.log("mileageTo=", mileageTo);
     // handleMileageTo(mileageTo);
   };
 
@@ -160,16 +171,30 @@ const SearchForm = ({
     // Функция для сброса всех выбранных фильтров
     // document.myform.reset();
     setSelectMake("");
+    console.log("RESETselectMake=", selectMake);
     setSelectRentalPrice("");
     setSelectMileageFrom("");
     setSelectMileageTo("");
-    console.log("selectRentalPrice=", selectRentalPrice);
-    console.log("selectMake=", selectMake);
-    console.log("selectMileageFrom=", selectMileageFrom);
-    console.log("selectMileageTo=", selectMileageTo);
+    handleReloadAdverts();
+    handleReloadComponent();
+    fetchAdverts({ page: 1 });
 
-    dispatch(fetchAutos({ page: 1 })); // Fetch adverts with reset filters
+    // console.log("selectRentalPrice=", selectRentalPrice);
+    // console.log("selectMake=", selectMake);
+    // console.log("selectMileageFrom=", selectMileageFrom);
+    // console.log("selectMileageTo=", selectMileageTo);
+
+    // Fetch adverts with reset filters
     // window.location.reload(); // Reload the page
+    // dispatch(
+    // fetchAutos({
+    //   page: 1,
+    //   // make: selectMake,
+    //   // brand: brand,
+    //   // rentalPrice: rentalPrice,
+    //   // mileageFrom: mileageFrom,
+    //   // mileageTo: mileageTo,
+    // });
   };
 
   return (

@@ -31,11 +31,15 @@ const CatalogItem = ({
   arrayRentalPrice,
   arrayMileageFrom,
   arrayMileageTo,
+  selectMake,
+  selectMileageFrom,
+  selectMileageTo,
   adverts,
   handleLoadMore,
   handleLearnMore,
   handleReloadComponent,
   currentPage,
+  handleResetSelects,
 }) => {
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
@@ -55,12 +59,16 @@ const CatalogItem = ({
 
   // console.log("arrayMileageFrom=", arrayMileageFrom);
   // console.log("adverts=", adverts);
-
+  //  selectMake.length === 0
+  // !arrayRentalPrice.length
   return (
     <Container>
       <div className="div-cards-list">
         <CardList className="cards-list">
-          {!adverts
+          {!arrayRentalPrice.length &&
+          !arrayMileageFrom.length &&
+          !arrayMileageTo.length &&
+          !selectMake
             ? adverts.map((cart, index) => (
                 <CardItem
                   key={index}

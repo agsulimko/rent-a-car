@@ -19,8 +19,8 @@ const Catalog = (handleResetArrays) => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAdverts) || [];
   const autos = useSelector(selectAutos) || [];
-  const [selectMake, setSelectMake] = useState("");
 
+  const [selectMake, setSelectMake] = useState("");
   const [arrayIdRentalPrice, setArrayIdRentalPrice] = useState([]);
   const [arrayIdMileageFrom, setArrayIdMileageFrom] = useState([]);
   const [arrayIdMileageTo, setArrayIdMileageTo] = useState([]);
@@ -70,8 +70,21 @@ const Catalog = (handleResetArrays) => {
   };
 
   const handleMake = (inputMake) => {
-    console.log("inputMake=", inputMake.length);
-    setSelectMake(inputMake);
+    inputMake.length === 0 ? setSelectMake([]) : setSelectMake(inputMake);
+
+    // inputRentalPrice &&
+    // arrayIdRentalPrice.length === 0 &&
+
+    // inputMileageFrom === undefined &&
+    // inputMileageTo === undefined
+
+    // toast.error("таких цен нет!", {
+    //   duration: 3000,
+    //   position: "top-center",
+    // });
+    // Установка currentPage в 1
+
+    // console.log("inputMake=", inputMake.length);
   };
 
   // console.log("arrayMake=", make);
@@ -81,23 +94,23 @@ const Catalog = (handleResetArrays) => {
     inputMileageFrom,
     inputMileageTo
   ) => {
-    console.log("inputRentalPrice=", inputRentalPrice);
+    // console.log("inputRentalPrice=", inputRentalPrice);
 
     // console.log("allAdverts=", allAdverts);
     // console.log("adverts=", adverts);
 
     if (
-      inputRentalPrice &&
-      arrayIdRentalPrice.length === 0 &&
-      inputMake === undefined &&
-      inputMileageFrom === undefined &&
-      inputMileageTo === undefined
+      // inputRentalPrice &&
+      // arrayIdRentalPrice.length === 0 &&
+      inputMake === 0
+      // inputMileageFrom === undefined &&
+      // inputMileageTo === undefined
     ) {
       // toast.error("таких цен нет!", {
       //   duration: 3000,
       //   position: "top-center",
       // });
-      setCurrentPage(1); // Установка currentPage в 1
+      // setCurrentPage(1); // Установка currentPage в 1
     }
 
     autos.map((advert) => {
@@ -140,16 +153,25 @@ const Catalog = (handleResetArrays) => {
   //  ==============arrayIdMileageFrom===============
 
   const handleMileageFrom = (inputMileageFrom, inputMileageTo) => {
-    console.log("inputMileageFrom=", inputMileageFrom);
+    // console.log("inputMileageFrom=", inputMileageFrom);
 
     setInputMileageFrom(inputMileageFrom);
+    // if (Number(inputMileageFrom) === 0 || inputMileageFrom.length === 0) {
+    //       const arrayIdMileageFrom = autos.map((advert) => advert.id);
+    //       setArrayIdMileageFrom(arrayIdMileageFrom);
+    //     }
 
-    if (Number(inputMileageFrom) === 0 || inputMileageFrom.length === 0) {
-      const arrayIdMileageFrom = autos.map((advert) => advert.id);
-      setArrayIdMileageFrom(arrayIdMileageFrom);
-    } else {
+    if (inputMileageFrom.length === 0) {
+      // const arrayIdMileageFrom = autos.map((advert) => advert.id);
+      setArrayIdMileageFrom([]);
+    }
+    // if (Number(inputMileageFrom) === 0 || inputMileageFrom.length !== 0) {
+    //   const arrayIdMileageFrom = autos.map((advert) => advert.id);
+    //   setArrayIdMileageFrom(arrayIdMileageFrom);
+    // }
+    else {
       const arrayIdMileageFrom = autos
-        .filter((advert) => Number(advert.mileage) >= Number(inputMileageFrom))
+        .filter((advert) => Number(advert.mileage) >= inputMileageFrom)
         .map((advert) => advert.id);
       setArrayIdMileageFrom(arrayIdMileageFrom);
     }
@@ -159,46 +181,60 @@ const Catalog = (handleResetArrays) => {
   // ==============arrayIdMileageTo===============
 
   const handleMileageTo = (inputMileageTo, inputMileageFrom) => {
-    console.log("inputMileageTo=", inputMileageTo);
+    // console.log("inputMileageTo=", inputMileageTo);
+
     setInputMileageTo(inputMileageTo);
     const arrayIdMileageTo = autos
-      .filter((advert) => Number(advert.mileage) <= Number(inputMileageTo))
+      .filter((advert) => Number(advert.mileage) <= inputMileageTo)
       .map((advert) => advert.id);
 
-    setArrayIdMileageTo(arrayIdMileageTo);
+    arrayIdMileageTo
+      ? setArrayIdMileageTo(arrayIdMileageTo)
+      : setArrayIdMileageTo([]);
   };
 
   // ==============arrayIdMileageTo===============
 
   // ==============resultArrayIdMileage===============
-  let resultArrayIdMileage;
-  if (arrayIdMileageTo.length === 0) {
-    resultArrayIdMileage = arrayIdMileageFrom;
-  }
 
-  if (arrayIdMileageTo) {
-    resultArrayIdMileage = arrayIdMileageFrom.filter((id) =>
-      arrayIdMileageTo.includes(id)
-    );
-  }
+  // let resultArrayIdMileage = [];
+  // if (arrayIdMileageTo.length === 0) {
+  //   resultArrayIdMileage = arrayIdMileageFrom;
+  // }
 
-  if (arrayIdMileageFrom.length === 0) {
-    resultArrayIdMileage = arrayIdMileageTo;
-  }
-  console.log(inputMileageFrom, inputMileageTo, resultArrayIdMileage);
+  // if (arrayIdMileageTo && arrayIdMileageFrom.length === 0) {
+  //   resultArrayIdMileage = arrayIdMileageFrom.filter((id) =>
+  //     arrayIdMileageTo.includes(id)
+  //   );
+  // }
+
+  // if (arrayIdMileageFrom.length === 0) {
+  //   resultArrayIdMileage = arrayIdMileageTo;
+  // }
+  // if (arrayIdMileageFrom) {
+  //   resultArrayIdMileage = arrayIdMileageFrom;
+  // }
+
+  // console.log("from=", inputMileageFrom, "To=", inputMileageTo);
+  // console.log(resultArrayIdMileage);
   // ==============resultArrayIdMileage===============
   handleResetArrays = () => {
     setArrayIdRentalPrice([]);
     setArrayIdMileageTo([]);
     setArrayIdMileageFrom([]);
+    handleReloadAdverts();
+    handleReloadComponent();
   };
 
-  console.log("selectMake=", selectMake);
-  console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
-  console.log("arrayMileageTo=", arrayIdMileageTo);
-  console.log("arrayMileageFrom=", arrayIdMileageFrom);
+  // console.log("selectMake=", selectMake);
+  // console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
+  // console.log("arrayMileageTo=", arrayIdMileageTo);
+  // console.log("arrayMileageFrom=", arrayIdMileageFrom);
 
-  console.log("resultArrayIdMileage=", resultArrayIdMileage);
+  // console.log("resultArrayIdMileage=", resultArrayIdMileage);
+  const handleReloadAdverts = () => {
+    dispatch(fetchAdverts({ page: 1 }));
+  };
 
   const handleReloadComponent = () => {
     setReloadComponent((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
@@ -216,6 +252,8 @@ const Catalog = (handleResetArrays) => {
         handleMileageTo={handleMileageTo} // передаємо значення импутів з SearchForm у CatalogPage
         arrayRentalPrice={arrayIdRentalPrice}
         handleResetArrays={handleResetArrays}
+        handleReloadAdverts={handleReloadAdverts}
+        handleReloadComponent={handleReloadComponent}
       />
 
       <CatalogItem
@@ -227,6 +265,9 @@ const Catalog = (handleResetArrays) => {
         arrayRentalPrice={arrayIdRentalPrice}
         arrayMileageTo={arrayIdMileageTo}
         arrayMileageFrom={arrayIdMileageFrom}
+        selectMake={selectMake}
+        selectMileageFrom={inputMileageFrom}
+        selectMileageTo={inputMileageTo}
       />
       {/* {currentItems.length === 0 &&
         toast.error("Nothing found based on your search criteria")} */}
