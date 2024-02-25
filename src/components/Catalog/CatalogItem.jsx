@@ -60,7 +60,7 @@ const CatalogItem = ({
     <Container>
       <div className="div-cards-list">
         <CardList className="cards-list">
-          {adverts
+          {!adverts
             ? adverts.map((cart, index) => (
                 <CardItem
                   key={index}

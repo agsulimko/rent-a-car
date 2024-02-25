@@ -1,4 +1,4 @@
-// Catalog.jsx
+// CatalogPage.jsx
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdverts, fetchAutos } from "../redux/thunks";
@@ -15,11 +15,11 @@ const ITEMS_PER_PAGE = 12;
 // let make = "";
 // let resultArrayIdMileage;
 
-const Catalog = () => {
+const Catalog = (handleResetArrays) => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAdverts) || [];
   const autos = useSelector(selectAutos) || [];
-  const [selectMake, setSelectMake] = useState([]);
+  const [selectMake, setSelectMake] = useState("");
 
   const [arrayIdRentalPrice, setArrayIdRentalPrice] = useState([]);
   const [arrayIdMileageFrom, setArrayIdMileageFrom] = useState([]);
@@ -167,6 +167,7 @@ const Catalog = () => {
 
     setArrayIdMileageTo(arrayIdMileageTo);
   };
+
   // ==============arrayIdMileageTo===============
 
   // ==============resultArrayIdMileage===============
@@ -186,6 +187,11 @@ const Catalog = () => {
   }
   console.log(inputMileageFrom, inputMileageTo, resultArrayIdMileage);
   // ==============resultArrayIdMileage===============
+  handleResetArrays = () => {
+    setArrayIdRentalPrice([]);
+    setArrayIdMileageTo([]);
+    setArrayIdMileageFrom([]);
+  };
 
   console.log("selectMake=", selectMake);
   console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
@@ -209,6 +215,7 @@ const Catalog = () => {
         handleMileageFrom={handleMileageFrom} // передаємо значення импутів з SearchForm у CatalogPage
         handleMileageTo={handleMileageTo} // передаємо значення импутів з SearchForm у CatalogPage
         arrayRentalPrice={arrayIdRentalPrice}
+        handleResetArrays={handleResetArrays}
       />
 
       <CatalogItem

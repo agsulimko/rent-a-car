@@ -24,8 +24,7 @@ const SearchForm = ({
   handleRentalPrice,
   handleMileageFrom,
   handleMileageTo,
-  // handleBrandChange,
-  arrayRentalPrice,
+  handleResetArrays,
 }) => {
   const dispatch = useDispatch();
 
@@ -153,8 +152,10 @@ const SearchForm = ({
     console.log("mileageTo=", mileageTo);
     // handleMileageTo(mileageTo);
   };
-  const handleResetFilters = (e) => {
+
+  const handleResetSelects = (e) => {
     e.preventDefault();
+    handleResetArrays();
     // setValue("");
     // Функция для сброса всех выбранных фильтров
     // document.myform.reset();
@@ -267,7 +268,13 @@ const SearchForm = ({
         Search
       </ButtonSearch>
 
-      <ButtonReset className="btn" type="button" onClick={handleResetFilters}>
+      <ButtonReset
+        className="btn"
+        type="button"
+        onClick={(e) => {
+          handleResetSelects(e);
+        }}
+      >
         Reset Filters
       </ButtonReset>
     </Form>
