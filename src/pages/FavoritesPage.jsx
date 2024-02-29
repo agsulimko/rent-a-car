@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectAdverts } from "../redux/selectors";
+import { selectFavorites } from "../redux/selectors";
 
 import { fetchFavorites } from "../redux/thunks";
 import { Container } from "styles/Container/Container";
@@ -11,6 +11,7 @@ import SearchForm from "components/SearchForm/SearchForm";
 import ModalLearnMore from "components/Modal/ModalLearnMore";
 
 const ITEMS_PER_PAGE = 12;
+// let make = "";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const Favorites = () => {
     false
   );
 
-  const adverts = useSelector(selectAdverts);
+  const adverts = useSelector(selectFavorites);
   console.log("adverts=", adverts);
 
   useEffect(() => {
