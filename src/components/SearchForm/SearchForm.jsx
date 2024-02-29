@@ -11,12 +11,12 @@ import {
   ButtonSearch,
   ButtonReset,
 } from "components/SearchForm/SearchForm.styled";
+
 import makes from "components/makes.js";
 import { useSelector } from "react-redux";
-// import { fetchAdverts, fetchAutos } from "../../redux/thunks";
+
 import toast from "react-hot-toast";
-import { selectAdverts } from "../../redux/selectors";
-import { fetchAdverts } from "../../redux/thunks";
+import { selectAdverts} from "../../redux/selectors";
 
 const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
@@ -26,8 +26,8 @@ const SearchForm = ({
   handleMileageFrom,
   handleMileageTo,
   handleResetArrays,
-  handleReloadAdverts,
-  handleReloadComponent,
+  handleResetRentalPrice,
+  arrayIdRentalPrice,
 }) => {
   const [selectMake, setSelectMake] = useState("");
   const [selectRentalPrice, setSelectRentalPrice] = useState("");
@@ -35,168 +35,148 @@ const SearchForm = ({
   const [selectMileageTo, setSelectMileageTo] = useState("");
 
   const adverts = useSelector(selectAdverts) || [];
-  // const [value, setValue] = useState("");
-  // const [make, setMake] = useState("");
-  // const [rentalPrice, setRentalPrice] = useState("");
-  // const [mileageFrom, setMileageFrom] = useState("");
-  // const [mileageTo, setMileageTo] = useState("");
-
-  const handleSearch = (event, adverts) => {
+//  const autos = useSelector(selectAutos) || [];
+// const flag= [];
+  const handleSearch = (event) => {
     event.preventDefault();
+//     const flag= [];
+//     // handleResetArrays();
+//  autos.forEach(element => {
+//   // selectMake.includes(element.make);
+// if (selectMake.includes(element.make)){
+// flag.push(element.id);
+// return;
+// }
+
+  
+  
+ 
+//  });
+
+    
+//     console.log("autos=",autos);
+//     console.log("selectMake=",selectMake);
+
+//     console.log("flag=",flag);
+//    if ( 
+//        flag.length===0
+
+
+//      ) { toast.error(`${selectMake} - there is no such car brand!, please make a new request!   `, {
+//       duration: 3000,
+//       position: "top-center",
+//     });
+//     // setSelectMake('');
+// //     // handleResetSelects();
+      
+//       } 
+      // else 
+    
+    
+    // handleResetRentalPrice([]);
     handleMake(selectMake);
     handleRentalPrice(selectRentalPrice);
     handleMileageFrom(selectMileageFrom, selectMileageTo);
     handleMileageTo(selectMileageTo, selectMileageFrom);
-    // setSelectRentalPrice("");
-    // setSelectMileageFrom("");
-    // setSelectMileageTo("");
-    // setSelectMake("");
-    // console.log(selectRentalPrice);
+    setSelectRentalPrice('');
+    // setSelectMake('');
+   
 
-    // const filter = selectCarBrand;
-    // const price = "$" + selectRentalPrice;
-    // let make = "";
-    // let brand = "";
-    // let rentalPrice = "";
-    // let mileageFrom = "";
-    // let mileageTo = "";
-    // let make = "";
-    if (selectMake) {
-      //   make = selectMake;
-      console.log("selectMake=", selectMake);
-    }
-    // if (selectRentalPrice) {
-    //   rentalPrice = selectRentalPrice;
-    // }
-    // if (selectMileageFrom) {
-    //   mileageFrom = selectMileageFrom;
-    // }
-    // if (selectMileageTo) {
-    //   mileageTo = selectMileageTo;
-    //   // console.log(rentalPrice);
-    // }
-    // console.log("selectMileageFrom=", selectMileageFrom);
     if (
       !selectMake &&
       !selectRentalPrice &&
       !selectMileageFrom &&
-      selectMileageFrom !== 0 &&
+      !selectMileageFrom &&
       !selectMileageTo
     ) {
-      toast.error("Nothing found, please make a new request!!!!!", {
+      toast.error("Nothing found, please make a new request!", {
         duration: 3000,
         position: "top-center",
       });
+      return;
+    
+ } 
+   
 
-      // dispatch(fetchAdverts({ page: 1 }));
-      // dispatch(
-      //   fetchAutos({
-      //     page: 1,
-      //     make: selectMake,
-      //     // brand: brand,
-      //     // rentalPrice: rentalPrice,
-      //     // mileageFrom: mileageFrom,
-      //     // mileageTo: mileageTo,
-      //   })
-      // );
+
+    //  else if (
+    //   //  !selectRentalPrice &&
+    //   !selectMileageFrom &&
+    //   !selectMileageTo &&
+    //   !selectMake &&
+    //   arrayIdRentalPrice.length === 0
+    // ) {
+    //   toast.error("There is no such rental price, choose a different price!", {
+    //     duration: 3000,
+    //     position: "top-center",
+    //   });
+    //   return;
+    //  }
+ else if (Number(selectMileageFrom) > Number(selectMileageTo)) {
+      toast.error("From must be less than TO,choose other mileage values!", {
+        duration: 3000,
+        position: "top-center",
+      });
+      return;
+      
     }
 
-    // if (!selectMake && arrayRentalPrice.length === 0) {
+    // if (selectRentalPrice && arrayRentalPrice.length === 0) {
     //   toast.error("Nothing found, please make a new request", {
     //     duration: 3000,
     //     position: "top-center",
     //   });
     // }
-    // dispatch(
-    //   fetchAutos({
-    //     page: 1,
-    //     make: selectMake,
-    //     // brand: brand,
-    //     // rentalPrice: rentalPrice,
-    //     // mileageFrom: mileageFrom,
-    //     // mileageTo: mileageTo,
-    //   })
-    // );
 
-    // Сброс значений полей ввода
-    // setSelectMake("");
-    // setSelectRentalPrice("");
-    // setSelectMileageFrom("");
-    // setSelectMileageTo("");
-
-    // Вызов функций обработчиков для передачи начальных значений
-    // handleMake("");
-    // handleRentalPrice("");
-    // handleMileageFrom("");
-    // handleMileageTo("");
+   
   };
 
   const handleMakeInput = (event) => {
-    // setValue(event.target.value);
     const make = event.target.value;
-    // setSelectCarBrand(make);
+
     setSelectMake(make);
     console.log("ADDmake=", make);
     // handleMake(make);
   };
 
   const handleRentalPriceInput = (event) => {
-    // setValue(event.target.value);
     const rentalPrice = Number(event.target.value);
     setSelectRentalPrice(rentalPrice);
-    // console.log("rentalPrice=", rentalPrice);
+
     // handleRentalPrice(rentalPrice);
   };
   const handleMileageFromInput = (event) => {
-    // setValue(event.target.value);
     const mileageFrom = Number(event.target.value);
 
     setSelectMileageFrom(mileageFrom);
-    // console.log("mileageFrom=", mileageFrom);
+
     // handleMileageFrom(mileageFrom);
   };
 
   const handleMileageToInput = (event) => {
-    // setValue(event.target.value);
     const mileageTo = Number(event.target.value);
     setSelectMileageTo(mileageTo);
-    // console.log("mileageTo=", mileageTo);
+
     // handleMileageTo(mileageTo);
   };
 
   const handleResetSelects = (e) => {
     e.preventDefault();
     handleResetArrays();
-    // setValue("");
+    handleMake("");
+    handleRentalPrice("");
+    handleMileageFrom("");
+    handleMileageTo("");
+
     // Функция для сброса всех выбранных фильтров
     // document.myform.reset();
     setSelectMake("");
-    console.log("RESETselectMake=", selectMake);
+
     setSelectRentalPrice("");
     setSelectMileageFrom("");
     setSelectMileageTo("");
-    handleReloadAdverts();
-    handleReloadComponent();
-    fetchAdverts({ page: 1 });
-
-    // console.log("selectRentalPrice=", selectRentalPrice);
-    // console.log("selectMake=", selectMake);
-    // console.log("selectMileageFrom=", selectMileageFrom);
-    // console.log("selectMileageTo=", selectMileageTo);
-
-    // Fetch adverts with reset filters
-    // window.location.reload(); // Reload the page
-    // dispatch(
-    // fetchAutos({
-    //   page: 1,
-    //   // make: selectMake,
-    //   // brand: brand,
-    //   // rentalPrice: rentalPrice,
-    //   // mileageFrom: mileageFrom,
-    //   // mileageTo: mileageTo,
-    // });
   };
-
+ 
   return (
     <Form className="form">
       <Label className="label">
@@ -228,7 +208,7 @@ const SearchForm = ({
       <Label className="label">
         Price/1 day
         <SelectPrice
-          type="text"
+          type="number"
           name="Price/1 hour"
           placeholder="To $"
           className="input-SelectPrice-rentalPrice"
@@ -251,7 +231,8 @@ const SearchForm = ({
         <Label className="label">
           Car mileage / km
           <SelectMileageFrom
-            type="text"
+            type="number"
+            pattern="[0-9]*"
             name="Car mileage / km"
             placeholder="From"
             className="input-mileage-From"
@@ -264,12 +245,15 @@ const SearchForm = ({
             value={selectMileageFrom}
             onChange={(e) => {
               handleMileageFromInput(e);
+              // обновляем значение min для SelectMileageTo
             }}
           />
         </Label>
+
         <Label className="label">
           <SelectMileageTo
-            type="text"
+            type="number"
+            pattern="[0-9]*"
             name="Car mileage / km"
             placeholder="To"
             className="input-mileage-To"
