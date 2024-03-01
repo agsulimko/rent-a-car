@@ -73,12 +73,12 @@ const SearchForm = ({
       // else 
     
     
-    // handleResetRentalPrice([]);
+     handleResetRentalPrice('');
     handleMake(selectMake);
     handleRentalPrice(selectRentalPrice);
     handleMileageFrom(selectMileageFrom, selectMileageTo);
     handleMileageTo(selectMileageTo, selectMileageFrom);
-    setSelectRentalPrice('');
+    // setSelectRentalPrice('');
     // setSelectMake('');
    
 
