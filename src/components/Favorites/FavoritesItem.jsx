@@ -38,7 +38,7 @@ const FavoritesItem = ({
   favoriteAdverts,
   handleLearnMore,
   handleReloadComponentFavorites,
-
+  handleLoadMore,
   currentPageFavorites,
 }) => {
   const handleToUp = () => {
@@ -188,7 +188,7 @@ const FavoritesItem = ({
             <ButtonLoadMore
               type="button"
               className="cards-item-btn"
-              onClick={() => handlePageChange(currentPage + 1)}
+              onClick={() => handlePageChange(currentPageFavorites + 1)}
             >
               Load more ⇊
             </ButtonLoadMore>

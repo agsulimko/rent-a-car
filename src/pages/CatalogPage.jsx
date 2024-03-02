@@ -12,6 +12,7 @@ import { Container } from "styles/Container/Container";
 // import toast from "react-hot-toast";
 
 const ITEMS_PER_PAGE = 12;
+
 // let make = "";
 // let resultArrayIdMileage;
 // const updatedArray = [];
@@ -22,7 +23,7 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
 
   const [selectMake, setSelectMake] = useState("");
   //  const [arrayIdMake, setArrayIdMake] = useState([]);
-  const [arrayIdRentalPrice, setArrayIdRentalPrice] = useState([]);
+  let [arrayIdRentalPrice, setArrayIdRentalPrice] = useState([]);
   const [arrayIdMileageFrom, setArrayIdMileageFrom] = useState([]);
   const [arrayIdMileageTo, setArrayIdMileageTo] = useState([]);
   const [inputMileageTo, setInputMileageTo] = useState(0);
@@ -34,12 +35,22 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   const [currentPage, setCurrentPage] = useState(
     parseInt(localStorage.getItem("currentPage"), 10) || 1
   );
+  const [currentPageAutos, setCurrentPageAutos] = useState(
+    parseInt(localStorage.getItem("currentPageAutos"), 10) || 1
+  );
+
+
 
   const [selectedItemId, setSelectedItemId] = useState(null);
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [reloadComponent, setReloadComponent] = useState(false);
+  const [reloadComponentAutos, setReloadComponentAutos] = useState(
+    false
+  );
 
+
+ 
   useEffect(() => {
     dispatch(fetchAdverts({ page: currentPage }));
   }, [dispatch, currentPage, reloadComponent]);
@@ -47,12 +58,55 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   useEffect(() => {
     dispatch(fetchAutos({ make: selectMake }));
     // eslint-disable-next-line
-  }, [dispatch, selectMake]);
+  }, [dispatch, selectMake, currentPageAutos, reloadComponentAutos]);
+
+  const indexOfLastItemAutos = currentPageAutos * ITEMS_PER_PAGE;
+  const indexOfFirstItemAutos = indexOfLastItemAutos - ITEMS_PER_PAGE;
+  const currentItemsAuto = autos.slice(indexOfFirstItemAutos, indexOfLastItemAutos);
+
+
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentItems = adverts.slice(indexOfFirstItem, indexOfLastItem);
-  const array = [];
+
+  // const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  // const currentFavoriteAdverts = favoriteAdverts.slice(
+  //   indexOfFirstItem,
+  //   indexOfLastItem
+  // );
+
+
+
+ 
+  const handlePageChangeAutos = (newPage) => {
+    // setCurrentPage(newPage);
+    setCurrentPageAutos(newPage);
+    localStorage.setItem("currentPageAutos", newPage);
+  };
+
+ 
+  
+  const resetCurrentPageAutos = () => {
+    setCurrentPageAutos(1);
+    localStorage.setItem("currentPageAutos", 1);
+  };
+
+  useEffect(() => {
+    resetCurrentPageAutos();
+  }, []);
+
+
+  const handleLoadMoreAutos = () => {
+    setCurrentPageAutos((prevPage) => {
+      const nextPage = prevPage + 1;
+
+      setCurrentPageAutos(nextPage);
+      localStorage.setItem("currentPageAutos", nextPage);
+      return nextPage;
+    });
+    
+  };
   const handleLoadMore = () => {
     setCurrentPage((prevPage) => {
       const nextPage = prevPage + 1;
@@ -66,24 +120,11 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   };
 
   const handleMake = (inputMake) => {
-    console.log("iinputMake=", inputMake);
+    // console.log("iinputMake=", inputMake);
    setSelectMake(inputMake);
 
 
-    // autos.forEach((advert) => {
-     
-  
-    //   if (advert.make === inputMake) {
-    //     updatedArray.push(advert.id);
-    //   }
-    // });
-  
-    //  setArrayIdMake(updatedArray);
-    //   console.log("arrayIdMake=", arrayIdMake);setArrayIdMake(updatedArray, () => {
     
-   
-    // //   // console.log("arrayIdMake=", arrayIdMake);
-    //     });
    };
   
 
@@ -119,8 +160,9 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
     inputMileageFrom,
     inputMileageTo
   ) => {
-
-    console.log("inputRentalPrice=", inputRentalPrice);
+    const array = [];
+    console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
+    // console.log("inputRentalPrice=", inputRentalPrice);
     setInputRentalPrice(inputRentalPrice);
 
   // const index=1;
@@ -133,7 +175,9 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
     });
   
      setArrayIdRentalPrice(array);
-     console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
+     
+     
+      
    };
   
 
@@ -190,8 +234,8 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
 
   // ==============resultArrayIdMileage===============
   handleResetArrays = () => {
-    
-    setArrayIdRentalPrice([]);
+    handleResetRentalPrice();
+    // setArrayIdRentalPrice([]);
     setArrayIdMileageTo([]);
     setArrayIdMileageFrom([]);
     // setArrayIdMake([]);
@@ -200,8 +244,8 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
  
   };
   handleResetRentalPrice = () => {
-    setArrayIdRentalPrice([]);
-
+    setArrayIdRentalPrice('');
+    console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
 
     // handleReloadAdverts();
     // handleReloadComponent();
@@ -209,7 +253,7 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   };
 
   // console.log("selectMake=", selectMake);
-  // console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
+  console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
   // console.log("arrayMileageTo=", arrayIdMileageTo);
   // console.log("arrayMileageFrom=", arrayIdMileageFrom);
 
@@ -221,8 +265,21 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   const handleReloadComponent = () => {
     setReloadComponent((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
     setCurrentPage(1); // Сбрасываем текущую страницу на первую
-    localStorage.removeItem("currentPage"); // Удаляем текущую страницу из локального хранилища
+    // localStorage.removeItem("currentPage");
+    localStorage.setItem("currentPage", 1);
+    // Удаляем текущую страницу из локального хранилища
   };
+  const handleReloadComponentAutos = () => {
+ 
+    setReloadComponentAutos((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
+    setCurrentPageAutos(1); // Сбрасываем текущую страницу на первую
+    // localStorage.removeItem("currentPage");
+    localStorage.setItem("currentPageAutos", 1);
+    // Удаляем текущую страницу из локального хранилища
+  };
+  
+
+
 
   return (
     <Container>
@@ -232,20 +289,22 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
         // передаємо значення импутів з SearchForm у CatalogPage
         handleMileageFrom={handleMileageFrom} // передаємо значення импутів з SearchForm у CatalogPage
         handleMileageTo={handleMileageTo} // передаємо значення импутів з SearchForm у CatalogPage
-        arrayIdRentalPrice={arrayIdRentalPrice}
+       
         handleResetArrays={handleResetArrays}
         handleReloadAdverts={handleReloadAdverts}
         handleReloadComponent={handleReloadComponent}
-        // arrayIdRentalPrice={arrayIdRentalPrice}
+       
         handleResetRentalPrice={handleResetRentalPrice}
       />
 
       <CatalogItem
+        currentItemsAuto={currentItemsAuto}
         adverts={adverts}
         handleLoadMore={handleLoadMore}
         handleLearnMore={handleLearnMore}
         handleReloadComponent={handleReloadComponent}
         currentPage={currentPage}
+        currentPageAutos={currentPageAutos}
         // arrayMake={arrayIdMake}
         arrayRentalPrice={arrayIdRentalPrice}
         arrayMileageTo={arrayIdMileageTo}
@@ -254,6 +313,10 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
         selectMileageFrom={inputMileageFrom}
         selectMileageTo={inputMileageTo}
         selectRentalPrice={inputRentalPrice}
+        handlePageChangeAutos={ handlePageChangeAutos}
+         handleLoadMoreAutos={handleLoadMoreAutos}
+         handleReloadComponentAutos={handleReloadComponentAutos}
+         
       />
       {/* {currentItems.length === 0 &&
         toast.error("Nothing found based on your search criteria")} */}
@@ -262,6 +325,7 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
         isOpen={isModalOpen}
         closeModal={() => setModalOpen(false)}
         currentItems={currentItems}
+        currentItemsAuto={currentItemsAuto}
         selectedItemId={selectedItemId}
       />
     </Container>

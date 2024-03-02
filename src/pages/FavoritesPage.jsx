@@ -11,7 +11,7 @@ import SearchForm from "components/SearchForm/SearchForm";
 import ModalLearnMore from "components/Modal/ModalLearnMore";
 
 const ITEMS_PER_PAGE = 12;
-// let make = "";
+
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -23,9 +23,6 @@ const Favorites = () => {
   );
   const [selectedMake, setSelectedMake] = useState("");
 
-  const [currentPage, setCurrentPage] = useState(
-    parseInt(localStorage.getItem("currentPageFavorites"), 10) || 1
-  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
 
@@ -34,7 +31,7 @@ const Favorites = () => {
   );
 
   const adverts = useSelector(selectFavorites);
-  console.log("adverts=", adverts);
+  // console.log("adverts=", adverts);
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -60,7 +57,7 @@ const Favorites = () => {
   };
 
   const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
+    // setCurrentPage(newPage);
     setCurrentPageFavorites(newPage);
     localStorage.setItem("currentPageFavorites", newPage);
   };
@@ -96,7 +93,7 @@ const Favorites = () => {
     resetCurrentPageFavorites();
   }, []);
   // Calculate pagination
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfLastItem = currentPageFavorites* ITEMS_PER_PAGE;
 
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentFavoriteAdverts = favoriteAdverts.slice(
@@ -118,7 +115,7 @@ const Favorites = () => {
   const handleReloadComponentFavorites = () => {
     setReloadComponentFavorites((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
     resetCurrentPageFavorites(); // Сбрасываем текущую страницу на первую // Сбрасываем текущую страницу на первую
-    setCurrentPage(1); // Добавляем сброс текущей страницы при нажатии кнопки "To up"
+  //  setCurrentPage(1); // Добавляем сброс текущей страницы при нажатии кнопки "To up"
 
     // localStorage.removeItem("currentPagefavorites"); // Удаляем текущую страницу из локального хранилища
   };
@@ -135,7 +132,7 @@ const Favorites = () => {
         favorites={favorites}
         toggleFavorite={toggleFavorite}
         handlePageChange={handlePageChange}
-        currentPage={currentPage}
+       
         favoriteAdverts={favoriteAdverts}
         handleLearnMore={handleLearnMore}
         handleLoadMore={handleLoadMore}

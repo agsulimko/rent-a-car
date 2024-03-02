@@ -27,7 +27,7 @@ const SearchForm = ({
   handleMileageTo,
   handleResetArrays,
   handleResetRentalPrice,
-  arrayIdRentalPrice,
+ 
 }) => {
   const [selectMake, setSelectMake] = useState("");
   const [selectRentalPrice, setSelectRentalPrice] = useState("");
@@ -37,8 +37,10 @@ const SearchForm = ({
   const adverts = useSelector(selectAdverts) || [];
 //  const autos = useSelector(selectAutos) || [];
 // const flag= [];
+
   const handleSearch = (event) => {
     event.preventDefault();
+      handleResetRentalPrice();
 //     const flag= [];
 //     // handleResetArrays();
 //  autos.forEach(element => {
@@ -72,16 +74,14 @@ const SearchForm = ({
 //       } 
       // else 
     
+ 
     
-     handleResetRentalPrice('');
-    handleMake(selectMake);
-    handleRentalPrice(selectRentalPrice);
-    handleMileageFrom(selectMileageFrom, selectMileageTo);
-    handleMileageTo(selectMileageTo, selectMileageFrom);
+      
+  
     // setSelectRentalPrice('');
     // setSelectMake('');
-   
-
+    // handleResetArrays();
+    // handleResetRentalPrice();
     if (
       !selectMake &&
       !selectRentalPrice &&
@@ -89,6 +89,7 @@ const SearchForm = ({
       !selectMileageFrom &&
       !selectMileageTo
     ) {
+      handleResetRentalPrice();
       toast.error("Nothing found, please make a new request!", {
         duration: 3000,
         position: "top-center",
@@ -120,7 +121,13 @@ const SearchForm = ({
       return;
       
     }
-
+    else{
+      handleResetRentalPrice();
+      handleMake(selectMake);
+    handleRentalPrice(selectRentalPrice);
+    handleMileageFrom(selectMileageFrom, selectMileageTo);
+    handleMileageTo(selectMileageTo, selectMileageFrom);
+    }
     // if (selectRentalPrice && arrayRentalPrice.length === 0) {
     //   toast.error("Nothing found, please make a new request", {
     //     duration: 3000,
@@ -135,14 +142,16 @@ const SearchForm = ({
     const make = event.target.value;
 
     setSelectMake(make);
-    console.log("ADDmake=", make);
+    // console.log("ADDmake=", make);
     // handleMake(make);
   };
 
-  const handleRentalPriceInput = (event) => {
+  const handleRentalPriceInput = (event) => {handleResetRentalPrice();
     const rentalPrice = Number(event.target.value);
-    setSelectRentalPrice(rentalPrice);
-
+    setSelectRentalPrice(rentalPrice); 
+    handleResetRentalPrice();
+ 
+    // handleMake(make);
     // handleRentalPrice(rentalPrice);
   };
   const handleMileageFromInput = (event) => {
@@ -162,7 +171,7 @@ const SearchForm = ({
 
   const handleResetSelects = (e) => {
     e.preventDefault();
-    handleResetArrays();
+     
     handleMake("");
     handleRentalPrice("");
     handleMileageFrom("");
@@ -175,8 +184,11 @@ const SearchForm = ({
     setSelectRentalPrice("");
     setSelectMileageFrom("");
     setSelectMileageTo("");
+    handleResetArrays();
   };
  
+
+   
   return (
     <Form className="form">
       <Label className="label">
@@ -272,7 +284,7 @@ const SearchForm = ({
       <ButtonSearch
         className="btn"
         type="button"
-        onClick={(e) => handleSearch(e, adverts)}
+        onClick={(e) => {handleSearch(e, adverts); }}
       >
         Search
       </ButtonSearch>
@@ -282,6 +294,7 @@ const SearchForm = ({
         type="button"
         onClick={(e) => {
           handleResetSelects(e);
+          
         }}
       >
         Reset Filters
