@@ -1,4 +1,4 @@
-// SearchForm.jsx
+// SearchFormFavorites.jsx
 import React, { useState } from "react";
 import {
   Label,
@@ -20,7 +20,7 @@ import { selectAdverts} from "../../redux/selectors";
 
 const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
-const SearchForm = ({
+const SearchFormFavorites = ({
   handleMake,
   handleRentalPrice,
   handleMileageFrom,
@@ -40,13 +40,8 @@ const SearchForm = ({
 
   const handleSearch = (event) => {
     event.preventDefault();
-      // handleResetRentalPrice();
-//    
-  
-    // setSelectRentalPrice('');
-    // setSelectMake('');
-    // handleResetArrays();
-    // handleResetRentalPrice();
+        // handleResetRentalPrice();
+
     if (
       !selectMake &&
       !selectRentalPrice &&
@@ -54,7 +49,7 @@ const SearchForm = ({
       !selectMileageFrom &&
       !selectMileageTo
     ) {
-      // handleResetRentalPrice();
+    //   handleResetRentalPrice();
       toast.error("Nothing found, please make a new request!", {
         duration: 3000,
         position: "top-center",
@@ -65,23 +60,27 @@ const SearchForm = ({
    
 
 
- else if (Number(selectMileageFrom) > Number(selectMileageTo)) {
-      toast.error("From must be less than TO,choose other mileage values!", {
-        duration: 3000,
-        position: "top-center",
-      });
-      return;
-      
-    }
-    else{
-      // handleResetRentalPrice();
-      handleMake(selectMake);
-    handleRentalPrice(selectRentalPrice);
-    handleMileageFrom(selectMileageFrom, selectMileageTo);
-    handleMileageTo(selectMileageTo, selectMileageFrom);
-    }
 
+//  else if (Number(selectMileageFrom) > Number(selectMileageTo)) {
+//       toast.error("From must be less than TO,choose other mileage values!", {
+//         duration: 3000,
+//         position: "top-center",
+//       });
+//       return;
+      
+//     }
+//     else{
+//       // handleResetRentalPrice();
+//       handleMake(selectMake);
+//     handleRentalPrice(selectRentalPrice);
+//     handleMileageFrom(selectMileageFrom, selectMileageTo);
+//     handleMileageTo(selectMileageTo, selectMileageFrom);
+//     }
    
+handleMake(selectMake);
+handleRentalPrice(selectRentalPrice);  
+handleMileageFrom(selectMileageFrom, selectMileageTo);handleMileageTo(selectMileageTo,
+ selectMileageFrom);
   };
 
   const handleMakeInput = (event) => {
@@ -92,7 +91,9 @@ const SearchForm = ({
     // handleMake(make);
   };
 
-  const handleRentalPriceInput = (event) => {
+  const handleRentalPriceInput = (event) =>
+
+  {
     // handleResetRentalPrice();
     const rentalPrice = Number(event.target.value);
     setSelectRentalPrice(rentalPrice); 
@@ -119,19 +120,19 @@ const SearchForm = ({
   const handleResetSelects = (e) => {
     e.preventDefault();
      
-    handleMake("");
-    handleRentalPrice("");
-    handleMileageFrom("");
-    handleMileageTo("");
+     handleMake("");
+     handleRentalPrice("");
+     handleMileageFrom("");
+     handleMileageTo("");
 
     // Функция для сброса всех выбранных фильтров
     // document.myform.reset();
-    setSelectMake("");
+     setSelectMake("");
 
-    setSelectRentalPrice("");
+     setSelectRentalPrice("");
     setSelectMileageFrom("");
     setSelectMileageTo("");
-    handleResetArrays();
+    // handleResetArrays();
   };
  
 
@@ -249,4 +250,4 @@ const SearchForm = ({
     </Form>
   );
 };
-export default SearchForm;
+export default SearchFormFavorites;

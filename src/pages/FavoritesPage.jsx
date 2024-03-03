@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectFavorites } from "../redux/selectors";
+import { selectAutosFavorites, selectFavorites } from "../redux/selectors";
 
-import { fetchFavorites } from "../redux/thunks";
+import { fetchAutosFavorites, fetchFavorites } from "../redux/thunks";
 import { Container } from "styles/Container/Container";
-import FavoritesItem from "components/Favorites/FavoritesItem";
-import SearchForm from "components/SearchForm/SearchForm";
+import FavoritesList from "components/Favorites/FavoritesList";
+
 import ModalLearnMore from "components/Modal/ModalLearnMore";
+import SearchFormFavorites from "components/SearchForm/SearchFormFavorites";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -21,7 +22,7 @@ const Favorites = () => {
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
-  const [selectedMake, setSelectedMake] = useState("");
+  // const [selectedMake, setSelectedMake] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
@@ -29,9 +30,26 @@ const Favorites = () => {
   const [reloadComponentFavorites, setReloadComponentFavorites] = useState(
     false
   );
+   const [arrayIdMake, setArrayIdMake] = useState([]);
+   const [arrayIdRentalPriceFavorites, setArrayIdRentalPriceFavorites] = useState([]);
+   const [arrayIdMileageFromFavorites, setArrayIdMileageFromFavorites] = useState([]);
+   const [arrayIdMileageToFavorites, setArrayIdMileageToFavorites] = useState([]);
+  // const [imputMake, setImputMake] = useState("");
+   const [inputMileageTo, setInputMileageTo] = useState(0);
+   const [inputMileageFrom, setInputMileageFrom] = useState(0);
+    const [inputRentalPrice, setInputRentalPrice] = useState("");
+
 
   const adverts = useSelector(selectFavorites);
   // console.log("adverts=", adverts);
+
+  
+  const autosFavorites= useSelector(selectAutosFavorites) || [];
+ 
+  useEffect(() => {
+    dispatch(fetchAutosFavorites());
+  }, [dispatch]);
+
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -80,9 +98,121 @@ const Favorites = () => {
     setIsModalOpen(true); // Updated the state name
   };
 
-  const handleMakeChange = (event) => {
-    setSelectedMake(event.target.value);
+
+  const handleMake = (inputMake) => {
+    const array = [];
+    // const [arrayIdMake, setArrayIdMake] = useState([]);
+    // autosFavorites.forEach((advert) => {
+    // if (rentalPriceCurrent = inputMake) {
+    //   array.push(advert.id);
+    // }
+    autosFavorites.forEach((advert) => {
+    
+    
+
+
+      if (advert.make === inputMake) {
+        array.push(advert.id);
+      }
+    });
+
+
+
+
+    setArrayIdMake(array);
+    // console.log("iinputMake=", inputMake);
+    // setImputMake(inputMake);
+   };
+
+
+   const handleRentalPrice = (
+    inputRentalPrice,
+    inputMake,
+    inputMileageFrom,
+    inputMileageTo
+  ) => {
+    const array = [];
+    // console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
+    // console.log("inputRentalPrice=", inputRentalPrice);
+    setInputRentalPrice(inputRentalPrice);
+
+  // const index=1;
+  autosFavorites.forEach((advert) => {
+      const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
+  
+      if (rentalPriceCurrent <= inputRentalPrice) {
+        array.push(advert.id);
+      }
+    });
+  
+     setArrayIdRentalPriceFavorites(array);
+      
+  
+   };
+  
+
+  
+
+
+
+
+
+
+  //  ==============arrayIdMileageFrom===============
+
+  const handleMileageFrom = (inputMileageFrom, inputMileageTo) => {
+    // console.log("inputMileageFrom=", inputMileageFrom);
+
+     setInputMileageFrom(inputMileageFrom);
+    // setInputMileageTo(inputMileageTo);
+    // console.log("inputMileageFrom=", inputMileageFrom);
+    // console.log("inputMileageTo=", inputMileageTo);
+    if (inputMileageFrom > inputMileageTo) {
+      setArrayIdMileageFromFavorites([]);
+    
+    }
   };
+  // ==============arrayIdMileageFrom===============
+
+  // ==============arrayIdMileageTo===============
+
+  const handleMileageTo = (inputMileageTo, inputMileageFrom) => {
+    // console.log("inputMileageTo=", inputMileageTo);
+
+    // setInputMileageFrom(inputMileageFrom);
+     setInputMileageTo(inputMileageTo);
+
+    if (Number(inputMileageFrom) > Number(inputMileageTo)) {
+      setArrayIdMileageFromFavorites([]);
+    } else {
+      const arrayIdMileageTo = autosFavorites
+        .filter((auto) => Number(auto.mileage) <= Number(inputMileageTo))
+        .map((auto) => auto.id);
+
+      if (!inputMileageFrom || inputMileageFrom) {
+        arrayIdMileageTo
+          ? setArrayIdMileageToFavorites(arrayIdMileageTo)
+          : setArrayIdMileageToFavorites([]);
+      } else if (Number(inputMileageFrom) > Number(inputMileageTo)) {
+        setArrayIdMileageToFavorites([]);
+      }
+    }
+  };
+  // ==============arrayIdMileageTo===============
+
+
+
+  // console.log("inputMake=", imputMake);
+  //  console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
+  //  console.log("arrayMileageTo=", arrayIdMileageTo);
+  //  console.log("arrayMileageFrom=", arrayIdMileageFrom);
+
+
+
+
+  // const handleMakeChange = (event) => {
+  //   setImputMake(event.target.value);
+  // };
 
   const resetCurrentPageFavorites = () => {
     setCurrentPageFavorites(1);
@@ -100,6 +230,12 @@ const Favorites = () => {
     indexOfFirstItem,
     indexOfLastItem
   );
+
+
+
+
+
+
 
   // console.log("favoriteAdverts=", favoriteAdverts);
   // console.log("currentFavoriteAdverts=", currentFavoriteAdverts);
@@ -123,11 +259,18 @@ const Favorites = () => {
 
   return (
     <Container>
-      <SearchForm
-        handleMakeChange={handleMakeChange}
-        selectedMake={selectedMake}
+      <SearchFormFavorites
+        // handleMakeChange={handleMakeChange}
+        // selectedMake={imputMake}
+        // передаємо значення импутів з SearchForm у FavoritesPage
+        handleMake={handleMake}
+         handleRentalPrice={handleRentalPrice}
+       
+        handleMileageFrom={handleMileageFrom} 
+        handleMileageTo={handleMileageTo} 
       />
-      <FavoritesItem
+      <FavoritesList
+      autosFavorites={autosFavorites}
         currentFavoriteAdverts={currentFavoriteAdverts}
         favorites={favorites}
         toggleFavorite={toggleFavorite}
@@ -139,6 +282,16 @@ const Favorites = () => {
         handleReloadComponentFavorites={handleReloadComponentFavorites}
         reloadComponentFavorites={reloadComponentFavorites}
         currentPageFavorites={currentPageFavorites}
+        arrayMake={arrayIdMake}
+         arrayRentalPrice={arrayIdRentalPriceFavorites}
+         arrayMileageTo={arrayIdMileageToFavorites}
+         arrayMileageFrom={arrayIdMileageFromFavorites}
+        // selectMake={imputMake}
+         selectMileageFrom={inputMileageFrom}
+         selectMileageTo={inputMileageTo}
+          selectRentalPrice={inputRentalPrice}
+
+
       />
 
       <ModalLearnMore

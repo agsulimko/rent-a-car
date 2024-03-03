@@ -1,349 +1,154 @@
-
-
-
-// import React, { useState } from "react";
-// import { Container } from "styles/Container/Container";
-// // import { useSelector } from "react-redux";
-// // import { selectAutos } from "../../redux/selectors";
-// import { ButtonLoadMore, ButtonToUp, CardList } from "./CatalogItem.styled";
-// import Item from "../Catalog/CardItem";
-
-// const ITEMS_PER_PAGE = 12;
-
-// const CatalogItem = ({
-//   arrayMake,
-//   arrayRentalPrice,
-//   arrayMileageFrom,
-//   arrayMileageTo,
-//   selectMake,
-//   selectRentalPrice,
-//   selectArrayMake,
-//   selectMileageFrom,
-//   selectMileageTo,
-//   adverts,
-//   handleLoadMore,
-//   handleLearnMore,
-//   handleReloadComponent,
-//   currentPage,
-//   handleResetSelects,
-//   handlePageChangeAutos,
-//    handleLoadMoreAutos,
-//   currentItemsAuto,
-//   currentPageAutos,
-//   handleReloadComponentAutos
-// }) => {
-//   const [favorites, setFavorites] = useState(
-//     JSON.parse(localStorage.getItem("favorites")) || []
-//   );
-
-  
-
-//   // const autos = useSelector(selectAutos) || [];
-
-//   const toggleFavorites = (id) => {
-//     const updatedFavorites = favorites.includes(id)
-//       ? favorites.filter((favoriteId) => favoriteId !== id)
-//       : [...favorites, id];
-
-//     setFavorites(updatedFavorites);
-
-//     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-//   };
-//   // console.log("selectRentalPrice=", selectRentalPrice);
-
-//   // || (arrayMileageFrom.length === 0  && selectMileageFrom) || (arrayMileageTo.length === 0  && selectMileageTo)
-
-
-//    /* {currentItems.length === 0 &&
-//         toast.error("Nothing found based on your search criteria")} */
-
-//   const autosToDisplay = (arrayRentalPrice.length === 0  && selectRentalPrice) || (arrayMake === 0  && selectMake) ? [] : currentItemsAuto.filter(
-//     (cart) =>
-//       (!arrayRentalPrice.length ||
-//         arrayRentalPrice.includes(cart.id)) &&
-//       (!arrayMileageFrom.length ||
-//         arrayMileageFrom.includes(cart.id)) &&
-//       (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
-//   );
-
-//   const handleToUpAutos= () => {
-//     // Обработчик для кнопки "To up"
-
-//     handleReloadComponentAutos(); // Вызываем функцию из родительского компонента
-//   };
-
-
-//   return (
-//     <Container>
-//       <div className="div-cards-list">
-//         {/* <CardList className="cards-list"> */}
-//           {
-             
-//             !arrayMileageFrom.length  &&
-//             !arrayMileageTo.length  &&
-//            !selectRentalPrice &&
-//             !selectMake ? (
-//               <CardList className="cards-list">
-//           {adverts.map((cart, index) => (
-//               <Item
-//                 key={index}
-//                 cart={cart}
-//                 toggleFavorites={toggleFavorites}
-//                 favorites={favorites}
-//                 handleLearnMore={handleLearnMore}
-//               />
-//             ))}
-//   {currentPage > 1   && (
-//           <ButtonToUp 
-//           // onClick={handleReloadComponent}
-//           onClick={()=>{handleReloadComponent();handleToUpAutos()}}
-//           >To up ⇈</ButtonToUp>
-//         )}
-//         {adverts.length > 0 && adverts.length >= ITEMS_PER_PAGE  && (
-//           <ButtonLoadMore
-//             type="button"
-//             className="cards-item-btn"
-//             // onClick={handleLoadMore}
-//             onClick={() => {handlePageChangeAutos(currentPageAutos + 1); handleLoadMore()} }
-//           >
-//             Load more ⇊
-//           </ButtonLoadMore>
-//         )}
-
-
-//             </CardList>
-//           ) : (
-
-//             <CardList className="cards-list">
-
-// {autosToDisplay
-
-          
-//             // autos
-//             //   .filter(
-//               //   (cart) =>
-//               //     (!arrayRentalPrice.length ||
-//               //       arrayRentalPrice.includes(cart.id)) &&
-//               //     (!arrayMileageFrom.length ||
-//               //       arrayMileageFrom.includes(cart.id)) &&
-//               //     (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
-//               // )
-//               .map((cart, index) => (
-//                 <Item
-//                   key={index}
-//                   cart={cart}
-//                   toggleFavorites={toggleFavorites}
-//                   favorites={favorites}
-//                   handleLearnMore={handleLearnMore}
-//                 />
-//               ))}
-          
-//  {currentPage > 1   && (
-//           <ButtonToUp 
-//           // onClick={handleReloadComponent}
-//           onClick={()=>{handleReloadComponent();handleToUpAutos()}}
-//           >To up ⇈</ButtonToUp>
-//         )}
-//         {adverts.length > 0 && adverts.length >= ITEMS_PER_PAGE  && (
-//           <ButtonLoadMore
-//             type="button"
-//             className="cards-item-btn"
-//             // onClick={handleLoadMore}
-//             onClick={() => {handlePageChangeAutos(currentPageAutos + 1); handleLoadMore()} }
-//           >
-//             Load more ⇊
-//           </ButtonLoadMore>
-//         )}
-
-//         </CardList>)
-
-
-
-
-
-       
-//     </div>
-// </Container>
-  
-//   );
-//         };
-// export default CatalogItem;
-
-
-
-// handlePageChangeAutos handleLoadMoreAutos
-
-
-
-
-/* // {((adverts.length > 0 && adverts.length >= ITEMS_PER_PAGE) || (autosToDisplay.length > 0 && autosToDisplay.length >= ITEMS_PER_PAGE))  && ( */
- //   <ButtonLoadMore */
-
-
-
-// Импортируем необходимые модули и компоненты
-import React, { useState } from "react";
-import { Container } from "styles/Container/Container";
-// import { useSelector } from "react-redux";
-// import { selectAutos } from "../../redux/selectors";
-import { ButtonLoadMore, ButtonToUp, CardList } from "./CatalogItem.styled";
-import Item from "../Catalog/CardItem";
-
-const ITEMS_PER_PAGE = 12;
+ 
+import React from 'react';
+import {
+  CardItem,
+  DivImg,
+  Img,
+  ButtonHeardIcone,
+  SvgHeardActive,
+  SvgHeard,
+  DivTitle,
+  CardsTitle,
+  SpanCardsTitle,
+  PriceTitle,
+  DivTextInfo,
+  DivFirst,
+  Vector,
+  DivSecond,
+  ButtonLearnMore,
+} from "./CatalogList.styled";
+import sprite from "../../image/sprite.svg";
+import substringsToCheck from "./substringsToCheck";
 
 const CatalogItem = ({
-  arrayMake,
-  arrayRentalPrice,
-  arrayMileageFrom,
-  arrayMileageTo,
-  selectMake,
-  selectRentalPrice,
-  selectArrayMake,
-  selectMileageFrom,
-  selectMileageTo,
-  adverts,
-  handleLoadMore,
+  cart,
+  index,
+  toggleFavorites,
+  favorites,
   handleLearnMore,
-  handleReloadComponent,
-  currentPage,
-  handleResetSelects,
-  handlePageChangeAutos,
-  handleLoadMoreAutos,
-  currentItemsAuto,
-  currentPageAutos,
-  handleReloadComponentAutos
-}) => {
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("favorites")) || []
-  );
-  console.log("arrayRentalPrice=", arrayRentalPrice);
-  // const autos = useSelector(selectAutos) || [];
+}) => (
+  <CardItem
+    key={index}
+    className="cards-item"
+    data-category={cart.category}
+    data-aos="flip-left"
+    data-aos-duration="1000"
+  >
+    <picture>
+      <source srcSet={cart.make} type="image/webp" />
+      <source srcSet={cart.make} type="image/jpeg" />
+      <DivImg>
+        <Img
+          src={cart.img}
+          width="401"
+          height="268"
+          alt={cart.make}
+          className="card-img"
+          loading="lazy"
+        />
+      </DivImg>
+    </picture>
+    <div className="test-div">
+      <ButtonHeardIcone
+        type="button"
+        className="btn-heard-icone"
+        onClick={() => toggleFavorites(cart.id)}
+      >
+        {favorites.includes(cart.id) ? (
+          <SvgHeardActive>
+            <use href={`${sprite}#icon-heard_active`}></use>
+          </SvgHeardActive>
+        ) : (
+          <SvgHeard>
+            <use href={`${sprite}#icon-heard`}></use>
+          </SvgHeard>
+        )}
+      </ButtonHeardIcone>
+    </div>
+    <DivTitle className="DivTitle">
+      <CardsTitle className="cards-item-title">
+        {cart.make}
+        {cart.model.length < 8 && (
+          <SpanCardsTitle> {cart.model}</SpanCardsTitle>
+        )}
+        , {cart.year}
+      </CardsTitle>
+      <PriceTitle>{cart.rentalPrice}</PriceTitle>
+    </DivTitle>
 
-  const toggleFavorites = (id) => {
-    const updatedFavorites = favorites.includes(id)
-      ? favorites.filter((favoriteId) => favoriteId !== id)
-      : [...favorites, id];
+    <DivTextInfo className="div-text-info">
+      <DivFirst className="DivFirst ">
+        <p className="City">
+          {cart.address.split(",")[1].trim().split(" ")[0]}
+        </p>
+        <Vector></Vector>
+        <p className="Country">
+          {
+            cart.address
+              .split(",")
+              .slice(2)
+              .join(",")
+              .trim()
+              .split(" ")[0]
+          }
+        </p>
+        <Vector></Vector>
+        <p className="rentalCompany">{cart.rentalCompany}</p>
+        {cart.rentalCompany.length < 19 && <Vector></Vector>}
 
-    setFavorites(updatedFavorites);
+        {cart.rentalCompany.length < 19 && (
+          <p className="Class auto">
+            {cart.accessories
+              .map((feature) =>
+                feature.toLowerCase().includes("premium")
+                  ? "Premium"
+                  : ""
+              )
+              .find((str) => str === "Premium") || ""}
+          </p>
+        )}
+      </DivFirst>
+      <DivSecond className="DivSecond ">
+        <p> {cart.type} </p>
+        <Vector></Vector>
+        <p> {cart.make} </p>
+        <Vector></Vector>
+        <p> {cart.id} </p>
+        {cart.type.length < 6 && <Vector></Vector>}
+        {cart.type.length < 6 && (
+          <p>
+            {cart.accessories
+              .map((feature) => {
+                const foundSubstring = substringsToCheck.find(
+                  (substring) =>
+                    feature
+                      .toLowerCase()
+                      .includes(substring.toLowerCase())
+                );
 
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  };
+                return foundSubstring
+                  ? foundSubstring.charAt(0).toUpperCase() +
+                      foundSubstring.slice(1)
+                  : "";
+              })
+              .filter(Boolean)[0] || ""}
+          </p>
+        )}
+      </DivSecond>
+    </DivTextInfo>
 
-  const autosToDisplay = (arrayRentalPrice.length === 0 && selectRentalPrice) || (arrayMake === 0 && selectMake) ? [] : currentItemsAuto.filter(
-    (cart) =>
-      (!arrayRentalPrice.length ||
-        arrayRentalPrice.includes(cart.id)) &&
-      (!arrayMileageFrom.length ||
-        arrayMileageFrom.includes(cart.id)) &&
-      (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
-  );
-
-  const handleToUpAutos = () => {
-    // Обработчик для кнопки "To up"
-    handleReloadComponentAutos(); // Вызываем функцию из родительского компонента
-  };
-  console.log("arrayRentalPrice=", arrayRentalPrice);
-  return (
-    
-      
-        !arrayMileageFrom.length &&
-          !arrayMileageTo.length &&
-          !selectRentalPrice &&
-          !selectMake ? (
-
-
-
-            <Container>
-            <div className="div-cards-list">
-            <CardList className="cards-list">
-              {adverts.map((cart, index) => (
-                <Item
-                  key={index}
-                  cart={cart}
-                  toggleFavorites={toggleFavorites}
-                  favorites={favorites}
-                  handleLearnMore={handleLearnMore}
-                />
-              ))}
-            
-            </CardList>
-            {currentPage > 1 && (
-                <ButtonToUp
-                  // onClick={handleReloadComponent}
-                  onClick={() => {
-                    handleReloadComponent();
-                    // handleToUpAutos();
-                  }}
-                >
-                  To up ⇈
-                </ButtonToUp>
-              )}
-              {adverts.length > 0 && adverts.length >= ITEMS_PER_PAGE && (
-                <ButtonLoadMore
-                  type="button"
-                  className="cards-item-btn"
-                  // onClick={handleLoadMore}
-                  onClick={() => {
-                    // handlePageChangeAutos(currentPageAutos + 1);
-                    handleLoadMore();
-                  }}
-                >
-                  Load more ⇊
-                </ButtonLoadMore>
-              )}
-              </div>
-
-
-              
-              </Container>
-          ) : (
-            <Container>
-      <div className="div-cards-list">
-            <CardList className="cards-list">
-              {autosToDisplay.map((cart, index) => (
-                <Item
-                  key={index}
-                  cart={cart}
-                  toggleFavorites={toggleFavorites}
-                  favorites={favorites}
-                  handleLearnMore={handleLearnMore}
-                />
-              ))}
-             
-            </CardList> {currentPageAutos > 1 && (
-                <ButtonToUp
-                  // onClick={handleReloadComponent}
-                  onClick={() => {handleToUpAutos(); 
-                    //  handleReloadComponentAutos();
-                    }}
-                >
-                  To up ⇈
-                </ButtonToUp>
-              )}
-              {autosToDisplay.length >= 0 && autosToDisplay.length >= ITEMS_PER_PAGE && (
-                <ButtonLoadMore
-                  type="button"
-                  className="cards-item-btn"
-                  // onClick={handleLoadMore}
-                  onClick={() => 
-                    handlePageChangeAutos(currentPageAutos + 1)
-                    // handleLoadMore();
-                  }
-                >
-                  Load more ⇊
-                </ButtonLoadMore>
-              )}
-              </div>
-              </Container>
-          )
-    
-  );
-};
+    <ButtonLearnMore
+      type="button"
+      className="cards-item-btn"
+      aria-label="Open modal Learn more"
+      id={cart.id}
+      onClick={() => {
+        handleLearnMore(cart.id);
+      }}
+    >
+      Learn more
+    </ButtonLearnMore>
+  </CardItem>
+);
 
 export default CatalogItem;
-
-
-
-
-
-

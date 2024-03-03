@@ -1,11 +1,11 @@
-// FavoritesItem.jsx
+ // FavoritesItem.jsx
 import React from "react";
 import {
   ButtonHeardIcone,
   ButtonLearnMore,
-  ButtonLoadMore,
+//   ButtonLoadMore,
   CardItem,
-  CardList,
+//   CardList,
   CardsTitle,
   DivImg,
   DivTextInfo,
@@ -16,43 +16,26 @@ import {
   DivFirst,
   DivSecond,
   DivTitle,
-  ButtonToUp,
-} from "components/Favorites/FavoritesItem.styled";
-import { Container } from "styles/Container/Container";
+//   ButtonToUp,
+} from "components/Favorites/FavoritesList.styled";
+// import { Container } from "styles/Container/Container";
 
 import {
   SvgHeard,
   SvgHeardActive,
-} from "components/Catalog/CatalogItem.styled";
+} from "components/Catalog/CatalogList.styled";
 import substringsToCheck from "components/Catalog/substringsToCheck";
 import sprite from "../../image/sprite.svg";
+ const FavoritesItem= (
+   {cart,
+    index,handleLearnMore, toggleFavorite, favorites}
+ )=>(
 
-const ITEMS_PER_PAGE = 12;
+ 
+ 
 
-const FavoritesItem = ({
-  currentFavoriteAdverts,
-  favorites,
-  toggleFavorite,
-  handlePageChange,
-  currentPage,
-  favoriteAdverts,
-  handleLearnMore,
-  handleReloadComponentFavorites,
-  handleLoadMore,
-  currentPageFavorites,
-}) => {
-  const handleToUp = () => {
-    // Обработчик для кнопки "To up"
-
-    handleReloadComponentFavorites(); // Вызываем функцию из родительского компонента
-  };
-
-  return (
-    <Container>
-      <div className="div-cards-list">
-        <CardList className="cards-list">
-          {currentFavoriteAdverts.map((cart, index) => (
-            <CardItem
+ 
+ <CardItem
               key={index}
               className="cards-item"
               data-category={cart.category}
@@ -176,26 +159,6 @@ const FavoritesItem = ({
                 Learn more
               </ButtonLearnMore>
             </CardItem>
-          ))}
-        </CardList>
-        {currentPageFavorites > 1 && (
-          <ButtonToUp onClick={handleToUp}>To up ⇈</ButtonToUp>
-        )}
-        {favoriteAdverts.length > 0 &&
-          favoriteAdverts.length >= ITEMS_PER_PAGE &&
-          currentFavoriteAdverts.length >= ITEMS_PER_PAGE &&
-          currentPageFavorites !== favoriteAdverts.length / ITEMS_PER_PAGE && (
-            <ButtonLoadMore
-              type="button"
-              className="cards-item-btn"
-              onClick={() => handlePageChange(currentPageFavorites + 1)}
-            >
-              Load more ⇊
-            </ButtonLoadMore>
-          )}
-      </div>
-    </Container>
-  );
-};
-
-export default FavoritesItem;
+ 
+ )
+            export default FavoritesItem;

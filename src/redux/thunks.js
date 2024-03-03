@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getAdverts, getFavorites, getAutos } from 'api/api';
+import { getAdverts, getFavorites, getAutos, getAutosFavorites } from 'api/api';
 export const fetchAdverts = createAsyncThunk(
   'adverts/fetchAdverts',
   async ({ page, make }, thunkAPI) => {
@@ -18,7 +18,7 @@ export const fetchAdverts = createAsyncThunk(
 );
 export const fetchFavorites = createAsyncThunk(
   'adverts/fetchFavorites',
-  async (page, thunkAPI) => {
+  async ({ page }, thunkAPI) => {
     try {
       const response = await getFavorites(page);
       // console.log('getFavorites=', response);
@@ -35,6 +35,21 @@ export const fetchAutos = createAsyncThunk(
   async ({ page, make }, thunkAPI) => {
     try {
       const response = await getAutos(page, make);
+      // console.log('getFavorites=', response);
+      return response;
+    } catch (e) {
+      console.log(e.message);
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+
+export const fetchAutosFavorites = createAsyncThunk(
+  'adverts/fetchAutosFavorites',
+  async (_, thunkAPI) => {
+    try {
+      const response = await getAutosFavorites();
       // console.log('getFavorites=', response);
       return response;
     } catch (e) {

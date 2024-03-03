@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdverts, fetchAutos } from "../redux/thunks";
 import { selectAdverts, selectAutos } from "../redux/selectors";
-import CatalogItem from "components/Catalog/CatalogItem";
+import CatalogList from "components/Catalog/CatalogList";
 import SearchForm from "components/SearchForm/SearchForm";
 
 import ModalLearnMore from "components/Modal/ModalLearnMore";
@@ -21,9 +21,9 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   const adverts = useSelector(selectAdverts) || [];
   const autos = useSelector(selectAutos) || [];
 
-  const [selectMake, setSelectMake] = useState("");
+  const [imputMake, setImputMake] = useState("");
   //  const [arrayIdMake, setArrayIdMake] = useState([]);
-  let [arrayIdRentalPrice, setArrayIdRentalPrice] = useState([]);
+  const [arrayIdRentalPrice, setArrayIdRentalPrice] = useState([]);
   const [arrayIdMileageFrom, setArrayIdMileageFrom] = useState([]);
   const [arrayIdMileageTo, setArrayIdMileageTo] = useState([]);
   const [inputMileageTo, setInputMileageTo] = useState(0);
@@ -56,9 +56,9 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   }, [dispatch, currentPage, reloadComponent]);
 
   useEffect(() => {
-    dispatch(fetchAutos({ make: selectMake }));
+    dispatch(fetchAutos({ make: imputMake }));
     // eslint-disable-next-line
-  }, [dispatch, selectMake, currentPageAutos, reloadComponentAutos]);
+  }, [dispatch, imputMake, currentPageAutos, reloadComponentAutos]);
 
   const indexOfLastItemAutos = currentPageAutos * ITEMS_PER_PAGE;
   const indexOfFirstItemAutos = indexOfLastItemAutos - ITEMS_PER_PAGE;
@@ -120,8 +120,8 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   };
 
   const handleMake = (inputMake) => {
-    // console.log("iinputMake=", inputMake);
-   setSelectMake(inputMake);
+   
+    setImputMake(inputMake);
 
 
     
@@ -161,7 +161,7 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
     inputMileageTo
   ) => {
     const array = [];
-    console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
+    // console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
     // console.log("inputRentalPrice=", inputRentalPrice);
     setInputRentalPrice(inputRentalPrice);
 
@@ -230,9 +230,7 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   };
   // ==============arrayIdMileageTo===============
 
-  // ==============resultArrayIdMileage===============
-
-  // ==============resultArrayIdMileage===============
+  
   handleResetArrays = () => {
     handleResetRentalPrice();
     // setArrayIdRentalPrice([]);
@@ -245,7 +243,7 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   };
   handleResetRentalPrice = () => {
     setArrayIdRentalPrice('');
-    console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
+    // console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
 
     // handleReloadAdverts();
     // handleReloadComponent();
@@ -253,11 +251,11 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
   };
 
   // console.log("selectMake=", selectMake);
-  console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
+  // console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
   // console.log("arrayMileageTo=", arrayIdMileageTo);
   // console.log("arrayMileageFrom=", arrayIdMileageFrom);
 
-  // console.log("resultArrayIdMileage=", resultArrayIdMileage);
+ 
   const handleReloadAdverts = () => {
     dispatch(fetchAdverts({ page: 1 }));
   };
@@ -283,12 +281,14 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
 
   return (
     <Container>
-      <SearchForm
+      <SearchForm 
+      // передаємо значення импутів з SearchForm у CatalogPage
         handleMake={handleMake}
+        
         handleRentalPrice={handleRentalPrice}
-        // передаємо значення импутів з SearchForm у CatalogPage
-        handleMileageFrom={handleMileageFrom} // передаємо значення импутів з SearchForm у CatalogPage
-        handleMileageTo={handleMileageTo} // передаємо значення импутів з SearchForm у CatalogPage
+       
+        handleMileageFrom={handleMileageFrom} 
+        handleMileageTo={handleMileageTo} 
        
         handleResetArrays={handleResetArrays}
         handleReloadAdverts={handleReloadAdverts}
@@ -297,7 +297,7 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
         handleResetRentalPrice={handleResetRentalPrice}
       />
 
-      <CatalogItem
+      <CatalogList
         currentItemsAuto={currentItemsAuto}
         adverts={adverts}
         handleLoadMore={handleLoadMore}
@@ -309,7 +309,7 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
         arrayRentalPrice={arrayIdRentalPrice}
         arrayMileageTo={arrayIdMileageTo}
         arrayMileageFrom={arrayIdMileageFrom}
-        selectMake={selectMake}
+        selectMake={imputMake}
         selectMileageFrom={inputMileageFrom}
         selectMileageTo={inputMileageTo}
         selectRentalPrice={inputRentalPrice}
