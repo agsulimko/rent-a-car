@@ -34,6 +34,7 @@ import FavoritesItem from "./FavoritesItem";
 const ITEMS_PER_PAGE = 12;
 
 const FavoritesList = ({
+  favoritesToDisplay,
   autosFavorites,
   currentFavoriteAdverts,
   favorites,
@@ -86,23 +87,23 @@ console.log("selectRentalPrice =", selectRentalPrice );
 // console.log("autosFavorites=", autosFavorites);
 // const favoritesToDisplay = autosFavorites;
 
-    const favoritesToDisplay = (arrayRentalPrice.length === 0 && selectRentalPrice ) ? [] : autosFavorites.filter(
-      (cart) =>
+  //   const favoritesToDisplay = (arrayRentalPrice.length === 0 && selectRentalPrice ) ? [] : autosFavorites.filter(
+  //     (cart) =>
 
       
-      (!favorites.length ||
-        favorites.includes(cart.id)) 
-      &&
-      (!arrayMake.length ||
-        arrayMake.includes(cart.id)) 
-      &&
-       (!arrayRentalPrice.length ||
-        arrayRentalPrice.includes(cart.id)) 
-      &&
-     (!arrayMileageFrom.length ||
-        arrayMileageFrom.includes(cart.id)) &&
-      (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
-  );
+  //     (!favorites.length ||
+  //       favorites.includes(cart.id)) 
+  //     &&
+  //     (!arrayMake.length ||
+  //       arrayMake.includes(cart.id)) 
+  //     &&
+  //      (!arrayRentalPrice.length ||
+  //       arrayRentalPrice.includes(cart.id)) 
+  //     &&
+  //    (!arrayMileageFrom.length ||
+  //       arrayMileageFrom.includes(cart.id)) &&
+  //     (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
+  // );
     // const favoritesToDisplay =[];
  console.log("favoritesToDisplay=", favoritesToDisplay );
 
@@ -110,7 +111,8 @@ console.log("selectRentalPrice =", selectRentalPrice );
   return (
      !arrayMileageFrom.length &&
      !arrayMileageTo.length &&
-    !selectRentalPrice ? (
+    !selectRentalPrice  &&
+    !selectMake  ? (
 
 
 
@@ -155,7 +157,7 @@ favorites={favorites}
       <Container>
       <div className="div-cards-list">
         <CardList className="cards-list">
-          {favoritesToDisplay.map((cart, index) => (
+          {currentFavoriteAdverts.map((cart, index) => (
           /* {favoritesToDisplay.map((cart, index) => ( */
 
 <FavoritesItem

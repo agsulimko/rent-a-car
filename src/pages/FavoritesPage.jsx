@@ -31,9 +31,9 @@ const Favorites = () => {
     false
   );
    const [arrayIdMake, setArrayIdMake] = useState([]);
-   const [arrayIdRentalPriceFavorites, setArrayIdRentalPriceFavorites] = useState([]);
-   const [arrayIdMileageFromFavorites, setArrayIdMileageFromFavorites] = useState([]);
-   const [arrayIdMileageToFavorites, setArrayIdMileageToFavorites] = useState([]);
+   const [arrayRentalPriceFavorites, setArrayRentalPriceFavorites] = useState([]);
+   const [arrayMileageFromFavorites, setArrayMileageFromFavorites] = useState([]);
+   const [arrayMileageToFavorites, setArrayMileageToFavorites] = useState([]);
   // const [imputMake, setImputMake] = useState("");
    const [inputMileageTo, setInputMileageTo] = useState(0);
    const [inputMileageFrom, setInputMileageFrom] = useState(0);
@@ -64,6 +64,31 @@ const Favorites = () => {
   }, []);
 
   const favoriteAdverts = adverts.filter((auto) => favorites.includes(auto.id));
+
+  const favoritesToDisplay = (arrayRentalPriceFavorites.length === 0 && inputRentalPrice) ? [] : favoriteAdverts.filter(
+    (cart) =>
+
+    
+    // (!favorites.length ||
+    //   favorites.includes(cart.id)) 
+    // &&
+    (!arrayIdMake.length ||
+      arrayIdMake.includes(cart.id)) 
+    &&
+     (!arrayRentalPriceFavorites.length ||
+      arrayRentalPriceFavorites.includes(cart.id)) 
+    &&
+   (!arrayMileageFromFavorites.length ||
+    arrayMileageFromFavorites.includes(cart.id)) &&
+    (!arrayMileageToFavorites.length || arrayMileageToFavorites.includes(cart.id))
+);
+
+
+
+
+
+
+
 
   const toggleFavorite = (id) => {
     const updatedFavorites = favorites.includes(id)
@@ -145,7 +170,7 @@ const Favorites = () => {
       }
     });
   
-     setArrayIdRentalPriceFavorites(array);
+     setArrayRentalPriceFavorites(array);
       
   
    };
@@ -168,7 +193,7 @@ const Favorites = () => {
     // console.log("inputMileageFrom=", inputMileageFrom);
     // console.log("inputMileageTo=", inputMileageTo);
     if (inputMileageFrom > inputMileageTo) {
-      setArrayIdMileageFromFavorites([]);
+      setArrayMileageFromFavorites([]);
     
     }
   };
@@ -183,7 +208,7 @@ const Favorites = () => {
      setInputMileageTo(inputMileageTo);
 
     if (Number(inputMileageFrom) > Number(inputMileageTo)) {
-      setArrayIdMileageFromFavorites([]);
+      setArrayMileageFromFavorites([]);
     } else {
       const arrayIdMileageTo = autosFavorites
         .filter((auto) => Number(auto.mileage) <= Number(inputMileageTo))
@@ -191,10 +216,10 @@ const Favorites = () => {
 
       if (!inputMileageFrom || inputMileageFrom) {
         arrayIdMileageTo
-          ? setArrayIdMileageToFavorites(arrayIdMileageTo)
-          : setArrayIdMileageToFavorites([]);
+          ? setArrayMileageToFavorites(arrayIdMileageTo)
+          : setArrayMileageToFavorites([]);
       } else if (Number(inputMileageFrom) > Number(inputMileageTo)) {
-        setArrayIdMileageToFavorites([]);
+        setArrayMileageToFavorites([]);
       }
     }
   };
@@ -226,7 +251,7 @@ const Favorites = () => {
   const indexOfLastItem = currentPageFavorites* ITEMS_PER_PAGE;
 
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  const currentFavoriteAdverts = favoriteAdverts.slice(
+  const currentFavoriteAdverts = favoritesToDisplay.slice(
     indexOfFirstItem,
     indexOfLastItem
   );
@@ -270,6 +295,7 @@ const Favorites = () => {
         handleMileageTo={handleMileageTo} 
       />
       <FavoritesList
+      favoritesToDisplay={favoritesToDisplay}
       autosFavorites={autosFavorites}
         currentFavoriteAdverts={currentFavoriteAdverts}
         favorites={favorites}
@@ -283,9 +309,9 @@ const Favorites = () => {
         reloadComponentFavorites={reloadComponentFavorites}
         currentPageFavorites={currentPageFavorites}
         arrayMake={arrayIdMake}
-         arrayRentalPrice={arrayIdRentalPriceFavorites}
-         arrayMileageTo={arrayIdMileageToFavorites}
-         arrayMileageFrom={arrayIdMileageFromFavorites}
+         arrayRentalPrice={arrayRentalPriceFavorites}
+         arrayMileageTo={arrayMileageToFavorites}
+         arrayMileageFrom={arrayMileageFromFavorites}
         // selectMake={imputMake}
          selectMileageFrom={inputMileageFrom}
          selectMileageTo={inputMileageTo}
