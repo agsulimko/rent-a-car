@@ -46,7 +46,7 @@ const SearchFormFavorites = ({
       !selectMake &&
       !selectRentalPrice &&
       !selectMileageFrom &&
-      !selectMileageFrom &&
+      selectMileageFrom!==0 &&
       !selectMileageTo
     ) {
     //   handleResetRentalPrice();
@@ -59,7 +59,24 @@ const SearchFormFavorites = ({
  } 
    
 
+ else if ((Number(selectMileageFrom) > Number(selectMileageTo) &&selectMileageFrom && selectMileageTo) || selectMileageTo===0  ) {
+  toast.error("From must be less than TO,choose other mileage values!", {
+    duration: 3000,
+    position: "top-center",
+  });
+  return;
+  
+}
+else{
+  // handleResetRentalPrice();
+  handleMake(selectMake);
+handleRentalPrice(selectRentalPrice);
+handleMileageFrom(selectMileageFrom, selectMileageTo);
+handleMileageTo(selectMileageTo, selectMileageFrom);
+}
 
+
+};
 
 //  else if (Number(selectMileageFrom) > Number(selectMileageTo)) {
 //       toast.error("From must be less than TO,choose other mileage values!", {
@@ -77,11 +94,11 @@ const SearchFormFavorites = ({
 //     handleMileageTo(selectMileageTo, selectMileageFrom);
 //     }
    
-handleMake(selectMake);
-handleRentalPrice(selectRentalPrice);  
-handleMileageFrom(selectMileageFrom, selectMileageTo);handleMileageTo(selectMileageTo,
- selectMileageFrom);
-  };
+// handleMake(selectMake);
+// handleRentalPrice(selectRentalPrice);  
+// handleMileageFrom(selectMileageFrom, selectMileageTo);handleMileageTo(selectMileageTo,
+//  selectMileageFrom);
+//   };
 
   const handleMakeInput = (event) => {
     const make = event.target.value;
@@ -132,7 +149,7 @@ handleMileageFrom(selectMileageFrom, selectMileageTo);handleMileageTo(selectMile
      setSelectRentalPrice("");
     setSelectMileageFrom("");
     setSelectMileageTo("");
-    // handleResetArrays();
+     handleResetArrays();
   };
  
 

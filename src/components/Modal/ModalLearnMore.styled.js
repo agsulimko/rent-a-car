@@ -144,7 +144,7 @@ const RentalConditions = styled.p`
   /* line-height: 150%; */
   letter-spacing: -0.02em;
   color: #363535;
-  padding: 7px 14px;
+  padding: 7px 12px;
 `;
 
 const SpanAge = styled.span`

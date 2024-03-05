@@ -34,7 +34,7 @@ import FavoritesItem from "./FavoritesItem";
 const ITEMS_PER_PAGE = 12;
 
 const FavoritesList = ({
-  favoritesToDisplay,
+  // favoritesToDisplay,
   autosFavorites,
   currentFavoriteAdverts,
   favorites,
@@ -66,73 +66,58 @@ const FavoritesList = ({
   };
 
 
-//   const favoritesToDisplay = ((arrayRentalPrice.length === 0 && selectRentalPrice) || ( selectMake)) ? [] : currentFavoriteAdverts.filter(
-//     (cart) =>
-//       (!arrayRentalPrice.length ||
-//         arrayRentalPrice.includes(cart.id)) &&
-//       (!arrayMileageFrom.length ||
-//         arrayMileageFrom.includes(cart.id)) &&
-//       (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
-//   );
 
-//  console.log(favoritesToDisplay );
-
-console.log("arrayMake=", arrayMake );
-console.log("arrayRentalPrice=", arrayRentalPrice );
-// console.log("arrayMileageFrom=", arrayMileageFrom);
-// console.log("arrayMileageTo=", arrayMileageTo);
-console.log("selectRentalPrice =", selectRentalPrice );
-
- console.log("favorites =", favorites);
-// console.log("autosFavorites=", autosFavorites);
-// const favoritesToDisplay = autosFavorites;
-
-  //   const favoritesToDisplay = (arrayRentalPrice.length === 0 && selectRentalPrice ) ? [] : autosFavorites.filter(
-  //     (cart) =>
-
-      
-  //     (!favorites.length ||
-  //       favorites.includes(cart.id)) 
-  //     &&
-  //     (!arrayMake.length ||
-  //       arrayMake.includes(cart.id)) 
-  //     &&
-  //      (!arrayRentalPrice.length ||
-  //       arrayRentalPrice.includes(cart.id)) 
-  //     &&
-  //    (!arrayMileageFrom.length ||
-  //       arrayMileageFrom.includes(cart.id)) &&
-  //     (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
-  // );
-    // const favoritesToDisplay =[];
- console.log("favoritesToDisplay=", favoritesToDisplay );
-
-
-  return (
-     !arrayMileageFrom.length &&
-     !arrayMileageTo.length &&
-    !selectRentalPrice  &&
-    !selectMake  ? (
+  const autosToDisplayFavorites = (arrayRentalPrice.length === 0 && selectRentalPrice) || (arrayMake === 0 && selectMake)|| (selectMileageTo.length!==0 && arrayMileageTo.length===0   ) ? [] : currentFavoriteAdverts.filter(
+    (cart) =>
+      (!arrayRentalPrice.length ||
+        arrayRentalPrice.includes(cart.id)) &&
+      (!arrayMileageFrom.length ||
+        arrayMileageFrom.includes(cart.id)) &&
+      (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
+  );
+  
 
 
 
-    <Container>
+  return ( 
+  <Container>
       <div className="div-cards-list">
         <CardList className="cards-list">
-          {currentFavoriteAdverts.map((cart, index) => (
-          /* {favoritesToDisplay.map((cart, index) => ( */
 
+    {!selectMake &&
+      !selectRentalPrice &&
+      !selectMileageFrom &&
+      !selectMileageTo ?
+    //  !arrayMileageFrom.length &&
+    //  !arrayMileageTo.length &&
+    // !selectRentalPrice  &&
+    // !selectMake  ? 
+    (  currentFavoriteAdverts.map((cart, index) => (
+         
 <FavoritesItem
  key={index}
 cart={cart}
-
-
 handleLearnMore={ handleLearnMore}
 toggleFavorite={toggleFavorite}
 favorites={favorites}
 />
-           
-          ))}
+))):(
+  (arrayMileageFrom.length===0 && selectMileageFrom.length!==0 && selectMileageTo.length===0) ||(arrayMileageTo.length!==0 && arrayMileageFrom.length===0 && selectMileageTo.length!==0 && selectMileageFrom.length!==0
+
+    ) ? [] :
+
+  autosToDisplayFavorites.map((cart, index) => (
+<FavoritesItem
+key={index}
+cart={cart}
+handleLearnMore={ handleLearnMore}
+toggleFavorite={toggleFavorite}
+favorites={favorites}
+/>
+   
+  )))
+  }   
+        
         </CardList>
         {currentPageFavorites > 1 && (
           <ButtonToUp onClick={handleToUp}>To up ⇈</ButtonToUp>
@@ -151,45 +136,8 @@ favorites={favorites}
           )}
       </div>
     </Container>
-    ):(
 
-      // if (arrayMileageFrom.length || arrayMileageTo.length || selectRentalPrice)
-      <Container>
-      <div className="div-cards-list">
-        <CardList className="cards-list">
-          {currentFavoriteAdverts.map((cart, index) => (
-          /* {favoritesToDisplay.map((cart, index) => ( */
-
-<FavoritesItem
- key={index}
-cart={cart}
-
-
-handleLearnMore={ handleLearnMore}
-toggleFavorite={toggleFavorite}
-favorites={favorites}
-/>
-           
-          ))}
-        </CardList>
-        {currentPageFavorites > 1 && (
-          <ButtonToUp onClick={handleToUp}>To up ⇈</ButtonToUp>
-        )}
-        {favoriteAdverts.length > 0 &&
-          favoriteAdverts.length >= ITEMS_PER_PAGE &&
-          currentFavoriteAdverts.length >= ITEMS_PER_PAGE &&
-          currentPageFavorites !== favoriteAdverts.length / ITEMS_PER_PAGE && (
-            <ButtonLoadMore
-              type="button"
-              className="cards-item-btn"
-              onClick={() => handlePageChange(currentPageFavorites + 1)}
-            >
-              Load more ⇊
-            </ButtonLoadMore>
-          )}
-      </div>
-    </Container>
-    )
+    
   );
 };
 

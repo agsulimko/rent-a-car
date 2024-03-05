@@ -34,7 +34,7 @@ const Favorites = () => {
    const [arrayRentalPriceFavorites, setArrayRentalPriceFavorites] = useState([]);
    const [arrayMileageFromFavorites, setArrayMileageFromFavorites] = useState([]);
    const [arrayMileageToFavorites, setArrayMileageToFavorites] = useState([]);
-  // const [imputMake, setImputMake] = useState("");
+  const [imputMake, setImputMake] = useState("");
    const [inputMileageTo, setInputMileageTo] = useState(0);
    const [inputMileageFrom, setInputMileageFrom] = useState(0);
     const [inputRentalPrice, setInputRentalPrice] = useState("");
@@ -65,23 +65,23 @@ const Favorites = () => {
 
   const favoriteAdverts = adverts.filter((auto) => favorites.includes(auto.id));
 
-  const favoritesToDisplay = (arrayRentalPriceFavorites.length === 0 && inputRentalPrice) ? [] : favoriteAdverts.filter(
-    (cart) =>
+//   const favoritesToDisplay = (arrayRentalPriceFavorites.length === 0 && inputRentalPrice) ? [] : favoriteAdverts.filter(
+//     (cart) =>
 
     
-    // (!favorites.length ||
-    //   favorites.includes(cart.id)) 
-    // &&
-    (!arrayIdMake.length ||
-      arrayIdMake.includes(cart.id)) 
-    &&
-     (!arrayRentalPriceFavorites.length ||
-      arrayRentalPriceFavorites.includes(cart.id)) 
-    &&
-   (!arrayMileageFromFavorites.length ||
-    arrayMileageFromFavorites.includes(cart.id)) &&
-    (!arrayMileageToFavorites.length || arrayMileageToFavorites.includes(cart.id))
-);
+//     // (!favorites.length ||
+//     //   favorites.includes(cart.id)) 
+//     // &&
+//     (!arrayIdMake.length ||
+//       arrayIdMake.includes(cart.id)) 
+//     &&
+//      (!arrayRentalPriceFavorites.length ||
+//       arrayRentalPriceFavorites.includes(cart.id)) 
+//     &&
+//    (!arrayMileageFromFavorites.length ||
+//     arrayMileageFromFavorites.includes(cart.id)) &&
+//     (!arrayMileageToFavorites.length || arrayMileageToFavorites.includes(cart.id))
+// );
 
 
 
@@ -126,11 +126,7 @@ const Favorites = () => {
 
   const handleMake = (inputMake) => {
     const array = [];
-    // const [arrayIdMake, setArrayIdMake] = useState([]);
-    // autosFavorites.forEach((advert) => {
-    // if (rentalPriceCurrent = inputMake) {
-    //   array.push(advert.id);
-    // }
+   
     autosFavorites.forEach((advert) => {
     
     
@@ -146,7 +142,7 @@ const Favorites = () => {
 
     setArrayIdMake(array);
     // console.log("iinputMake=", inputMake);
-    // setImputMake(inputMake);
+     setImputMake(inputMake);
    };
 
 
@@ -179,26 +175,32 @@ const Favorites = () => {
   
 
 
+   
 
 
 
 
   //  ==============arrayIdMileageFrom===============
 
-  const handleMileageFrom = (inputMileageFrom, inputMileageTo) => {
-    // console.log("inputMileageFrom=", inputMileageFrom);
+    const handleMileageFrom = (inputMileageFrom, inputMileageTo) => {
+    setInputMileageFrom(inputMileageFrom);
+    setInputMileageTo(inputMileageTo);
+  
+  if ((inputMileageFrom > inputMileageTo) &&  inputMileageTo.length!==0) {
+    setArrayMileageFromFavorites([]);
+  } else {
+    const arrayMileageFrom = autosFavorites
+      .filter((auto) =>auto.mileage >= inputMileageFrom)
+      .map((auto) => auto.id);
+      // console.log("arrayMileageFrom=",arrayMileageFrom );
+  
 
-     setInputMileageFrom(inputMileageFrom);
-    // setInputMileageTo(inputMileageTo);
-    // console.log("inputMileageFrom=", inputMileageFrom);
-    // console.log("inputMileageTo=", inputMileageTo);
-    if (inputMileageFrom > inputMileageTo) {
-      setArrayMileageFromFavorites([]);
-    
-    }
-  };
+      setArrayMileageFromFavorites(arrayMileageFrom);
+    // console.log("arrayMileageFrom=", arrayIdMileageFrom);
+};
+  }
   // ==============arrayIdMileageFrom===============
-
+ 
   // ==============arrayIdMileageTo===============
 
   const handleMileageTo = (inputMileageTo, inputMileageFrom) => {
@@ -207,18 +209,18 @@ const Favorites = () => {
     // setInputMileageFrom(inputMileageFrom);
      setInputMileageTo(inputMileageTo);
 
-    if (Number(inputMileageFrom) > Number(inputMileageTo)) {
-      setArrayMileageFromFavorites([]);
+    if (inputMileageFrom> inputMileageTo) {
+      setArrayMileageToFavorites([]);
     } else {
       const arrayIdMileageTo = autosFavorites
-        .filter((auto) => Number(auto.mileage) <= Number(inputMileageTo))
+        .filter((auto) => Number(auto.mileage) <= inputMileageTo)
         .map((auto) => auto.id);
 
       if (!inputMileageFrom || inputMileageFrom) {
         arrayIdMileageTo
           ? setArrayMileageToFavorites(arrayIdMileageTo)
           : setArrayMileageToFavorites([]);
-      } else if (Number(inputMileageFrom) > Number(inputMileageTo)) {
+      } else if (inputMileageFrom > inputMileageTo) {
         setArrayMileageToFavorites([]);
       }
     }
@@ -251,7 +253,7 @@ const Favorites = () => {
   const indexOfLastItem = currentPageFavorites* ITEMS_PER_PAGE;
 
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  const currentFavoriteAdverts = favoritesToDisplay.slice(
+  const currentFavoriteAdverts = favoriteAdverts.slice(
     indexOfFirstItem,
     indexOfLastItem
   );
@@ -295,13 +297,13 @@ const Favorites = () => {
         handleMileageTo={handleMileageTo} 
       />
       <FavoritesList
-      favoritesToDisplay={favoritesToDisplay}
+      // favoritesToDisplay={favoritesToDisplay}
       autosFavorites={autosFavorites}
         currentFavoriteAdverts={currentFavoriteAdverts}
         favorites={favorites}
         toggleFavorite={toggleFavorite}
         handlePageChange={handlePageChange}
-       
+         selectMake={imputMake}
         favoriteAdverts={favoriteAdverts}
         handleLearnMore={handleLearnMore}
         handleLoadMore={handleLoadMore}

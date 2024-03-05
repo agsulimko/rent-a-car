@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdverts, fetchAutos } from "../redux/thunks";
-import { selectAdverts, selectAutos } from "../redux/selectors";
+import { selectAutos } from "../redux/selectors";
 import CatalogList from "components/Catalog/CatalogList";
 import SearchForm from "components/SearchForm/SearchForm";
 
@@ -16,9 +16,9 @@ const ITEMS_PER_PAGE = 12;
 // let make = "";
 // let resultArrayIdMileage;
 // const updatedArray = [];
-const Catalog = (handleResetArrays, handleResetRentalPrice) => {
+const Catalog = ({handleResetArrays, handleResetRentalPrice}) => {
   const dispatch = useDispatch();
-  const adverts = useSelector(selectAdverts) || [];
+  // const adverts = useSelector(selectAdverts) || [];
   const autos = useSelector(selectAutos) || [];
 
   const [imputMake, setImputMake] = useState("");
@@ -66,10 +66,12 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
 
 
 
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  const currentItems = adverts.slice(indexOfFirstItem, indexOfLastItem);
+  // const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  // const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  // const currentItems = adverts.slice(indexOfFirstItem, indexOfLastItem);
 
+
+    
   // const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   // const currentFavoriteAdverts = favoriteAdverts.slice(
   //   indexOfFirstItem,
@@ -189,19 +191,26 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
 
 
   //  ==============arrayIdMileageFrom===============
-
-  const handleMileageFrom = (inputMileageFrom, inputMileageTo) => {
-    // console.log("inputMileageFrom=", inputMileageFrom);
-
+   const handleMileageFrom = (inputMileageFrom, inputMileageTo) => {
     setInputMileageFrom(inputMileageFrom);
     setInputMileageTo(inputMileageTo);
-    // console.log("inputMileageFrom=", inputMileageFrom);
-    // console.log("inputMileageTo=", inputMileageTo);
-    if (inputMileageFrom > inputMileageTo) {
-      setArrayIdMileageFrom([]);
-    
-    }
-  };
+  
+  if (((inputMileageFrom > inputMileageTo) &&  inputMileageTo.length!==0) || (inputMileageFrom.length!==0 && inputMileageTo.length!==0 && arrayIdMileageTo.length===0)){
+    setArrayIdMileageFrom([]);
+  } else {
+    const arrayMileageFrom = autos
+      .filter((auto) =>auto.mileage >= inputMileageFrom)
+      .map((auto) => auto.id);
+      
+  
+
+    setArrayIdMileageFrom(arrayMileageFrom);
+  
+};
+  }
+  
+
+
   // ==============arrayIdMileageFrom===============
 
   // ==============arrayIdMileageTo===============
@@ -212,20 +221,25 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
     setInputMileageFrom(inputMileageFrom);
     setInputMileageTo(inputMileageTo);
 
-    if (Number(inputMileageFrom) > Number(inputMileageTo)) {
-      setArrayIdMileageFrom([]);
+    //  if (arrayIdMileageFrom && arrayIdMileageTo.length===0 && inputMileageTo.length!==0) {setArrayIdMileageTo([])}
+    //  else
+
+    if (inputMileageFrom > inputMileageTo) {
+      setArrayIdMileageTo([]);
     } else {
       const arrayIdMileageTo = autos
-        .filter((auto) => Number(auto.mileage) <= Number(inputMileageTo))
+        .filter((auto) => Number(auto.mileage) <= inputMileageTo)
         .map((auto) => auto.id);
 
       if (!inputMileageFrom || inputMileageFrom) {
         arrayIdMileageTo
           ? setArrayIdMileageTo(arrayIdMileageTo)
           : setArrayIdMileageTo([]);
-      } else if (Number(inputMileageFrom) > Number(inputMileageTo)) {
+      } else if (inputMileageFrom > inputMileageTo) {
         setArrayIdMileageTo([]);
       }
+
+      
     }
   };
   // ==============arrayIdMileageTo===============
@@ -252,8 +266,10 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
 
   // console.log("selectMake=", selectMake);
   // console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
-  // console.log("arrayMileageTo=", arrayIdMileageTo);
-  // console.log("arrayMileageFrom=", arrayIdMileageFrom);
+  // console.log("inputMileageFrom=", inputMileageFrom);
+  // console.log("inputMileageTo=", inputMileageTo);
+  console.log("arrayMileageTo=", arrayIdMileageTo);
+  console.log("arrayMileageFrom=", arrayIdMileageFrom);
 
  
   const handleReloadAdverts = () => {
@@ -276,8 +292,8 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
     // Удаляем текущую страницу из локального хранилища
   };
   
-
-
+  
+ 
 
   return (
     <Container>
@@ -299,7 +315,7 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
 
       <CatalogList
         currentItemsAuto={currentItemsAuto}
-        adverts={adverts}
+        // adverts={adverts}
         handleLoadMore={handleLoadMore}
         handleLearnMore={handleLearnMore}
         handleReloadComponent={handleReloadComponent}
@@ -324,7 +340,7 @@ const Catalog = (handleResetArrays, handleResetRentalPrice) => {
       <ModalLearnMore
         isOpen={isModalOpen}
         closeModal={() => setModalOpen(false)}
-        currentItems={currentItems}
+        // currentItems ={currentItems}
         currentItemsAuto={currentItemsAuto}
         selectedItemId={selectedItemId}
       />

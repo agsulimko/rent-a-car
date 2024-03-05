@@ -34,13 +34,16 @@ Modal.setAppElement("#root");
 const ModalLearnMore = ({
   isOpen,
   closeModal,
-  currentItems,
+  currentItems ,
   selectedItemId,
+  currentItemsAuto
 }) => {
   useEffect(() => {
     Modal.setAppElement("#root"); //
   }, []);
-  const cart = currentItems.find((item) => item.id === selectedItemId);
+// 
+ const cart = currentItems ? currentItems.find((item) => item.id === selectedItemId): currentItemsAuto.find((item) => item.id === selectedItemId)  ;
+ 
 
   return (
     <Modal style={ModalStyles} isOpen={isOpen} onRequestClose={closeModal}>
@@ -107,7 +110,7 @@ const ModalLearnMore = ({
                   {/* ======================================= */}
                   <DivTextInfo className="Fuel Consumption:">
                     <PTextInfo>
-                      Fuel Consumption: {cart.fuelConsumption}{" "}
+                      Fuel Consumption: {cart.fuelConsumption}
                     </PTextInfo>
                     <Vector></Vector>
                     <PTextInfo className="Engine Size:">
@@ -136,10 +139,17 @@ const ModalLearnMore = ({
                     <PTextInfo className="text">
                       {cart.accessories[1]}
                     </PTextInfo>
-                    <Vector></Vector>
+
+                    {
+                     cart.accessories[0].length
+                     + cart.accessories[1].length+cart.functionalities[0].length  < 78 && 
+                   (
+                    <>
+                   <Vector></Vector>
                     <PTextInfo className="text">
                       {cart.functionalities[0]}
                     </PTextInfo>
+                    </>)}
                   </DivTextInfo>
 
                   {/* ============================================================== */}
@@ -166,10 +176,32 @@ const ModalLearnMore = ({
                     <PTextInfo className="text">
                       {cart.functionalities[1]}
                     </PTextInfo>
+                    {
+
+                      ( cart.accessories
+                        .map((feature) => {
+                          const foundSubstring = substringsToCheck.find(
+                            (substring) =>
+                              feature
+                                .toLowerCase()
+                                .includes(substring.toLowerCase())
+                          );
+
+                          return foundSubstring
+                            ? foundSubstring.charAt(0).toUpperCase() +
+                                foundSubstring.slice(1)
+                            : "";
+                        })
+                        .filter(Boolean)[0] || "").length
+                     
+                     + cart.functionalities[1].length+cart.functionalities[2].length  < 78 && 
+                   (
+                    <>
+
                     <Vector></Vector>
                     <PTextInfo className="text">
                       {cart.functionalities[2]}
-                    </PTextInfo>
+                    </PTextInfo></>)}
                   </DivTextInfo>
                   {/* ============================================== */}
                 </Div>

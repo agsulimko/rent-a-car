@@ -50,7 +50,7 @@ const CatalogList = ({
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
-  const autosToDisplay = (arrayRentalPrice.length === 0 && selectRentalPrice) || (arrayMake === 0 && selectMake) ? [] : currentItemsAuto.filter(
+  const autosToDisplay = (arrayRentalPrice.length === 0 && selectRentalPrice) || (arrayMake === 0 && selectMake)|| (selectMileageTo.length!==0 && arrayMileageTo.length===0   ) ? [] : currentItemsAuto.filter(
     (cart) =>
       (!arrayRentalPrice.length ||
         arrayRentalPrice.includes(cart.id)) &&
@@ -59,69 +59,27 @@ const CatalogList = ({
       (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
   );
 
+// if (selectMileageTo.length!==0 && arrayMileageTo.length===0 )
+//   autosToDisplay =[];
+
   const handleToUpAutos = () => {
     // Обработчик для кнопки "To up"
     handleReloadComponentAutos(); // Вызываем функцию из родительского компонента
   };
   // console.log("arrayRentalPrice=", arrayRentalPrice);
+  //  console.log("autosToDisplay=", autosToDisplay);
   return (
     
       
-        !arrayMileageFrom.length &&
-          !arrayMileageTo.length &&
-          !selectRentalPrice &&
-          !selectMake ? (
-
-
-
-            <Container>
-            <div className="div-cards-list">
-            <CardList className="cards-list">
-              {adverts.map((cart, index) => (
-                <CatalogItem
-                  key={index}
-                  cart={cart}
-                  toggleFavorites={toggleFavorites}
-                  favorites={favorites}
-                  handleLearnMore={handleLearnMore}
-                />
-              ))}
-            
-            </CardList>
-            {currentPage > 1 && (
-                <ButtonToUp
-                  // onClick={handleReloadComponent}
-                  onClick={() => {
-                    handleReloadComponent();
-                    // handleToUpAutos();
-                  }}
-                >
-                  To up ⇈
-                </ButtonToUp>
-              )}
-              {adverts.length > 0 && adverts.length >= ITEMS_PER_PAGE && (
-                <ButtonLoadMore
-                  type="button"
-                  className="cards-item-btn"
-                  // onClick={handleLoadMore}
-                  onClick={() => {
-                    // handlePageChangeAutos(currentPageAutos + 1);
-                    handleLoadMore();
-                  }}
-                >
-                  Load more ⇊
-                </ButtonLoadMore>
-              )}
-              </div>
-
-
-              
-              </Container>
-          ) : (
             <Container>
       <div className="div-cards-list">
             <CardList className="cards-list">
-              {autosToDisplay.map((cart, index) => (
+
+              { !selectMake &&
+      !selectRentalPrice &&
+      !selectMileageFrom &&
+      !selectMileageTo ?
+             ( currentItemsAuto.map((cart, index) => (
                 <CatalogItem
                   key={index}
                   cart={cart}
@@ -129,7 +87,23 @@ const CatalogList = ({
                   favorites={favorites}
                   handleLearnMore={handleLearnMore}
                 />
-              ))}
+              ))):(
+                
+                (arrayMileageFrom.length===0 && selectMileageFrom.length!==0 && selectMileageTo.length===0) ||(arrayMileageTo.length!==0 && arrayMileageFrom.length===0 && selectMileageTo.length!==0 && selectMileageFrom.length!==0
+
+                ) ? [] :
+                  
+                      autosToDisplay.map((cart, index) => (
+                <CatalogItem
+                  key={index}
+                  cart={cart}
+                  toggleFavorites={toggleFavorites}
+                  favorites={favorites}
+                  handleLearnMore={handleLearnMore}
+                />
+              )
+              )
+              )}
              
             </CardList> {currentPageAutos > 1 && (
                 <ButtonToUp
@@ -156,7 +130,7 @@ const CatalogList = ({
               )}
               </div>
               </Container>
-          )
+          // )
     
   );
 };

@@ -47,11 +47,12 @@ const SearchForm = ({
     // setSelectMake('');
     // handleResetArrays();
     // handleResetRentalPrice();
+    //  console.log("selectMileageFrom=", selectMileageFrom);
     if (
       !selectMake &&
       !selectRentalPrice &&
       !selectMileageFrom &&
-      !selectMileageFrom &&
+      selectMileageFrom!==0 &&
       !selectMileageTo
     ) {
       // handleResetRentalPrice();
@@ -65,7 +66,7 @@ const SearchForm = ({
    
 
 
- else if (Number(selectMileageFrom) > Number(selectMileageTo)) {
+ else if ((Number(selectMileageFrom) > Number(selectMileageTo) &&selectMileageFrom && selectMileageTo) || selectMileageTo===0  ) {
       toast.error("From must be less than TO,choose other mileage values!", {
         duration: 3000,
         position: "top-center",
