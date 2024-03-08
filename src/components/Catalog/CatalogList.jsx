@@ -1,12 +1,7 @@
-
-
-
-
 // Импортируем необходимые модули и компоненты
 import React, { useState } from "react";
 import { Container } from "styles/Container/Container";
-// import { useSelector } from "react-redux";
-// import { selectAutos } from "../../redux/selectors";
+
 import { ButtonLoadMore, ButtonToUp, CardList } from "./CatalogList.styled";
 import CatalogItem from "./CatalogItem";
 
@@ -19,26 +14,17 @@ const CatalogList = ({
   arrayMileageTo,
   selectMake,
   selectRentalPrice,
-  selectArrayMake,
   selectMileageFrom,
   selectMileageTo,
-  adverts,
-  handleLoadMore,
   handleLearnMore,
-  handleReloadComponent,
-  currentPage,
-  handleResetSelects,
   handlePageChangeAutos,
-  handleLoadMoreAutos,
   currentItemsAuto,
   currentPageAutos,
-  handleReloadComponentAutos
+  handleReloadComponentAutos,
 }) => {
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
-  // console.log("arrayRentalPrice=", arrayRentalPrice);
-  // const autos = useSelector(selectAutos) || [];
 
   const toggleFavorites = (id) => {
     const updatedFavorites = favorites.includes(id)
@@ -50,36 +36,32 @@ const CatalogList = ({
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
-  const autosToDisplay = (arrayRentalPrice.length === 0 && selectRentalPrice) || (arrayMake === 0 && selectMake)|| (selectMileageTo.length!==0 && arrayMileageTo.length===0   ) ? [] : currentItemsAuto.filter(
-    (cart) =>
-      (!arrayRentalPrice.length ||
-        arrayRentalPrice.includes(cart.id)) &&
-      (!arrayMileageFrom.length ||
-        arrayMileageFrom.includes(cart.id)) &&
-      (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
-  );
-
-// if (selectMileageTo.length!==0 && arrayMileageTo.length===0 )
-//   autosToDisplay =[];
+  const autosToDisplay =
+    (arrayRentalPrice.length === 0 && selectRentalPrice) ||
+    // (arrayMake === 0 && selectMake) ||
+    (selectMileageTo.length !== 0 && arrayMileageTo.length === 0)
+      ? []
+      : currentItemsAuto.filter(
+          (cart) =>
+            (!arrayRentalPrice.length || arrayRentalPrice.includes(cart.id)) &&
+            (!arrayMileageFrom.length || arrayMileageFrom.includes(cart.id)) &&
+            (!arrayMileageTo.length || arrayMileageTo.includes(cart.id))
+        );
 
   const handleToUpAutos = () => {
     // Обработчик для кнопки "To up"
     handleReloadComponentAutos(); // Вызываем функцию из родительского компонента
   };
-  // console.log("arrayRentalPrice=", arrayRentalPrice);
-  //  console.log("autosToDisplay=", autosToDisplay);
+
   return (
-    
-      
-            <Container>
+    <Container>
       <div className="div-cards-list">
-            <CardList className="cards-list">
-
-              { !selectMake &&
-      !selectRentalPrice &&
-      !selectMileageFrom &&
-      !selectMileageTo ?
-             ( currentItemsAuto.map((cart, index) => (
+        <CardList className="cards-list">
+          {!selectMake &&
+          !selectRentalPrice &&
+          !selectMileageFrom &&
+          !selectMileageTo
+            ? currentItemsAuto.map((cart, index) => (
                 <CatalogItem
                   key={index}
                   cart={cart}
@@ -87,13 +69,16 @@ const CatalogList = ({
                   favorites={favorites}
                   handleLearnMore={handleLearnMore}
                 />
-              ))):(
-                
-                (arrayMileageFrom.length===0 && selectMileageFrom.length!==0 && selectMileageTo.length===0) ||(arrayMileageTo.length!==0 && arrayMileageFrom.length===0 && selectMileageTo.length!==0 && selectMileageFrom.length!==0
-
-                ) ? [] :
-                  
-                      autosToDisplay.map((cart, index) => (
+              ))
+            : (arrayMileageFrom.length === 0 &&
+                selectMileageFrom.length !== 0 &&
+                selectMileageTo.length === 0) ||
+              (arrayMileageTo.length !== 0 &&
+                arrayMileageFrom.length === 0 &&
+                selectMileageTo.length !== 0 &&
+                selectMileageFrom.length !== 0)
+            ? []
+            : autosToDisplay.map((cart, index) => (
                 <CatalogItem
                   key={index}
                   cart={cart}
@@ -101,44 +86,24 @@ const CatalogList = ({
                   favorites={favorites}
                   handleLearnMore={handleLearnMore}
                 />
-              )
-              )
-              )}
-             
-            </CardList> {currentPageAutos > 1 && (
-                <ButtonToUp
-                  // onClick={handleReloadComponent}
-                  onClick={() => {handleToUpAutos(); 
-                    //  handleReloadComponentAutos();
-                    }}
-                >
-                  To up ⇈
-                </ButtonToUp>
-              )}
-              {autosToDisplay.length >= 0 && autosToDisplay.length >= ITEMS_PER_PAGE && (
-                <ButtonLoadMore
-                  type="button"
-                  className="cards-item-btn"
-                  // onClick={handleLoadMore}
-                  onClick={() => 
-                    handlePageChangeAutos(currentPageAutos + 1)
-                    // handleLoadMore();
-                  }
-                >
-                  Load more ⇊
-                </ButtonLoadMore>
-              )}
-              </div>
-              </Container>
-          // )
-    
+              ))}
+        </CardList>{" "}
+        {currentPageAutos > 1 && (
+          <ButtonToUp onClick={handleToUpAutos}>To up ⇈ </ButtonToUp>
+        )}
+        {autosToDisplay.length >= 0 && autosToDisplay.length >= ITEMS_PER_PAGE && (
+          <ButtonLoadMore
+            type="button"
+            className="cards-item-btn"
+            onClick={() => handlePageChangeAutos(currentPageAutos + 1)}
+          >
+            Load more ⇊
+          </ButtonLoadMore>
+        )}
+      </div>
+    </Container>
+    // )
   );
 };
 
 export default CatalogList;
-
-
-
-
-
-

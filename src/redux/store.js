@@ -39,12 +39,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-// import { configureStore } from '@reduxjs/toolkit';
-// import advertsReducer from '../redux/slice';
-
-// export const store = configureStore({
-//   reducer: {
-//     adverts: advertsReducer,
-//   },
-// });

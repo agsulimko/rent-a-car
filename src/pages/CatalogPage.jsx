@@ -16,7 +16,7 @@ const ITEMS_PER_PAGE = 12;
 // let make = "";
 // let resultArrayIdMileage;
 // const updatedArray = [];
-const Catalog = ({handleResetArrays, handleResetRentalPrice}) => {
+const Catalog = ({ handleResetArrays }) => {
   const dispatch = useDispatch();
   // const adverts = useSelector(selectAdverts) || [];
   const autos = useSelector(selectAutos) || [];
@@ -39,18 +39,12 @@ const Catalog = ({handleResetArrays, handleResetRentalPrice}) => {
     parseInt(localStorage.getItem("currentPageAutos"), 10) || 1
   );
 
-
-
   const [selectedItemId, setSelectedItemId] = useState(null);
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [reloadComponent, setReloadComponent] = useState(false);
-  const [reloadComponentAutos, setReloadComponentAutos] = useState(
-    false
-  );
+  const [reloadComponentAutos, setReloadComponentAutos] = useState(false);
 
-
- 
   useEffect(() => {
     dispatch(fetchAdverts({ page: currentPage }));
   }, [dispatch, currentPage, reloadComponent]);
@@ -62,33 +56,16 @@ const Catalog = ({handleResetArrays, handleResetRentalPrice}) => {
 
   const indexOfLastItemAutos = currentPageAutos * ITEMS_PER_PAGE;
   const indexOfFirstItemAutos = indexOfLastItemAutos - ITEMS_PER_PAGE;
-  const currentItemsAuto = autos.slice(indexOfFirstItemAutos, indexOfLastItemAutos);
+  const currentItemsAuto = autos.slice(
+    indexOfFirstItemAutos,
+    indexOfLastItemAutos
+  );
 
-
-
-  // const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-  // const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  // const currentItems = adverts.slice(indexOfFirstItem, indexOfLastItem);
-
-
-    
-  // const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  // const currentFavoriteAdverts = favoriteAdverts.slice(
-  //   indexOfFirstItem,
-  //   indexOfLastItem
-  // );
-
-
-
- 
   const handlePageChangeAutos = (newPage) => {
-    // setCurrentPage(newPage);
     setCurrentPageAutos(newPage);
     localStorage.setItem("currentPageAutos", newPage);
   };
 
- 
-  
   const resetCurrentPageAutos = () => {
     setCurrentPageAutos(1);
     localStorage.setItem("currentPageAutos", 1);
@@ -98,7 +75,6 @@ const Catalog = ({handleResetArrays, handleResetRentalPrice}) => {
     resetCurrentPageAutos();
   }, []);
 
-
   const handleLoadMoreAutos = () => {
     setCurrentPageAutos((prevPage) => {
       const nextPage = prevPage + 1;
@@ -107,7 +83,6 @@ const Catalog = ({handleResetArrays, handleResetRentalPrice}) => {
       localStorage.setItem("currentPageAutos", nextPage);
       return nextPage;
     });
-    
   };
   const handleLoadMore = () => {
     setCurrentPage((prevPage) => {
@@ -122,113 +97,56 @@ const Catalog = ({handleResetArrays, handleResetRentalPrice}) => {
   };
 
   const handleMake = (inputMake) => {
-   
     setImputMake(inputMake);
+  };
 
-
-    
-   };
-  
-
-
-
-
-
-
-
-    // setSelectMake(inputMake);
-
-   
-  
-
-  // console.log("arrayMake=", make);
- 
-  
-  //   console.log("inputRentalPrice=", inputRentalPrice);
-  //   console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
-
-  //   console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
-  //   console.log("inputRentalPrice=", inputRentalPrice);
-  //   // console.log("allAdverts=", allAdverts);
-  //   // console.log("adverts=", adverts);
-
-  
-
-
-
-  const handleRentalPrice = (
-    inputRentalPrice,
-    inputMake,
-    inputMileageFrom,
-    inputMileageTo
-  ) => {
+  const handleRentalPrice = (inputRentalPrice) => {
     const array = [];
-    // console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
-    // console.log("inputRentalPrice=", inputRentalPrice);
+
     setInputRentalPrice(inputRentalPrice);
 
-  // const index=1;
     autos.forEach((advert) => {
       const rentalPriceCurrent = Number(advert.rentalPrice.slice(1)); // Удаление первого символа и преобразование в число
-  
+
       if (rentalPriceCurrent <= inputRentalPrice) {
         array.push(advert.id);
       }
     });
-  
-     setArrayIdRentalPrice(array);
-     
-     
-      
-   };
-  
 
-  
-
-
-
-
-
+    setArrayIdRentalPrice(array);
+  };
 
   //  ==============arrayIdMileageFrom===============
-   const handleMileageFrom = (inputMileageFrom, inputMileageTo) => {
+  const handleMileageFrom = (inputMileageFrom, inputMileageTo) => {
     setInputMileageFrom(inputMileageFrom);
     setInputMileageTo(inputMileageTo);
-  
-  if (((inputMileageFrom > inputMileageTo) &&  inputMileageTo.length!==0) || (inputMileageFrom.length!==0 && inputMileageTo.length!==0 && arrayIdMileageTo.length===0)){
-    setArrayIdMileageFrom([]);
-  } else {
-    const arrayMileageFrom = autos
-      .filter((auto) =>auto.mileage >= inputMileageFrom)
-      .map((auto) => auto.id);
-      
-  
 
-    setArrayIdMileageFrom(arrayMileageFrom);
-  
-};
-  }
-  
+    if (inputMileageFrom > inputMileageTo && inputMileageTo.length !== 0) {
+      setArrayIdMileageFrom([]);
+    } else {
+      const arrayMileageFrom = autos
+        // .filter((auto) =>auto.mileage.toLocaleString("en-EN") >= inputMileageFrom)
+        .filter((auto) => auto.mileage >= inputMileageFrom)
+        .map((auto) => auto.id);
 
+      setArrayIdMileageFrom(arrayMileageFrom);
+    }
+  };
 
   // ==============arrayIdMileageFrom===============
 
   // ==============arrayIdMileageTo===============
 
   const handleMileageTo = (inputMileageTo, inputMileageFrom) => {
-    // console.log("inputMileageTo=", inputMileageTo);
-
     setInputMileageFrom(inputMileageFrom);
     setInputMileageTo(inputMileageTo);
-
-    //  if (arrayIdMileageFrom && arrayIdMileageTo.length===0 && inputMileageTo.length!==0) {setArrayIdMileageTo([])}
-    //  else
 
     if (inputMileageFrom > inputMileageTo) {
       setArrayIdMileageTo([]);
     } else {
       const arrayIdMileageTo = autos
-        .filter((auto) => Number(auto.mileage) <= inputMileageTo)
+        .filter((auto) => auto.mileage <= inputMileageTo)
+        // .filter((auto) => auto.mileage.toLocaleString("en-EN") <= inputMileageTo)
         .map((auto) => auto.id);
 
       if (!inputMileageFrom || inputMileageFrom) {
@@ -238,40 +156,19 @@ const Catalog = ({handleResetArrays, handleResetRentalPrice}) => {
       } else if (inputMileageFrom > inputMileageTo) {
         setArrayIdMileageTo([]);
       }
-
-      
     }
   };
   // ==============arrayIdMileageTo===============
 
-  
   handleResetArrays = () => {
-    handleResetRentalPrice();
-    // setArrayIdRentalPrice([]);
+    setArrayIdRentalPrice("");
     setArrayIdMileageTo([]);
     setArrayIdMileageFrom([]);
-    // setArrayIdMake([]);
-
-    setInputRentalPrice('');
- 
-  };
-  handleResetRentalPrice = () => {
-    setArrayIdRentalPrice('');
-    // console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
-
-    // handleReloadAdverts();
-    // handleReloadComponent();
-    // dispatch(fetchAdverts({ page: 1 }));
+    setInputRentalPrice("");
   };
 
-  // console.log("selectMake=", selectMake);
-  // console.log("arrayIdRentalPrice=", arrayIdRentalPrice);
-  // console.log("inputMileageFrom=", inputMileageFrom);
-  // console.log("inputMileageTo=", inputMileageTo);
-  console.log("arrayMileageTo=", arrayIdMileageTo);
-  console.log("arrayMileageFrom=", arrayIdMileageFrom);
+  // handleResetRentalPrice = () => {  setArrayIdRentalPrice("");};
 
- 
   const handleReloadAdverts = () => {
     dispatch(fetchAdverts({ page: 1 }));
   };
@@ -279,49 +176,37 @@ const Catalog = ({handleResetArrays, handleResetRentalPrice}) => {
   const handleReloadComponent = () => {
     setReloadComponent((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
     setCurrentPage(1); // Сбрасываем текущую страницу на первую
-    // localStorage.removeItem("currentPage");
+
     localStorage.setItem("currentPage", 1);
     // Удаляем текущую страницу из локального хранилища
   };
   const handleReloadComponentAutos = () => {
- 
     setReloadComponentAutos((prevState) => !prevState); // Инвертируем состояние для полной перезагрузки компонента
     setCurrentPageAutos(1); // Сбрасываем текущую страницу на первую
-    // localStorage.removeItem("currentPage");
+
     localStorage.setItem("currentPageAutos", 1);
     // Удаляем текущую страницу из локального хранилища
   };
-  
-  
- 
 
   return (
     <Container>
-      <SearchForm 
-      // передаємо значення импутів з SearchForm у CatalogPage
+      <SearchForm
         handleMake={handleMake}
-        
         handleRentalPrice={handleRentalPrice}
-       
-        handleMileageFrom={handleMileageFrom} 
-        handleMileageTo={handleMileageTo} 
-       
+        handleMileageFrom={handleMileageFrom}
+        handleMileageTo={handleMileageTo}
         handleResetArrays={handleResetArrays}
         handleReloadAdverts={handleReloadAdverts}
         handleReloadComponent={handleReloadComponent}
-       
-        handleResetRentalPrice={handleResetRentalPrice}
       />
 
       <CatalogList
         currentItemsAuto={currentItemsAuto}
-        // adverts={adverts}
         handleLoadMore={handleLoadMore}
         handleLearnMore={handleLearnMore}
         handleReloadComponent={handleReloadComponent}
         currentPage={currentPage}
         currentPageAutos={currentPageAutos}
-        // arrayMake={arrayIdMake}
         arrayRentalPrice={arrayIdRentalPrice}
         arrayMileageTo={arrayIdMileageTo}
         arrayMileageFrom={arrayIdMileageFrom}
@@ -329,18 +214,14 @@ const Catalog = ({handleResetArrays, handleResetRentalPrice}) => {
         selectMileageFrom={inputMileageFrom}
         selectMileageTo={inputMileageTo}
         selectRentalPrice={inputRentalPrice}
-        handlePageChangeAutos={ handlePageChangeAutos}
-         handleLoadMoreAutos={handleLoadMoreAutos}
-         handleReloadComponentAutos={handleReloadComponentAutos}
-         
+        handlePageChangeAutos={handlePageChangeAutos}
+        handleLoadMoreAutos={handleLoadMoreAutos}
+        handleReloadComponentAutos={handleReloadComponentAutos}
       />
-      {/* {currentItems.length === 0 &&
-        toast.error("Nothing found based on your search criteria")} */}
 
       <ModalLearnMore
         isOpen={isModalOpen}
         closeModal={() => setModalOpen(false)}
-        // currentItems ={currentItems}
         currentItemsAuto={currentItemsAuto}
         selectedItemId={selectedItemId}
       />

@@ -251,7 +251,7 @@ const ModalLearnMore = ({
                   <DivRentalConditions>
                     <RentalConditions className="text">
                       Mileage:
-                      <SpanAge> {cart.mileage.toLocaleString("en-IN")}</SpanAge>
+                      <SpanAge> {cart.mileage.toLocaleString("en-EN")}</SpanAge>
                     </RentalConditions>
                   </DivRentalConditions>
                   <DivRentalConditions>

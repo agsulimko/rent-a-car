@@ -4,9 +4,7 @@ import { getAdverts, getFavorites, getAutos, getAutosFavorites } from 'api/api';
 export const fetchAdverts = createAsyncThunk(
   'adverts/fetchAdverts',
   async ({ page, make }, thunkAPI) => {
-    // async (page, thunkAPI) => {
     try {
-      // const response = await getAdverts(page);
       const response = await getAdverts(page, make);
 
       return response;
@@ -21,7 +19,7 @@ export const fetchFavorites = createAsyncThunk(
   async ({ page }, thunkAPI) => {
     try {
       const response = await getFavorites(page);
-      // console.log('getFavorites=', response);
+
       return response;
     } catch (e) {
       console.log(e.message);
@@ -35,7 +33,7 @@ export const fetchAutos = createAsyncThunk(
   async ({ page, make }, thunkAPI) => {
     try {
       const response = await getAutos(page, make);
-      // console.log('getFavorites=', response);
+
       return response;
     } catch (e) {
       console.log(e.message);
@@ -44,13 +42,12 @@ export const fetchAutos = createAsyncThunk(
   }
 );
 
-
 export const fetchAutosFavorites = createAsyncThunk(
   'adverts/fetchAutosFavorites',
   async (_, thunkAPI) => {
     try {
       const response = await getAutosFavorites();
-      // console.log('getFavorites=', response);
+
       return response;
     } catch (e) {
       console.log(e.message);

@@ -12,7 +12,6 @@ export const getAdverts = async (page, make) => {
     url.searchParams.append('make', make);
   }
 
-
   try {
     const { data } = await axios.get(url.toString());
 
@@ -23,22 +22,14 @@ export const getAdverts = async (page, make) => {
   }
 };
 
-// export const getFavorites = async () => {
-//   const { data } = await axios.get(`/adverts`);
-//   console.log('data=', data);
-//   return data;
-// };
-
-export const getFavorites = async (page) => {
+export const getFavorites = async page => {
   const url = new URL('/adverts', axios.defaults.baseURL);
 
   url.searchParams.append('limit', 12);
-  // if (make) {
-  //   url.searchParams.append('make', make);
-  // }
+
   try {
     const { data } = await axios.get(url.toString());
-    // console.log('data=', data);
+
     return data;
   } catch (error) {
     console.error('Failed to fetch adverts:', error.message);
@@ -52,8 +43,7 @@ export const getAutos = async (page, make) => {
   if (page) {
     url.searchParams.append('page', page);
   }
-  // url.searchParams.append('page', page);
-  // url.searchParams.append('limit', 12);
+
   if (make) {
     url.searchParams.append('make', make);
   }
@@ -67,7 +57,6 @@ export const getAutos = async (page, make) => {
     throw error;
   }
 };
-
 
 export const getAutosFavorites = async () => {
   const url = new URL('/adverts', axios.defaults.baseURL);
@@ -83,7 +72,7 @@ export const getAutosFavorites = async () => {
 
   try {
     const { data } = await axios.get(url.toString());
-    
+
     return data;
   } catch (error) {
     console.error('Failed to fetch adverts:', error.message);

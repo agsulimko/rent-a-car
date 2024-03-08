@@ -19,11 +19,3 @@ const Loader = () => {
 };
 
 export default Loader;
-
-// const Loader = () => {
-// 	const { isLoading } = useSelector(selectorAppState)
-
-// 	return isLoading && <h1>Loading...</h1>
-// }
-
-// export default Loader
