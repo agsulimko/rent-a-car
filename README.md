@@ -1,7 +1,7 @@
 # React & Javascript app
 
 
-                 ## RENT A CAR
+#                  RENT A CAR
 
 
 An application for a company that provides car rental services in Ukraine. The application consists of 3 pages:
@@ -19,7 +19,9 @@ ____________________________________________________
 
 
 
-##RENT A CAR
+#                   RENT A CAR
+
+
 Застосунок для компанії, що надає послуги надання в Україні автомобілів в оренду. Застосунок складається з 3х сторінок:
 
 + домашня сторінка з загальним описом послуг, що надає компанія. 
