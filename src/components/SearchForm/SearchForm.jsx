@@ -204,7 +204,8 @@ const SearchForm = ({
               style={{
                 opacity: 1,
                 color: "black",
-                border: "1px solid #f7f7fb",
+                width: 86,
+                // border: "1px solid #f7f7fb",
               }}
               value={selectMileageFrom}
               onChange={(e) => {
@@ -230,7 +231,8 @@ const SearchForm = ({
               style={{
                 opacity: 1,
                 color: "black",
-                border: "1px solid #f7f7fb",
+                width: 106,
+                // border: "1px solid #f7f7fb",
               }}
             />
             <To>To</To>

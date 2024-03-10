@@ -18,13 +18,6 @@ const Label = styled.label`
   /* line-height: 1.29%;  */
   color: ${theme.color.gray_full};
   line-height: 1.29;
-
-  /* &:focus-within .input-SelectBrand-make, 
-  &:focus-within .input-SelectPrice-rentalPrice
- 
-  {
-    border-color: ${theme.color.blue_dark};
-  } ; */
 `;
 const SelectBrand = styled.select`
   border-radius: 14px;
@@ -56,16 +49,15 @@ const SelectBrand = styled.select`
     font-weight: ${theme.fontWeight.medium}; /* Насыщенность шрифта */
     font-size: 16px; /* Размер шрифта */
     line-height: 1.25; /* Межстрочный интервал */
-    /* padding: 150px 100px; */
+
     margin-bottom: 8px;
     padding-left: 18px;
     padding-top: 14px;
   }
 
   &::-webkit-scrollbar {
-    /* border-radius: 10px; */
     width: 12px;
-    /* height: 130px; */
+
     /* Ширина скроллбара в Chrome/Safari */
     /* Высота скроллбара в Chrome/Safari */
   }
@@ -110,7 +102,6 @@ const SelectPrice = styled.select`
   overflow-y: auto; /* Включаем вертикальный скролл */
   /* scrollbar-width: thin; */
   /* Ширина скроллбара */
-  /* scrollbar-color: red; */
 
   option {
     background-color: ${theme.color
@@ -165,7 +156,7 @@ const DivMileage = styled.div`
   align-items: flex-end;
 `;
 const SelectMileageFrom = styled.input`
-  width: 160px;
+  /* width: 160px; */
   height: 44px;
   border-top-left-radius: 14px;
   border-bottom-left-radius: 14px;
@@ -179,10 +170,11 @@ const SelectMileageFrom = styled.input`
   /* color: inherit; */
   /* opacity: 1; */
   background: ${theme.color.white_dark};
-  border-color: ${theme.color.white_dark};
-  border: none;
-  padding-left: 74px;
-
+  /* border-color: ${theme.color.white_dark}; */
+  border: 1px solid ${theme.color.white_dark};
+  /* border: none; */
+  padding-left: 70px;
+  border-right: 1px solid rgba(138, 138, 137, 0.9);
   outline: transparent;
   transition-property: background-color;
   &::-webkit-input-placeholder {
@@ -201,8 +193,8 @@ const Div = styled.div`
 
 const From = styled.p`
   position: absolute;
-  top: 13px;
-  right: 170px;
+  top: 15px;
+  right: 96px;
   font-family: ${theme.fontFamily.manrope};
   font-weight: ${theme.fontWeight.medium};
   font-size: 18px;
@@ -215,7 +207,7 @@ const From = styled.p`
 const To = styled.p`
   position: absolute;
   top: 15px;
-  right: 170px;
+  right: 116px;
   font-family: ${theme.fontFamily.manrope};
   font-weight: ${theme.fontWeight.medium};
   font-size: 18px;
@@ -254,8 +246,8 @@ const PriceEnd = styled.p`
 `;
 
 const SelectMileageTo = styled.input`
-  width: 160px;
-  height: 44px;
+  /* width: 160px; */
+  height: 46px;
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
   font-family: ${theme.fontFamily.manrope};
