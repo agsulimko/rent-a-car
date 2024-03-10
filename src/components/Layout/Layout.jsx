@@ -37,7 +37,9 @@ const Layout = () => {
         </Header>
       </Container>
       <main>
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </main>
     </>
   );

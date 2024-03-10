@@ -8,7 +8,7 @@ import SearchForm from "components/SearchForm/SearchForm";
 
 import ModalLearnMore from "components/Modal/ModalLearnMore";
 // import toast from "react-hot-toast";
-import { Container } from "styles/Container/Container";
+
 // import toast from "react-hot-toast";
 
 const ITEMS_PER_PAGE = 12;
@@ -189,7 +189,7 @@ const Catalog = ({ handleResetArrays }) => {
   };
 
   return (
-    <Container>
+    <>
       <SearchForm
         handleMake={handleMake}
         handleRentalPrice={handleRentalPrice}
@@ -225,7 +225,7 @@ const Catalog = ({ handleResetArrays }) => {
         currentItemsAuto={currentItemsAuto}
         selectedItemId={selectedItemId}
       />
-    </Container>
+    </>
   );
 };
 
