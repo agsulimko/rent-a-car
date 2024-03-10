@@ -97,6 +97,7 @@ const Catalog = ({ handleResetArrays }) => {
   };
 
   const handleMake = (inputMake) => {
+    console.log("inputMake=", inputMake);
     setImputMake(inputMake);
   };
 

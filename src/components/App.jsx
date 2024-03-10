@@ -5,6 +5,8 @@ import Layout from "./Layout/Layout";
 import { Suspense, lazy } from "react";
 
 import Loader from "./Loader/Loader";
+import { ThemeProvider } from "@mui/material/styles"; // Import ThemeProvider
+import { theme } from "../components/SearchForm/theme-file"; // Import your theme object
 
 const Home = lazy(() => import("../pages/Home"));
 const Catalog = lazy(() => import("../pages/CatalogPage"));
@@ -13,20 +15,23 @@ const Favorites = lazy(() => import("../pages/FavoritesPage"));
 
 const App = () => {
   return (
-    <div>
-      <Suspense fallback={<div>{Loader()}</div>}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="/catalog" element={<Catalog />} />
+    <>
+      <ThemeProvider theme={theme}>
+        <div>
+          <Suspense fallback={<div>{Loader()}</div>}>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/catalog" element={<Catalog />} />
 
-            <Route path="*" element={<Home />} />
-            <Route path="*" element={<Home />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </div>
+                <Route path="*" element={<Home />} />
+              </Route>
+            </Routes>
+          </Suspense>
+        </div>
+      </ThemeProvider>
+    </>
   );
 };
 
