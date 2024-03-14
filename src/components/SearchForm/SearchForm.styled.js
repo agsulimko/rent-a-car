@@ -183,6 +183,7 @@ const SelectMileageFrom = styled.input`
   border-right: 0.5px solid #aaaac2;
   outline: transparent;
   transition-property: background-color;
+  cursor: pointer;
   &::-webkit-input-placeholder {
     /* color: inherit; */
     opacity: 1;
@@ -281,7 +282,7 @@ const SelectMileageTo = styled.input`
   border: 1px solid #aaaac2;
   border-left: 0;
   /* border-left: 0.5px solid #aaaac2; */
-
+  cursor: pointer;
   padding-left: 52px;
   outline: transparent;
   transition-property: background-color;
