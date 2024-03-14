@@ -161,11 +161,12 @@ const DivInputMileage = styled.div`
 `;
 
 const SelectMileageFrom = styled.input`
+  /* width: 160px; */
   width: 86px;
   height: 44px;
-  /* border-top-left-radius: 14px;
-  border-bottom-left-radius: 14px; */
-  border-radius: 14px 0 0 14px;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+
   font-family: ${theme.fontFamily.manrope};
   font-weight: ${theme.fontWeight.medium};
   font-size: 18px;
@@ -174,36 +175,24 @@ const SelectMileageFrom = styled.input`
   color: ${theme.color.black_light};
   /* color: inherit; */
   /* opacity: 1; */
-  background-color: #f7f7fb;
+  background: ${theme.color.white_dark};
   /* border-color: ${theme.color.white_dark}; */
-  /* border: 1px solid ${theme.color.white_dark}; */
-  /* border: none; */
+  border: 1px solid ${theme.color.white_dark};
+
+  border-right: 1px solid rgba(138, 138, 137, 0.9);
+
   padding-left: 70px;
-  border: 1px solid #aaaac2;
-  border-right: 0.5px solid #aaaac2;
+
   outline: transparent;
   transition-property: background-color;
   &::-webkit-input-placeholder {
-    /* color: inherit; */
+    color: inherit;
     opacity: 1;
     font-family: ${theme.fontFamily.manrope};
     font-weight: ${theme.fontWeight.medium};
     font-size: 18px;
     line-height: 1.11;
     color: #121417;
-  }
-
-  &:hover {
-    border: 1px solid #000000;
-
-    border-right: 0.5px solid #aaaac2;
-  }
-
-  &:focus {
-    border: 2px solid #2f89dd;
-    height: 42px;
-    border-right: 0.5px solid #aaaac2;
-    width: 85px;
   }
 `;
 const Div = styled.div`
@@ -265,8 +254,9 @@ const PriceEnd = styled.p`
 `;
 
 const SelectMileageTo = styled.input`
+  /* width: 160px; */
   width: 106px;
-  height: 44px;
+  height: 46px;
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
   font-family: ${theme.fontFamily.manrope};
@@ -275,12 +265,10 @@ const SelectMileageTo = styled.input`
   line-height: 1.11; //  111%;
   color: ${theme.color.black_light};
   /* color: inherit; */
-  opacity: 1;
-  background-color: ${theme.color.white_dark};
-
-  border: 1px solid #aaaac2;
-  border-left: 0;
-  /* border-left: 0.5px solid #aaaac2; */
+  /* opacity: 1; */
+  background: ${theme.color.white_dark};
+  border-color: ${theme.color.white_dark};
+  border: none;
 
   padding-left: 52px;
   outline: transparent;
@@ -293,21 +281,6 @@ const SelectMileageTo = styled.input`
     font-size: 18px;
     line-height: 1.11;
     color: #121417;
-  }
-
-  &:hover {
-    border: 1px solid #000000;
-    border-left: 0;
-    /* border-left: 0.5px solid #aaaac2; */
-  }
-  &:focus {
-    border-right: 2px solid #2f89dd;
-    border-bottom: 2px solid #2f89dd;
-    border-top: 2px solid #2f89dd;
-    /* border-left: 0.5px solid #aaaac2; */
-    border-left: 0;
-    height: 42px;
-    width: 105px;
   }
 `;
 const ButtonSearch = styled.button`

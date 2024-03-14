@@ -15,7 +15,7 @@ import {
   SelectMileageFrom,
   ButtonSearch,
   ButtonReset,
-} from "components/SearchForm/SearchForm.styled";
+} from "components/SearchForm/SearchFormFavorites.styled";
 
 import makes from "components/makes.js";
 import { useSelector } from "react-redux";
@@ -201,6 +201,7 @@ const SearchFormFavorites = ({
               className="input-mileage-From"
               style={{
                 opacity: 1,
+                // width: 86,
                 color: "black",
                 border: "1px solid initial",
               }}
@@ -227,6 +228,7 @@ const SearchFormFavorites = ({
                 handleMileageToInput(e);
               }}
               style={{
+                // width: 106,
                 opacity: 1,
                 color: "black",
                 border: "1px solid initial",

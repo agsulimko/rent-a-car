@@ -1,0 +1,49 @@
+/* .select-make::-webkit-scrollbar {
+          width: 8px;
+        border-radius: 10px;
+         }
+    
+         /* Track */
+/* .select-make::-webkit-scrollbar-track {
+           background: red;
+        border-radius: 10px;
+        width: 8px;
+           /* background: transparent; 
+         } */
+    
+         /* Handle */
+ /* .select-make::-webkit-scrollbar-thumb {
+           background: #888;
+           border-radius: 10px;
+        width: 8px;
+         } */
+    
+         /* Handle on hover */
+         /* .select-make::-webkit-scrollbar-thumb:hover {
+          background: #c04444;
+        } */ 
+  /* .inputFrom:focus{
+order: 2px solid;
+border-color: #2f89dd;
+border-right: 1px solid rgba(138, 138, 137, 0.9);  } */
+
+  /* .inputFrom:hover { border: 2px solid;
+  border-color: #000000;                border-right: 1px solid rgba(138, 138, 137, 0.9);        } */
+                
+
+        /* .inputFrom:-internal-autofill-selected {
+      appearance: menulist-button;
+      background-image: none !important;
+      background-color: #fff ;
+      color: fieldtext !important;
+    } */
+
+        .MuiSelect-select .MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+          padding-left: 14px;
+        }
+
+/* .css-1or4p2r-MuiButtonBase-root-MuiMenuItem-root.Mui-selected{
+    background-color: red;
+    color: aqua;
+  } */
+
