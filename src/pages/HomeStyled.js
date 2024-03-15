@@ -21,6 +21,7 @@ const H1 = styled.h1`
 const H2 = styled.h2`
   position: absolute;
   color: rgb(200, 233, 235);
+  color: #9da0b1;
   text-align: center;
   width: 800px;
   margin: 0 auto;

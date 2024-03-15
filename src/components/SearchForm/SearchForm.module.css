@@ -21,6 +21,7 @@
          /* Handle on hover */
          /* .select-make::-webkit-scrollbar-thumb:hover {
           background: #c04444;
+         
         } */ 
   /* .inputFrom:focus{
 order: 2px solid;
@@ -40,10 +41,11 @@ border-right: 1px solid rgba(138, 138, 137, 0.9);  } */
 
         .MuiSelect-select .MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
           padding-left: 14px;
+          background: #9da0b1;
         }
 
 /* .css-1or4p2r-MuiButtonBase-root-MuiMenuItem-root.Mui-selected{
     background-color: red;
     color: aqua;
   } */
-
+ 
