@@ -35,7 +35,7 @@ const Img1 = styled.img`
   width: 400px;
   border-radius: 20px;
   /* transform: rotate(-20deg); */
-
+  border: 1px solid black;
   &:hover {
     width: 500px;
     left: 50px;
@@ -48,6 +48,8 @@ const Img2 = styled.img`
   width: 400px;
   bottom: 100px;
   border-radius: 20px;
+  border: 1px solid black;
+
   /* transform: rotate(-20deg); */
   &:hover {
     width: 500px;
@@ -62,6 +64,8 @@ const MainHome = styled.main`
   height: 1000px;
   background-repeat: no-repeat;
   max-width: 1440px;
+  border: 2px solid black;
+  border-radius: 15px;
   background-position: center;
   background-size: cover;
   background-image: linear-gradient(
