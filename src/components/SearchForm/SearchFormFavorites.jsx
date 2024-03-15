@@ -1,8 +1,6 @@
 // SearchFormFavorites.jsx
 import React, { useState } from "react";
 import {
-  Price,
-  PriceEnd,
   From,
   To,
   Div,
@@ -15,6 +13,7 @@ import {
   SelectMileageFrom,
   ButtonSearch,
   ButtonReset,
+  DivButtonSearchReset,
 } from "components/SearchForm/SearchFormFavorites.styled";
 
 import makes from "components/makes.js";
@@ -151,7 +150,9 @@ const SearchFormFavorites = ({
           <SelectPrice
             type="number"
             name="Price/1 hour"
-            // placeholder="To $"
+            placeholder="To $"
+            // defaultValue="To $"
+
             className="input-SelectPrice-rentalPrice"
             value={selectRentalPrice}
             onChange={(e) => {
@@ -160,15 +161,22 @@ const SearchFormFavorites = ({
             style={{
               margin: 0,
               padding: 10,
-              paddingLeft: 42,
+              paddingLeft: 40,
               border: "1px solid initial",
             }}
           >
             {/* <option value="">To $</option> */}
             {selectRentalPrice ? (
-              <option value=""></option>
+              <option
+                value=""
+                disabled={true}
+                hidden={!selectRentalPrice}
+              ></option>
             ) : (
-              <option value="">To $</option>
+              <option value="">
+                {/* To $ */}
+                {selectRentalPrice ? "To    $" : "To $"}
+              </option>
             )}
             {PriceSelect.map((price, index) => (
               <option key={index} value={price}>
@@ -176,16 +184,39 @@ const SearchFormFavorites = ({
               </option>
             ))}
           </SelectPrice>
-          {selectRentalPrice ? (
-            <>
-              <Price>To</Price>
-              <PriceEnd>$</PriceEnd>
-            </>
-          ) : (
-            <>
-              <Price></Price>
-              <PriceEnd> </PriceEnd>
-            </>
+          {selectRentalPrice && (
+            <span
+              style={{
+                position: "absolute",
+                top: "50%",
+                right: 90,
+                transform: "translateY(-50%)",
+                color: "#121417",
+                pointerEvents: "none",
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 1.11,
+              }}
+            >
+              To
+            </span>
+          )}
+          {selectRentalPrice && (
+            <span
+              style={{
+                position: "absolute",
+                top: "50%",
+                right: 30,
+                transform: "translateY(-50%)",
+                color: "#121417",
+                pointerEvents: "none",
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: 1.11,
+              }}
+            >
+              $
+            </span>
           )}
         </Div>
       </Label>
@@ -238,25 +269,27 @@ const SearchFormFavorites = ({
           </Div>
         </Label>
       </DivMileage>
-      <ButtonSearch
-        className="btn"
-        type="button"
-        onClick={(e) => {
-          handleSearch(e, adverts);
-        }}
-      >
-        Search
-      </ButtonSearch>
+      <DivButtonSearchReset>
+        <ButtonSearch
+          className="btn"
+          type="button"
+          onClick={(e) => {
+            handleSearch(e, adverts);
+          }}
+        >
+          Search
+        </ButtonSearch>
 
-      <ButtonReset
-        className="btn"
-        type="button"
-        onClick={(e) => {
-          handleResetSelects(e);
-        }}
-      >
-        Reset Filters
-      </ButtonReset>
+        <ButtonReset
+          className="btn"
+          type="button"
+          onClick={(e) => {
+            handleResetSelects(e);
+          }}
+        >
+          Reset Filters
+        </ButtonReset>
+      </DivButtonSearchReset>
     </Form>
   );
 };

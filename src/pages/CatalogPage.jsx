@@ -26,8 +26,8 @@ const Catalog = ({ handleResetArrays }) => {
   const [arrayIdRentalPrice, setArrayIdRentalPrice] = useState([]);
   const [arrayIdMileageFrom, setArrayIdMileageFrom] = useState([]);
   const [arrayIdMileageTo, setArrayIdMileageTo] = useState([]);
-  const [inputMileageTo, setInputMileageTo] = useState(0);
-  const [inputMileageFrom, setInputMileageFrom] = useState(0);
+  const [inputMileageTo, setInputMileageTo] = useState("");
+  const [inputMileageFrom, setInputMileageFrom] = useState("");
   const [inputRentalPrice, setInputRentalPrice] = useState("");
 
   // console.log("adverts=", adverts);

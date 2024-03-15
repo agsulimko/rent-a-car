@@ -226,33 +226,6 @@ const To = styled.p`
   color: #121417;
 `;
 
-const Price = styled.p`
-  position: absolute;
-  top: 14.5px;
-  right: 90px;
-  font-family: ${theme.fontFamily.manrope};
-  font-weight: ${theme.fontWeight.medium};
-  font-size: 18px;
-  line-height: 1.11; //  111%;
-
-  color: ${theme.color.black_dark};
-  /* color: inherit; */
-  color: #121417;
-`;
-const PriceEnd = styled.p`
-  position: absolute;
-  top: 14.5px;
-  right: 27px;
-  font-family: ${theme.fontFamily.manrope};
-  font-weight: ${theme.fontWeight.medium};
-  font-size: 18px;
-  line-height: 1.11; //  111%;
-
-  color: ${theme.color.black_dark};
-  /* color: inherit; */
-  color: #121417;
-`;
-
 const SelectMileageTo = styled.input`
   /* width: 160px; */
   width: 106px;
@@ -318,17 +291,12 @@ const ButtonReset = styled.button`
 const DivButtonSearchReset = styled.div`
   display: flex;
   gap: 18px;
-  /* margin-top: 24.5px; */
+
   padding-top: 24.5px;
 `;
 
-// =========Input============
-// =========Input============
-
 export {
   DivInputMileage,
-  Price,
-  PriceEnd,
   From,
   To,
   Div,

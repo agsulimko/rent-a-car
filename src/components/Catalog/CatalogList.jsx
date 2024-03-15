@@ -52,7 +52,8 @@ const CatalogList = ({
     // Обработчик для кнопки "To up"
     handleReloadComponentAutos(); // Вызываем функцию из родительского компонента
   };
-
+  // handleResetSelects();
+  // handleResetArrays();
   return (
     <Container>
       <div className="div-cards-list">

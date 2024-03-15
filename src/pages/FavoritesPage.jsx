@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectAutosFavorites } from "../redux/selectors";
 
 import { fetchAutosFavorites, fetchFavorites } from "../redux/thunks";
-import { Container } from "styles/Container/Container";
+
 import FavoritesList from "components/Favorites/FavoritesList";
 
 import ModalLearnMore from "components/Modal/ModalLearnMore";
@@ -230,7 +230,7 @@ const Favorites = ({ handleResetArrays }) => {
   // Проверяем, есть ли элементы на текущей странице избранных
 
   return (
-    <Container>
+    <>
       <SearchFormFavorites
         handleMake={handleMake}
         handleRentalPrice={handleRentalPrice}
@@ -266,7 +266,7 @@ const Favorites = ({ handleResetArrays }) => {
         currentItems={currentFavoriteAdverts}
         selectedItemId={selectedItemId}
       />
-    </Container>
+    </>
   );
 };
 

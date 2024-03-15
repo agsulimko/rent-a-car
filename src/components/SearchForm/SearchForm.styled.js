@@ -202,9 +202,9 @@ const SelectMileageFrom = styled.input`
 
   &:focus {
     border: 2px solid #2f89dd;
-    height: 42px;
-    border-right: 0.5px solid #aaaac2;
-    width: 85px;
+    height: 44px;
+    /* border-right: 0.5px solid #aaaac2; */
+    width: 86px;
   }
 `;
 const Div = styled.div`
@@ -223,6 +223,12 @@ const From = styled.p`
   color: ${theme.color.black_dark};
   /* color: inherit; */
   color: #121417;
+
+  &:hover .SelectMileageFrom {
+    border: 1px solid #000000;
+
+    border-right: 0.5px solid #aaaac2;
+  }
 `;
 const To = styled.p`
   position: absolute;
@@ -236,6 +242,12 @@ const To = styled.p`
   color: ${theme.color.black_dark};
   /* color: inherit; */
   color: #121417;
+
+  /* &:hover .SelectMileageTo {
+    border: 1px solid #000000;
+
+    border-right: 0.5px solid #aaaac2;
+  } */
 `;
 
 const Price = styled.p`
@@ -307,8 +319,8 @@ const SelectMileageTo = styled.input`
     border-top: 2px solid #2f89dd;
     /* border-left: 0.5px solid #aaaac2; */
     border-left: 0;
-    height: 42px;
-    width: 105px;
+    height: 44px;
+    width: 106px;
   }
 `;
 const ButtonSearch = styled.button`
@@ -346,12 +358,9 @@ const ButtonReset = styled.button`
 const DivButtonSearchReset = styled.div`
   display: flex;
   gap: 18px;
-  /* margin-top: 24.5px; */
+
   padding-top: 24.5px;
 `;
-
-// =========Input============
-// =========Input============
 
 export {
   DivInputMileage,

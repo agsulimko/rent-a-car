@@ -37,7 +37,7 @@ const FavoritesList = ({
   return (
     <Container>
       <div className="div-cards-list">
-        <CardList className="cards-list">
+        {/* <CardList className="cards-list">
           {(arrayMileageFrom.length === 0 &&
             selectMileageFrom.length !== 0 &&
             selectMileageTo.length === 0) ||
@@ -49,7 +49,7 @@ const FavoritesList = ({
             !selectRentalPrice &&
             !selectMileageFrom &&
             !selectMileageTo)
-            ? favoriteAdverts.map((cart, index) => (
+            ? currentFavoriteAdverts.map((cart, index) => (
                 <FavoritesItem
                   key={index}
                   cart={cart}
@@ -67,6 +67,17 @@ const FavoritesList = ({
                   favorites={favorites}
                 />
               ))}
+        </CardList> */}
+        <CardList className="cards-list">
+          {currentFavoriteAdverts.map((cart, index) => (
+            <FavoritesItem
+              key={index}
+              cart={cart}
+              handleLearnMore={handleLearnMore}
+              toggleFavorite={toggleFavorite}
+              favorites={favorites}
+            />
+          ))}
         </CardList>
         {currentPageFavorites > 1 && (
           <ButtonToUp onClick={handleToUp}>To up ⇈</ButtonToUp>
