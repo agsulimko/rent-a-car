@@ -7,22 +7,16 @@ import CatalogList from "components/Catalog/CatalogList";
 import SearchForm from "components/SearchForm/SearchForm";
 
 import ModalLearnMore from "components/Modal/ModalLearnMore";
-// import toast from "react-hot-toast";
-
-// import toast from "react-hot-toast";
 
 const ITEMS_PER_PAGE = 12;
 
-// let make = "";
-// let resultArrayIdMileage;
-// const updatedArray = [];
 const Catalog = ({ handleResetArrays }) => {
   const dispatch = useDispatch();
-  // const adverts = useSelector(selectAdverts) || [];
+
   const autos = useSelector(selectAutos) || [];
 
   const [imputMake, setImputMake] = useState("");
-  //  const [arrayIdMake, setArrayIdMake] = useState([]);
+
   const [arrayIdRentalPrice, setArrayIdRentalPrice] = useState([]);
   const [arrayIdMileageFrom, setArrayIdMileageFrom] = useState([]);
   const [arrayIdMileageTo, setArrayIdMileageTo] = useState([]);
@@ -30,8 +24,6 @@ const Catalog = ({ handleResetArrays }) => {
   const [inputMileageFrom, setInputMileageFrom] = useState("");
   const [inputRentalPrice, setInputRentalPrice] = useState("");
 
-  // console.log("adverts=", adverts);
-  // console.log("allAdverts=", allAdverts);
   const [currentPage, setCurrentPage] = useState(
     parseInt(localStorage.getItem("currentPage"), 10) || 1
   );
@@ -126,7 +118,7 @@ const Catalog = ({ handleResetArrays }) => {
       setArrayIdMileageFrom([]);
     } else {
       const arrayMileageFrom = autos
-        // .filter((auto) =>auto.mileage.toLocaleString("en-EN") >= inputMileageFrom)
+
         .filter((auto) => auto.mileage >= inputMileageFrom)
         .map((auto) => auto.id);
 
@@ -147,7 +139,7 @@ const Catalog = ({ handleResetArrays }) => {
     } else {
       const arrayIdMileageTo = autos
         .filter((auto) => auto.mileage <= inputMileageTo)
-        // .filter((auto) => auto.mileage.toLocaleString("en-EN") <= inputMileageTo)
+
         .map((auto) => auto.id);
 
       if (!inputMileageFrom || inputMileageFrom) {
