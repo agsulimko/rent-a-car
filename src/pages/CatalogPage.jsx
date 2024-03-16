@@ -89,7 +89,6 @@ const Catalog = ({ handleResetArrays }) => {
   };
 
   const handleMake = (inputMake) => {
-    console.log("inputMake=", inputMake);
     setImputMake(inputMake);
   };
 
@@ -191,6 +190,7 @@ const Catalog = ({ handleResetArrays }) => {
         handleResetArrays={handleResetArrays}
         handleReloadAdverts={handleReloadAdverts}
         handleReloadComponent={handleReloadComponent}
+        setCurrentPageAutos={setCurrentPageAutos}
       />
 
       <CatalogList

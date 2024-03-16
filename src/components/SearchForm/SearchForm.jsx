@@ -89,6 +89,7 @@ const SearchForm = ({
   handleMileageFrom,
   handleMileageTo,
   handleResetArrays,
+  setCurrentPageAutos,
 }) => {
   const [selectMake, setSelectMake] = useState("");
   const [selectRentalPrice, setSelectRentalPrice] = useState("");
@@ -131,6 +132,8 @@ const SearchForm = ({
       handleRentalPrice(selectRentalPrice);
       handleMileageFrom(selectMileageFrom, selectMileageTo);
       handleMileageTo(selectMileageTo, selectMileageFrom);
+
+      setCurrentPageAutos(1);
     }
   };
 

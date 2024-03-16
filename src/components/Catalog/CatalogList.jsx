@@ -1,6 +1,6 @@
 // Импортируем необходимые модули и компоненты
 import React, { useState } from "react";
-import { Container } from "styles/Container/Container";
+// import { Container } from "styles/Container/Container";
 
 import { ButtonLoadMore, ButtonToUp, CardList } from "./CatalogList.styled";
 import CatalogItem from "./CatalogItem";
@@ -55,7 +55,7 @@ const CatalogList = ({
   // handleResetSelects();
   // handleResetArrays();
   return (
-    <Container>
+    <>
       <div className="div-cards-list">
         <CardList className="cards-list">
           {!selectMake &&
@@ -102,7 +102,7 @@ const CatalogList = ({
           </ButtonLoadMore>
         )}
       </div>
-    </Container>
+    </>
     // )
   );
 };

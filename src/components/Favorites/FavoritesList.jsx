@@ -5,7 +5,7 @@ import {
   CardList,
   ButtonToUp,
 } from "components/Favorites/FavoritesList.styled";
-import { Container } from "styles/Container/Container";
+// import { Container } from "styles/Container/Container";
 
 import FavoritesItem from "./FavoritesItem";
 
@@ -35,7 +35,7 @@ const FavoritesList = ({
   };
 
   return (
-    <Container>
+    <>
       <div className="div-cards-list">
         {/* <CardList className="cards-list">
           {(arrayMileageFrom.length === 0 &&
@@ -95,7 +95,7 @@ const FavoritesList = ({
             </ButtonLoadMore>
           )}
       </div>
-    </Container>
+    </>
   );
 };
 

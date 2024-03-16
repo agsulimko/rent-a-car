@@ -21,9 +21,11 @@ const CardItem = styled.li`
 const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
   margin-bottom: 100px;
-
   gap: 24px;
+
+  width: 1184px;
 `;
 
 const DivImg = styled.div`
@@ -156,7 +158,7 @@ const ButtonLearnMore = styled.button`
 
 const ButtonToUp = styled.button`
   display: block;
-  margin-left: 565px;
+  margin-left: 690px;
   margin-bottom: 20px;
 
   text-decoration: underline;
@@ -179,7 +181,7 @@ const ButtonToUp = styled.button`
 const ButtonLoadMore = styled.button`
   padding-bottom: 150px;
   display: block;
-  margin-left: 546px;
+  margin-left: 670px;
   text-decoration: underline;
   font-size: 16px;
   font-weight: ${theme.fontWeight.medium};

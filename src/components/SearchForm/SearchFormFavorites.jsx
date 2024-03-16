@@ -29,7 +29,7 @@ const SearchFormFavorites = ({
   handleRentalPrice,
   handleMileageFrom,
   handleMileageTo,
-  handleResetArrays,
+  setCurrentPageFavorites,
 }) => {
   const [selectMake, setSelectMake] = useState("");
   const [selectRentalPrice, setSelectRentalPrice] = useState("");
@@ -69,6 +69,7 @@ const SearchFormFavorites = ({
       handleRentalPrice(selectRentalPrice);
       handleMileageFrom(selectMileageFrom, selectMileageTo);
       handleMileageTo(selectMileageTo, selectMileageFrom);
+      setCurrentPageFavorites(1);
     }
   };
 

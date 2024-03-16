@@ -237,6 +237,7 @@ const Favorites = ({ handleResetArrays }) => {
         handleMileageFrom={handleMileageFrom}
         handleMileageTo={handleMileageTo}
         handleResetArraysFavorites={handleResetArraysFavorites}
+        setCurrentPageFavorites={setCurrentPageFavorites}
       />
       <FavoritesList
         autosFavorites={autosFavorites}

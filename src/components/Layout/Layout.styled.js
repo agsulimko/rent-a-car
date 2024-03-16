@@ -10,10 +10,10 @@ const Header = styled.header`
   font-family: 'Manrope', sans-serif;
   display: flex;
   align-items: center;
-  margin-bottom: 40px;
+
   justify-content: center;
   gap: 40px;
-  padding-top: 40px;
+  padding: 22px 0;
 `;
 const UlListLayout = styled.ul`
   display: flex;
