@@ -70,7 +70,7 @@ const Layout = () => {
           <li>
             <StyledHomeLink
               to="/"
-              $activeColor={isActiveHome ? "#007FFF" : "inherit"}
+              $activeColor={isActiveHome ? "#3470ff" : "inherit"}
             >
               Home
             </StyledHomeLink>
@@ -78,7 +78,7 @@ const Layout = () => {
           <li>
             <StyledLink
               to="/catalog"
-              $activeColor={isActiveCatalog ? "#007FFF" : "inherit"}
+              $activeColor={isActiveCatalog ? "#3470ff" : "inherit"}
             >
               Catalog
             </StyledLink>
@@ -86,7 +86,7 @@ const Layout = () => {
           <li>
             <StyledLink
               to="/favorites"
-              $activeColor={isActiveFavorites ? "#007FFF" : "inherit"}
+              $activeColor={isActiveFavorites ? "#3470ff" : "inherit"}
             >
               Favorites
             </StyledLink>
