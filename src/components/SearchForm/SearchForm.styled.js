@@ -201,7 +201,9 @@ const SelectMileageFrom = styled.input`
   }
 
   &:focus {
-    border: 2px solid #2f89dd;
+    border-left: 2px solid #2f89dd;
+    border-bottom: 2px solid #2f89dd;
+    border-top: 2px solid #2f89dd;
     height: 44px;
     /* border-right: 0.5px solid #aaaac2; */
     width: 86px;
