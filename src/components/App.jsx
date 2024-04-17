@@ -17,19 +17,17 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <div>
-          <Suspense fallback={<div>{Loader()}</div>}>
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="/favorites" element={<Favorites />} />
-                <Route path="/catalog" element={<Catalog />} />
+        <Suspense fallback={<div>{Loader()}</div>}>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/catalog" element={<Catalog />} />
 
-                <Route path="*" element={<Home />} />
-              </Route>
-            </Routes>
-          </Suspense>
-        </div>
+              <Route path="*" element={<Home />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </ThemeProvider>
     </>
   );

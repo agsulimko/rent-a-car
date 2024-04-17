@@ -4,8 +4,10 @@ export const Container = styled.div`
   /* width: 100%; */
   width: 1440px;
   margin: 0 auto;
-  padding-left: 128px;
-  padding-right: 128px;
+  padding-left: 96px;
+  padding-right: 96px;
+  /* padding-left: 128px;
+  padding-right: 128px; */
 
   /* background-color: gray; */
 
