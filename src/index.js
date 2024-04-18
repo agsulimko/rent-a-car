@@ -14,12 +14,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyles} />
-        <BrowserRouter basename="/rent-a-car">
-          <PersistGate loading={null} persistor={persistor}>
+
+        <PersistGate loading={null} persistor={persistor}>
+          {' '}
+          <BrowserRouter basename="/rent-a-car">
             <App />
             <Toaster />
-          </PersistGate>
-        </BrowserRouter>
+          </BrowserRouter>
+        </PersistGate>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>

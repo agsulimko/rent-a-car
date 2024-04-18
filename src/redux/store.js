@@ -1,3 +1,4 @@
+// store.js
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 // import { reducer } from './reducer';
 import {
@@ -11,19 +12,18 @@ import {
   REGISTER,
 } from 'redux-persist';
 import advertsReducer from '../redux/slice';
-import { filterReducer } from '../redux/filterSlice';
+
 import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['adverts', 'favorites'],
+  whitelist: ['autos', 'favorites', 'currentPageFavorites', 'currentPageAutos'],
   // blacklist: ['filter'],
 };
 
 const rootReducer = combineReducers({
   adverts: advertsReducer,
-  filter: filterReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -6,6 +6,7 @@ import { selectAutosFavorites } from "../redux/selectors";
 
 import { fetchAutosFavorites, fetchFavorites } from "../redux/thunks";
 
+import { persistor } from "../redux/store";
 import FavoritesList from "components/Favorites/FavoritesList";
 
 import ModalLearnMore from "components/Modal/ModalLearnMore";
@@ -52,6 +53,10 @@ const Favorites = ({ handleResetArrays }) => {
 
     // eslint-disable-next-line
   }, [dispatch, reloadComponentFavorites, currentPageFavorites]);
+
+  useEffect(() => {
+    persistor.persist(); // Сохраняем состояние в хранилище после каждого изменения
+  });
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];

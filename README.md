@@ -14,7 +14,7 @@ An application for a company that provides car rental services in Ukraine. The a
 + a page with ads that have been added by the user to favorites The appearance of the application should consist of a navigation and a view area.
 
 
-
+# 'https://65b95a82b71048505a8ab881.mockapi.io/api'
 ____________________________________________________
 
 
