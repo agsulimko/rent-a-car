@@ -1,7 +1,7 @@
 // CatalogPage.jsx
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAdverts, fetchAutos } from "../redux/thunks";
+import { fetchAutos } from "../redux/thunks";
 import { selectAutos } from "../redux/selectors";
 import CatalogList from "components/Catalog/CatalogList";
 import SearchForm from "components/SearchForm/SearchForm";
@@ -38,7 +38,7 @@ const Catalog = ({ handleResetArrays }) => {
   const [reloadComponentAutos, setReloadComponentAutos] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchAdverts({ page: currentPage }));
+    dispatch(fetchAutos({ page: currentPage }));
   }, [dispatch, currentPage, reloadComponent]);
 
   useEffect(() => {
@@ -162,7 +162,7 @@ const Catalog = ({ handleResetArrays }) => {
   // handleResetRentalPrice = () => {  setArrayIdRentalPrice("");};
 
   const handleReloadAdverts = () => {
-    dispatch(fetchAdverts({ page: 1 }));
+    dispatch(fetchAutos({ page: 1 }));
   };
 
   const handleReloadComponent = () => {

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   fetchFavorites,
-  fetchAdverts,
+  // fetchAdverts,
   fetchAutos,
   fetchAutosFavorites,
 } from './thunks';
@@ -20,7 +20,7 @@ const handleRejected = (state, action) => {
 };
 
 const initialState = {
-  adverts: [],
+  // adverts: [],
   favorites: [],
   autos: [],
   autosFavorites: [],
@@ -29,20 +29,20 @@ const initialState = {
   error: null,
 };
 const advertsSlice = createSlice({
-  name: 'adverts',
+  name: 'autos',
   initialState,
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(fetchAdverts.pending, handlePending)
+      // .addCase(fetchAdverts.pending, handlePending)
       .addCase(fetchFavorites.pending, handlePending)
       .addCase(fetchAutos.pending, handlePending)
       .addCase(fetchAutosFavorites.pending, handlePending)
 
-      .addCase(fetchAdverts.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.adverts = action.payload;
-      })
+      // .addCase(fetchAdverts.fulfilled, (state, action) => {
+      //   state.status = 'succeeded';
+      //   state.adverts = action.payload;
+      // })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.favorites = action.payload;
@@ -57,7 +57,7 @@ const advertsSlice = createSlice({
 
         state.autosFavorites = action.payload;
       })
-      .addCase(fetchAdverts.rejected, handleRejected)
+      // .addCase(fetchAdverts.rejected, handleRejected)
 
       .addCase(fetchFavorites.rejected, handleRejected)
       .addCase(fetchAutos.rejected, handleRejected)
