@@ -30,21 +30,16 @@ const initialState = {
 };
 const autosSlice = createSlice({
   name: 'autos',
-  // const advertsSlice = createSlice({
-  //   name: 'adverts',
+
   initialState,
   reducers: {},
   extraReducers: builder => {
     builder
-      // .addCase(fetchAdverts.pending, handlePending)
+
       .addCase(fetchFavorites.pending, handlePending)
       .addCase(fetchAutos.pending, handlePending)
       .addCase(fetchAutosFavorites.pending, handlePending)
 
-      // .addCase(fetchAdverts.fulfilled, (state, action) => {
-      //   state.status = 'succeeded';
-      //   state.adverts = action.payload;
-      // })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.favorites = action.payload;
@@ -59,7 +54,6 @@ const autosSlice = createSlice({
 
         state.autosFavorites = action.payload;
       })
-      // .addCase(fetchAdverts.rejected, handleRejected)
 
       .addCase(fetchFavorites.rejected, handleRejected)
       .addCase(fetchAutos.rejected, handleRejected)
@@ -68,4 +62,3 @@ const autosSlice = createSlice({
 });
 
 export default autosSlice.reducer;
-// export default advertsSlice.reducer;

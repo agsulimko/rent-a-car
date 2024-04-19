@@ -16,9 +16,12 @@ const ITEMS_PER_PAGE = 12;
 
 const Favorites = ({ handleResetArrays }) => {
   const dispatch = useDispatch();
-  const [currentPageFavorites, setCurrentPageFavorites] = useState(
-    parseInt(localStorage.getItem("currentPageFavorites"), 10) || 1
-  );
+  // const [currentPageFavorites, setCurrentPageFavorites] = useState(
+  //   parseInt(localStorage.getItem("currentPageFavorites"), 10) || 1
+  // );
+
+  const [currentPageFavorites, setCurrentPageFavorites] = useState(1);
+  // const autosFavorites = useSelector(selectAutosFavorites) || [];
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
@@ -55,7 +58,7 @@ const Favorites = ({ handleResetArrays }) => {
   }, [dispatch, reloadComponentFavorites, currentPageFavorites]);
   useEffect(() => {
     persistor.persist();
-  });
+  }, []);
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -168,13 +171,13 @@ const Favorites = ({ handleResetArrays }) => {
   };
   // ==============arrayIdMileageTo===============
 
-  handleResetArrays = () => {
-    setArrayRentalPriceFavorites("");
-    setArrayMileageToFavorites([]);
-    setArrayMileageFromFavorites([]);
-    setInputRentalPrice("");
-    setImputMake("");
-  };
+  // const handleResetArrays = () => {
+  //   setArrayRentalPriceFavorites("");
+  //   setArrayMileageToFavorites([]);
+  //   setArrayMileageFromFavorites([]);
+  //   setInputRentalPrice("");
+  //   setImputMake("");
+  // };
 
   const resetCurrentPageFavorites = () => {
     setCurrentPageFavorites(1);
