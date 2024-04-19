@@ -20,7 +20,7 @@ import makes from "components/makes.js";
 import { useSelector } from "react-redux";
 
 import toast from "react-hot-toast";
-import { selectAdverts } from "../../redux/selectors";
+import { selectAutos } from "../../redux/selectors";
 
 const PriceSelect = Array.from({ length: 100 }, (_, index) => (index + 1) * 10);
 
@@ -36,7 +36,7 @@ const SearchFormFavorites = ({
   const [selectMileageFrom, setSelectMileageFrom] = useState("");
   const [selectMileageTo, setSelectMileageTo] = useState("");
 
-  const adverts = useSelector(selectAdverts) || [];
+  const autos = useSelector(selectAutos) || [];
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -275,7 +275,7 @@ const SearchFormFavorites = ({
           className="btn"
           type="button"
           onClick={(e) => {
-            handleSearch(e, adverts);
+            handleSearch(e, autos);
           }}
         >
           Search

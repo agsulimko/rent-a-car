@@ -28,8 +28,10 @@ const initialState = {
   isLoading: false,
   error: null,
 };
-const advertsSlice = createSlice({
+const autosSlice = createSlice({
   name: 'autos',
+  // const advertsSlice = createSlice({
+  //   name: 'adverts',
   initialState,
   reducers: {},
   extraReducers: builder => {
@@ -65,4 +67,5 @@ const advertsSlice = createSlice({
   },
 });
 
-export default advertsSlice.reducer;
+export default autosSlice.reducer;
+// export default advertsSlice.reducer;

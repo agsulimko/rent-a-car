@@ -53,9 +53,8 @@ const Favorites = ({ handleResetArrays }) => {
 
     // eslint-disable-next-line
   }, [dispatch, reloadComponentFavorites, currentPageFavorites]);
-
   useEffect(() => {
-    persistor.persist(); // Сохраняем состояние в хранилище после каждого изменения
+    persistor.persist();
   });
 
   useEffect(() => {

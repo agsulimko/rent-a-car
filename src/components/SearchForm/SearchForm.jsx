@@ -21,7 +21,7 @@ import makes from "components/makes.js";
 import { useSelector } from "react-redux";
 
 import toast from "react-hot-toast";
-import { selectAdverts } from "../../redux/selectors";
+import { selectAutos } from "../../redux/selectors";
 import { styled } from "@mui/material";
 import { MenuItem as BaseMenuItem, menuItemClasses } from "@mui/material";
 const blue = {
@@ -99,7 +99,7 @@ const SearchForm = ({
   const [showPlaceholderRentalPrice, setShowPlaceholderRentalPrice] = useState(
     true
   );
-  const adverts = useSelector(selectAdverts) || [];
+  const autos = useSelector(selectAutos) || [];
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -411,7 +411,7 @@ const SearchForm = ({
           className="btn"
           type="button"
           onClick={(e) => {
-            handleSearch(e, adverts);
+            handleSearch(e, autos);
           }}
         >
           Search
