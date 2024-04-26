@@ -10,6 +10,8 @@ const CardItem = styled.li`
   transition: all 0.5s ease;
   overflow: hidden;
 
+  background-color: ${({ isDarkTheme }) => (isDarkTheme ? 'gray' : 'white')};
+
   & img {
   }
   &:hover,
