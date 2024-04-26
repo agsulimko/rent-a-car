@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { UlListLayout } from "./Layout.styled";
 import { Container as BaseContainer } from "styles/Container/Container";
 import { Header as BaseHeader } from "./Layout.styled";
-import css from "./Layout.module.css";
+
 const StyledLink = styled(NavLink)`
   padding: 12px 30px;
   border-radius: 12px;
@@ -51,57 +51,22 @@ const Header = styled(BaseHeader)`
     background-size: cover;
     background-image: url("https://ftp.goit.study/img/cars-test-task/pontiac_firebird.jpeg");
 
-    /* margin-bottom: 10px; */
+    margin-bottom: 10px;
   }
 `;
 
 const Layout = () => {
   const location = useLocation();
-  const [isDarkTheme, setIsDarkTheme] = useState(
-    localStorage.getItem("theme") === "theme-dark"
-  );
   const isActiveHome = location.pathname === "/";
   const isActiveCatalog = location.pathname === "/catalog";
   const isActiveFavorites = location.pathname === "/favorites";
 
-  useEffect(() => {
-    // Check if the theme is set in local storage, if not set the default light theme
-    if (!localStorage.getItem("theme")) {
-      localStorage.setItem("theme", "theme-light");
-    }
-    // Apply the theme from local storage
-    document.documentElement.className = localStorage.getItem("theme");
-    // eslint-disable-next-line
-  }, []);
-
-  // function setTheme(themeName) {
-  //   localStorage.setItem("theme", themeName);
-  //   document.documentElement.className = themeName;
-  // }
-  // function to toggle between light and dark theme
-  // function toggleTheme() {
-  //   if (localStorage.getItem("theme") === "theme-dark") {
-  //     setTheme("theme-light");
-  //   } else {
-  //     setTheme("theme-dark");
-  //   }
-  // }
-  const toggleTheme = () => {
-    const newTheme = isDarkTheme ? "theme-light" : "theme-dark";
-    localStorage.setItem("theme", newTheme);
-    setIsDarkTheme(!isDarkTheme);
-    document.documentElement.className = newTheme;
-  };
-
   return (
-    <Container
-      isDarkTheme={isDarkTheme}
-      className={isActiveHome ? "active-home" : ""}
-    >
+    <Container className={isActiveHome ? "active-home" : ""}>
       <Header
         className={isActiveCatalog || isActiveFavorites ? "active-catalog" : ""}
       >
-        <UlListLayout isDarkTheme={isDarkTheme}>
+        <UlListLayout>
           <li>
             <StyledHomeLink
               to="/"
@@ -127,10 +92,6 @@ const Layout = () => {
             </StyledLink>
           </li>
         </UlListLayout>
-        <label id="switch" className={css.switch}>
-          <input type="checkbox" onChange={toggleTheme} id="slider" />
-          <span className={css.slider + " " + css.round}></span>
-        </label>
       </Header>
 
       <main>

@@ -24,12 +24,6 @@ const UlListLayout = styled.ul`
   margin-bottom: 0;
   margin-top: 0;
   gap: 40px;
-  background-color: ${({ isDarkTheme }) => (isDarkTheme ? 'green' : 'gray')};
-
-  /* background-color: gray;
-  & .theme-dark {
-    background-color: green;
-  } */
 `;
 
 export { NavLink, Header, StyledLink, UlListLayout };

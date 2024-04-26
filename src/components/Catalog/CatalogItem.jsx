@@ -1,4 +1,5 @@
-import React from "react";
+ 
+import React from 'react';
 import {
   CardItem,
   DivImg,
@@ -82,7 +83,14 @@ const CatalogItem = ({
         </p>
         <Vector></Vector>
         <p className="Country">
-          {cart.address.split(",").slice(2).join(",").trim().split(" ")[0]}
+          {
+            cart.address
+              .split(",")
+              .slice(2)
+              .join(",")
+              .trim()
+              .split(" ")[0]
+          }
         </p>
         <Vector></Vector>
         <p className="rentalCompany">{cart.rentalCompany}</p>
@@ -92,7 +100,9 @@ const CatalogItem = ({
           <p className="Class auto">
             {cart.accessories
               .map((feature) =>
-                feature.toLowerCase().includes("premium") ? "Premium" : ""
+                feature.toLowerCase().includes("premium")
+                  ? "Premium"
+                  : ""
               )
               .find((str) => str === "Premium") || ""}
           </p>
@@ -109,8 +119,11 @@ const CatalogItem = ({
           <p>
             {cart.accessories
               .map((feature) => {
-                const foundSubstring = substringsToCheck.find((substring) =>
-                  feature.toLowerCase().includes(substring.toLowerCase())
+                const foundSubstring = substringsToCheck.find(
+                  (substring) =>
+                    feature
+                      .toLowerCase()
+                      .includes(substring.toLowerCase())
                 );
 
                 return foundSubstring
